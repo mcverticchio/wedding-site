@@ -1,0 +1,32 @@
+{
+  "timeline": [
+    {
+      "date": "September 2023",
+      "title": "A chance hello",
+      "text": "We met through friends on a crisp fall evening. A short conversation turned into hours of laughter.",
+      "image": "/assets/images/story-1.jpg",
+      "alt": "Zach and Caroline smiling in the fall"
+    },
+    {
+      "date": "February 2024",
+      "title": "It's official!",
+      "text": "We're an item - to the moon and beyond!",
+      "image": "/assets/images/story-2.jpg",
+      "alt": "BITCOIN party"
+    },
+    {
+      "date": "June 2024",
+      "title": "Our first big adventure together",
+      "text": "We spent 10 of the most romantic days of our lives together in Hawaii.",
+      "image": "/assets/images/story-3.jpg",
+      "alt": "Hawaii travel in Kauai"
+    },
+    {
+      "date": "Apr 2025",
+      "title": "The proposal",
+      "text": "At the summit of Mt. Galbraith just outside Golden,CO. Happy tears, and a resounding yes!",
+      "image": "/assets/images/story-4.jpg",
+      "alt": "Mountaintop proposal overlook"
+    }
+  ]
+}

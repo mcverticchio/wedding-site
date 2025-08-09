@@ -1,0 +1,44 @@
+import type { ReactNode } from 'react';
+
+export type TimelineItem = {
+  date?: string;
+  title?: string;
+  text?: ReactNode;
+  image?: string; // expected relative to /public/images, e.g. 'story/story-1.jpg'
+  alt?: string;
+};
+
+export function Timeline({ items }: { items: TimelineItem[] }) {
+  return (
+    <ol className="relative space-y-10">
+      {items.map((it, idx) => {
+        // Items should already be normalized by the page, but keep a tiny safety for legacy inputs.
+        let rel = it.image ?? '';
+        if (rel.startsWith('assets/images/')) rel = rel.replace(/^assets\/images\//, '');
+        const img = rel ? `/images/${rel}` : null;
+
+        return (
+          <li key={idx} className="grid items-start gap-6 md:grid-cols-[200px,1fr]">
+            <div className="md:text-right">
+              {it.date ? <div className="text-sm font-medium text-autumnGreen">{it.date}</div> : null}
+            </div>
+            <div className="rounded-lg border border-warmSand/60 bg-white shadow-soft overflow-hidden">
+              {img ? (
+                <img
+                  src={img}
+                  alt={it.alt ?? it.title ?? 'Timeline image'}
+                  className="h-56 w-full object-cover"
+                  loading="lazy"
+                />
+              ) : null}
+              <div className="p-4">
+                {it.title ? <h3 className="text-lg font-semibold text-ink">{it.title}</h3> : null}
+                {it.text ? <p className="mt-2 text-slate">{it.text}</p> : null}
+              </div>
+            </div>
+          </li>
+        );
+      })}
+    </ol>
+  );
+}

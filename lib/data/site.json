@@ -1,0 +1,20 @@
+{
+  "names": "Caroline & Zach",
+  "date_display": "June 27, 2026",
+  "event_timezone": "America/New_York",
+  "city": "Spartanburg, South Carolina",
+  "contact_email": "admin@justsaybits.org",
+  "ogImage": "./assets/images/og-cover.webp",
+  "themeVars": {
+    "--autumn-green": "#2e4b3f",
+    "--burnt-orange": "#b5562b",
+    "--warm-sand": "#e9dfd3",
+    "--cream": "#f7f3ee",
+    "--gold-accent": "#c8a36a"
+  },
+  "analytics": {
+    "provider": "plausible",
+    "domain": "zach-and-caroline.example.com",
+    "enabled": false
+  }
+}

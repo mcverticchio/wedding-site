@@ -1,0 +1,36 @@
+{
+  "faqs": [
+    {
+      "q": "What is the dress code?",
+      "a": "Normal wedding cocktail attire for ceremony and reception. Smart casual for the rehearsal dinner and casual for Sunday brunch."
+    },
+    {
+      "q": "Can I bring a plus-one?",
+      "a": "We kindly ask that only those listed on your invitation attend. If you have questions, email us at hello@example.com."
+    },
+    {
+      "q": "Are children invited?",
+      "a": "We love your little ones! However, our wedding will be an adults-only celebration. Exceptions will be noted on invitations."
+    },
+    {
+      "q": "What about dietary needs?",
+      "a": "Please note any dietary restrictions on your RSVP. We’ll do our best to accommodate gluten-free, vegetarian, vegan, and allergies."
+    },
+    {
+      "q": "Is parking available?",
+      "a": "Yes, parking is available at the venue, and rideshare is encouraged. See Venue & Travel for details."
+    },
+    {
+      "q": "What time should I arrive?",
+      "a": "Ceremony starts at 4:30 PM. Please park at The Piedmont Club and walk 1 minute to the church. We'll walk back to The Piedmont Club at 5:00 PM for the reception."
+    },
+    {
+      "q": "Can we take photos or post on social media?",
+      "a": "We’re happy for you to capture memories during the reception. During the ceremony, we kindly request you keep phones away."
+    },
+    {
+      "q": "Who can I contact with other questions?",
+      "a": "Email us at hello@example.com and we’ll get back to you as soon as we can."
+    }
+  ]
+}

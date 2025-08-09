@@ -1,0 +1,53 @@
+{
+  "hotels": [
+    {
+      "name": "Marriott Spartanburg",
+      "address": "Spartanburg, SC",
+      "distance": "",
+      "rating": 4,
+      "link": "https://www.marriott.com/en-us/hotels/spach-spartanburg-marriott/overview/",
+      "map": "https://maps.google.com/?q=Marriott+Spartanburg",
+      "image": "travel/hotel-1.jpeg",
+      "alt": "Marriott Spartanburg",
+      "block": {
+        "name": "Wedding Rate",
+        "code": "CAROLINE",
+        "deadline": "June 26–27"
+      },
+      "notes": "Special Discount: 10% off for June 26–27 with code CAROLINE. Downtown full‑service stay with restaurants, seasonal pool, fitness center, complimentary WiFi, club lounge option, plus onsite wedding planning & catering services."
+    },
+    {
+      "name": "AC Hotel Downtown Spartanburg",
+      "address": "Spartanburg, SC",
+      "distance": "",
+      "rating": 4,
+      "link": "https://www.marriott.com/en-us/hotels/gspad-ac-hotel-spartanburg/overview/",
+      "map": "https://maps.google.com/?q=AC+Hotel+Spartanburg",
+      "image": "travel/hotel-3.webp",
+      "alt": "AC Hotel Downtown Spartanburg",
+      "notes": "Stylish modern design just steps from Morgan Square. Amenities include free WiFi, outdoor pool, 24‑hour gym, onsite café/bar and three restaurants, plus pet‑friendly rooms."
+    },
+    {
+      "name": "Hilton Garden Inn Spartanburg",
+      "address": "Spartanburg, SC",
+      "distance": "",
+      "rating": 4,
+      "link": "https://www.hilton.com/en/hotels/gspstgi-hilton-garden-inn-spartanburg/",
+      "map": "https://maps.google.com/?q=Hilton+Garden+Inn+Spartanburg",
+      "image": "travel/hotel-2.webp",
+      "alt": "Hilton Garden Inn Spartanburg",
+      "notes": "Contemporary and welcoming with free WiFi, seasonal outdoor pool, fitness center, arcade/game room, onsite restaurant & bar, plus pet-friendly and free parking."
+    },
+    {
+      "name": "Four Points by Sheraton Spartanburg",
+      "address": "Spartanburg, SC",
+      "distance": "",
+      "rating": 4,
+      "link": "https://www.marriott.com/en-us/hotels/gspfp-four-points-spartanburg/overview/",
+      "map": "https://maps.google.com/?q=Four+Points+by+Sheraton+Spartanburg",
+      "image": "travel/hotel-4.webp",
+      "alt": "Four Points by Sheraton Spartanburg",
+      "notes": "Reliable stay near I‑26/I‑85 with spacious rooms, large smart TVs, sound‑proof windows, indoor heated pool, gym, bar/restaurant, free WiFi and free parking—pet-friendly too."
+    }
+  ]
+}

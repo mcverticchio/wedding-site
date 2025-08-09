@@ -1,0 +1,200 @@
+{
+  "photos": [
+    {
+      "src": "../assets/images/gallery-1.jpg",
+      "alt": "Engagement photo in autumn leaves",
+      "caption": "Golden hour in the aspens",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-2.jpg",
+      "alt": "Candid laugh together",
+      "caption": "Candid moments",
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "src": "../assets/images/gallery-3.jpg",
+      "alt": "Close-up holding hands",
+      "caption": "Little details",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-4.jpg",
+      "alt": "Walking through a park",
+      "caption": "Stroll through the park",
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "src": "../assets/images/gallery-5.jpg",
+      "alt": "Silhouette at sunset",
+      "caption": "Sunset silhouette",
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "src": "../assets/images/gallery-6.jpg",
+      "alt": "Close-up smiling",
+      "caption": "Joy",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-7.jpg",
+      "alt": "Close-up smiling",
+      "caption": "Joy",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-8.jpg",
+      "alt": "Close-up smiling",
+      "caption": "Joy",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-9.jpg",
+      "alt": "Close-up smiling",
+      "caption": "Joy",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-10.jpg",
+      "alt": "Close-up smiling",
+      "caption": "Joy",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-11.jpg",
+      "alt": "Close-up smiling",
+      "caption": "Joy",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-12.jpg",
+      "alt": "Close-up smiling",
+      "caption": "Joy",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-13.jpg",
+      "alt": "Close-up smiling",
+      "caption": "Joy",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-14.jpg",
+      "alt": "Close-up smiling",
+      "caption": "Joy",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-15.jpg",
+      "alt": "Close-up smiling",
+      "caption": "Joy",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-16.jpg",
+      "alt": "Close-up smiling",
+      "caption": "Joy",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-17.jpg",
+      "alt": "Close-up smiling",
+      "caption": "Joy",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-18.jpg",
+      "alt": "Close-up smiling",
+      "caption": "Joy",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-19.jpg",
+      "alt": "Close-up smiling",
+      "caption": "Joy",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-20.jpg",
+      "alt": "Close-up smiling",
+      "caption": "Joy",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-21.jpg",
+      "alt": "Close-up smiling",
+      "caption": "Joy",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-22.jpg",
+      "alt": "Close-up smiling",
+      "caption": "Joy",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-23.jpg",
+      "alt": "Close-up smiling",
+      "caption": "Joy",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-24.jpg",
+      "alt": "Close-up smiling",
+      "caption": "Joy",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-25.jpg",
+      "alt": "Gallery photo 25",
+      "caption": "Memories",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-26.jpg",
+      "alt": "Gallery photo 26",
+      "caption": "Memories",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-27.jpg",
+      "alt": "Gallery photo 27",
+      "caption": "Memories",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-28.jpg",
+      "alt": "Gallery photo 28",
+      "caption": "Memories",
+      "width": 1200,
+      "height": 1600
+    }
+  ]
+}
