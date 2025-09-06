@@ -2,19 +2,24 @@
   "note": "Your presence is the greatest gift. If you wish to give, we appreciate contributions to our honeymoon fund or gifts from the registries below.",
   "links": [
     {
-      "name": "Give Bitcoin",
-      "url": "https://strike.me/bap",
-      "description": "Help us save for our family's future."
-    },
-    {
       "name": "Amazon",
       "url": "https://www.amazon.com/wedding/share/carolineandzach26",
-      "description": "Everyday essentials and favorites."
+      "description": "Gifts and contributions for our special day."
+    },
+    {
+      "name": "Stafford's Jewelers",
+      "url": "https://www.williamstaffordjewelers.com/registry.cfm/53553/Verticchio/June-27-2026",
+      "description": "China, dishware, and fun home stuff."
     },
     {
       "name": "Give Cash",
-      "url": "https://cash.app/$btcbap",
+      "url": "https://www.venmo.com/u/Caroline-Verticchio",
       "description": "Help us fund our honeymoon!"
+    },
+    {
+      "name": "Give Bitcoin",
+      "url": "https://strike.me/bap",
+      "description": "Help us save for our family's future."
     }
   ]
 }

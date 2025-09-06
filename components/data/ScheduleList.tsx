@@ -52,7 +52,7 @@ export function ScheduleList({ events }: { events: ScheduleEvent[] }) {
                     <div className="flex-1">
                       <CardHeader>
                         <div className="flex gap-2 justify-between items-baseline">
-                          <div className="text-lg font-semibold text-ink">{e.title}</div>
+                          <div className="text-2xl font-semibold text-ink">{e.title}</div>
                           {(e.time || e.day) ? (
                             <div className="px-2 py-1 text-sm font-medium rounded-full text-ink/70 bg-ink/5">
                               {[e.day, e.time].filter(Boolean).join(' • ')}
