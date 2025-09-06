@@ -1,8 +1,5 @@
 TODO:
 
-[] Fill in hotel info and ratings
-[] Fix hotel URLs
-[] Revise copy for venue info [] duplicate on Schedule
 [] Finish FAQ questions
 [] Finish RSVP page for +1 names
 [] Fix supabase backend with RLS
@@ -14,3 +11,6 @@ TODO:
 [] Decide on all pics for photo gallery
 
 [x] Add uiternity photo gallery component
+[x] Fill in hotel info and ratings
+[x] Fix hotel URLs
+[x] Revise copy for venue info [] duplicate on Schedule

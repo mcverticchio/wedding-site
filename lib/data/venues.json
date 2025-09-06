@@ -5,8 +5,8 @@
       "address": "361 E Main St B, Spartanburg, SC 29302",
       "map_link": "https://maps.app.goo.gl/nJycboSEoQYJqPLP8",
       "embed_src": "https://www.google.com/maps?q=Piedmont%20Club%20Spartanburg&output=embed",
-      "parking": "On-site parking available. Rideshare recommended after 10 PM.",
-      "arrival": "Dinner is buffet-style at The Piedmont Club. Park at The Piedmont Club and walk 1 minute to the church for the ceremony; we’ll walk back at 5:00 PM."
+      "parking": "On-site parking available.",
+      "arrival": "Park at The Piedmont Club and walk 1 minute to the church for the ceremony; we'll walk back after the ceremony. Dinner is buffet-style at The Piedmont Club."
     },
     {
       "name": "First Presbyterian Church — The Chapel",
@@ -14,13 +14,25 @@
       "map_link": "https://maps.app.goo.gl/8b1uB1J9qF1Fq3ip7",
       "embed_src": "https://www.google.com/maps?q=First%20Presbyterian%20Church%20Spartanburg%20Chapel&output=embed",
       "parking": "Church parking lots available nearby.",
-      "arrival": "Ceremony is at First Presbyterian Church, The Chapel. Please arrive 20–30 minutes early."
+      "arrival": "The ceremony is at First Presbyterian Church, The Chapel. Please arrive 15-20 minutes early."
     }
   ],
   "travel": {
     "airports": [
-      { "code": "GSP", "name": "Greenville-Spartanburg International Airport", "notes": "Primary airport. 30–45 minutes to downtown.", "image": "travel/airport-1.jpeg", "alt": "Greenville-Spartanburg International Airport" },
-      { "code": "CLT", "name": "Charlotte Douglas International Airport", "notes": "About 1.5–2 hours away; rental car required (not recommended).", "image": "travel/airport-2.webp", "alt": "Charlotte Douglas International Airport" }
+      {
+        "code": "GSP",
+        "name": "Greenville-Spartanburg International Airport",
+        "notes": "Primary airport. Approx 30 minutes from downtown Spartanburg.",
+        "image": "travel/airport-1.jpeg",
+        "alt": "Greenville-Spartanburg International Airport"
+      },
+      {
+        "code": "CLT",
+        "name": "Charlotte Douglas International Airport",
+        "notes": "Approx 1.5 hours away; rental car recommended.",
+        "image": "travel/airport-2.webp",
+        "alt": "Charlotte Douglas International Airport"
+      }
     ]
   }
 }

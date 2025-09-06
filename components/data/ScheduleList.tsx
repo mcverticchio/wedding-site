@@ -9,8 +9,8 @@ export type ScheduleEvent = {
   time?: string;
   dress?: string;
   location?: string;
+  address?: string;
   map?: string;
-  parking?: string;
   description?: string;
   note?: string;
   image?: string;
@@ -19,55 +19,82 @@ export type ScheduleEvent = {
 
 export function ScheduleList({ events }: { events: ScheduleEvent[] }) {
   return (
-    <ul className="grid gap-6 sm:grid-cols-2 items-stretch">
-      {events.map((e) => {
-        const img = e.image ? `/images/${e.image.replace(/^\.{0,2}\/?assets\/images\//, '')}` : null;
+    <div className="relative">
+      {/* Timeline line */}
+      <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-ink/20 hidden sm:block" />
+      
+      <ul className="space-y-8">
+        {events.map((e) => {
+          const img = e.image ? `/images/${e.image.replace(/^\.{0,2}\/?assets\/images\//, '')}` : null;
 
-        return (
-          <li key={e.id ?? `${e.title}-${e.time}`}>
-            <Card>
-              {img ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={img}
-                  alt={e.alt ?? e.title ?? 'Event image'}
-                  className="h-44 w-full rounded-t-lg object-cover"
-                  loading="lazy"
-                />
-              ) : null}
-              <CardHeader>
-                <div className="flex items-baseline justify-between gap-2">
-                  <div className="text-lg font-semibold text-ink">{e.title}</div>
-                  {(e.time || e.day) ? (
-                    <div className="text-sm text-ink/70">
-                      {[e.day, e.time].filter(Boolean).join(' • ')}
+          return (
+            <li key={e.id ?? `${e.title}-${e.time}`} className="relative">
+              {/* Timeline dot */}
+              <div className="hidden absolute left-6 z-10 w-4 h-4 rounded-full border-4 border-white shadow-sm bg-ink sm:block" />
+              
+              {/* Content */}
+              <div className="sm:ml-16">
+                <Card>
+                  <div className="flex flex-col sm:flex-row">
+                    {/* Image Section */}
+                    {img ? (
+                      <div className="sm:w-56 sm:flex-shrink-0">
+                        <img
+                          src={img}
+                          alt={e.alt ?? e.title ?? 'Event image'}
+                          className="object-cover w-full h-48 rounded-t-lg sm:h-full sm:rounded-l-lg sm:rounded-tr-none"
+                          loading="lazy"
+                        />
+                      </div>
+                    ) : null}
+                    
+                    {/* Text Content Section */}
+                    <div className="flex-1">
+                      <CardHeader>
+                        <div className="flex gap-2 justify-between items-baseline">
+                          <div className="text-lg font-semibold text-ink">{e.title}</div>
+                          {(e.time || e.day) ? (
+                            <div className="px-2 py-1 text-sm font-medium rounded-full text-ink/70 bg-ink/5">
+                              {[e.day, e.time].filter(Boolean).join(' • ')}
+                            </div>
+                          ) : null}
+                        </div>
+                        {(e.date || e.dress) ? (
+                          <div className="mt-2 text-sm text-ink/70">
+                            {[e.date, e.dress].filter(Boolean).join(' • ')}
+                          </div>
+                        ) : null}
+                        {e.location ? (
+                          <div className="mt-2 text-sm font-medium text-ink/80">
+                            📍 {e.location} {e.address ? `• ${e.address}` : ''}
+                          </div>
+                        ) : null}
+                      </CardHeader>
+                      <CardBody>
+                        {e.description ? <p className="leading-relaxed text-ink/80">{e.description}</p> : null}
+                        {e.note ? (
+                          <div className="p-3 mt-3 bg-amber-50 rounded-lg border border-amber-200">
+                            <p className="text-sm italic text-amber-800">
+                              💡 {e.note}
+                            </p>
+                          </div>
+                        ) : null}
+                        {e.map ? (
+                          <div className="mt-4">
+                            <Button as="a" href={e.map as string} target="_blank" rel="noreferrer" variant="secondary">
+                              Open Map
+                            </Button>
+                          </div>
+                        ) : null}
+                      </CardBody>
                     </div>
-                  ) : null}
-                </div>
-                {(e.date || e.dress) ? (
-                  <div className="mt-1 text-sm text-ink/70">
-                    {[e.date, e.dress].filter(Boolean).join(' • ')}
                   </div>
-                ) : null}
-                {e.location ? <div className="mt-1 text-sm text-ink/80">{e.location}</div> : null}
-              </CardHeader>
-              <CardBody>
-                {e.description ? <p className="text-ink/80">{e.description}</p> : null}
-                {e.parking ? <p className="mt-2 text-ink/70">Parking: {e.parking}</p> : null}
-                {e.note ? <p className="mt-2 text-ink/70 italic">{e.note}</p> : null}
-                <div className="mt-3 flex-1" />
-                {e.map ? (
-                  <div className="pt-3 mt-auto">
-                    <Button as="a" href={e.map as string} target="_blank" rel="noreferrer" variant="secondary">
-                      Open Map
-                    </Button>
-                  </div>
-                ) : null}
-              </CardBody>
-            </Card>
-          </li>
-        );
-      })}
-    </ul>
+                </Card>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }
