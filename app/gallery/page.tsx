@@ -19,6 +19,15 @@ function loadGalleryData(): GalleryData {
   return JSON.parse(raw) as GalleryData;
 }
 
+function shuffle<T>(array: T[]): T[] {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
@@ -34,11 +43,12 @@ export const metadata: Metadata = {
 
 export default function GalleryPage() {
   const data = loadGalleryData();
-  const photos =
-    (data.photos ?? []).map((p) => ({
-      ...p,
-      src: p.src ? p.src.replace(/^\.{0,2}\/?assets\/images\//, '') : '',
-    })) ?? [];
+  let allPhotos = (data.photos ?? []).map((p) => ({
+    ...p,
+    src: p.src ? p.src.replace(/^\.{0,2}\/?assets\/images\//, '') : '',
+  })) ?? [];
+
+  const selectedPhotos = allPhotos;
 
   return (
     <main className="container py-10">
@@ -47,7 +57,7 @@ export default function GalleryPage() {
         {data.intro ? <p className="mt-3 text-ink/80">{data.intro}</p> : null}
       </header>
 
-      <GalleryGrid photos={photos} />
+      <GalleryGrid photos={selectedPhotos} />
     </main>
   );
 }

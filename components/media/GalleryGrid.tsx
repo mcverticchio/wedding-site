@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { Lightbox } from './Lightbox';
+import { useState, useEffect } from 'react';
+import { Button } from '../ui/Button';
+import { DraggableCardBody, DraggableCardContainer } from '../index';
 
 export type GalleryPhoto = {
   src: string;      // expected relative to /public/images, e.g. 'gallery/gallery-1.jpg'
@@ -20,53 +21,119 @@ function normalize(rel: string) {
   return `/images/${filename}`;
 }
 
+
+function generateClassName(index: number, offset: number = 0) {
+  const positions = [
+    { top: '5', left: '10%', rotate: '-10deg' },
+    { top: '50', left: '15%', rotate: '-15deg' },
+    { top: '20', left: '30%', rotate: '12deg' },
+    { top: '60', left: '40%', rotate: '15deg' },
+    { top: '30', right: '30%', rotate: '5deg' },
+    { top: '40', left: '50%', rotate: '-12deg' },
+    { top: '15', left: '20%', rotate: '8deg' },
+    { top: '70', left: '60%', rotate: '-8deg' },
+    { top: '25', right: '20%', rotate: '10deg' },
+    { top: '55', left: '70%', rotate: '-5deg' },
+  ];
+  const effectiveIndex = (index + offset) % positions.length;
+  const pos = positions[effectiveIndex];
+  if (pos.right) {
+    return `absolute top-${pos.top} right-[${pos.right}] rotate-[${pos.rotate}]`;
+  }
+  return `absolute top-${pos.top} left-[${pos.left}] rotate-[${pos.rotate}]`;
+}
+
+function shuffle<T>(array: T[]): T[] {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 export function GalleryGrid({ photos }: { photos: GalleryPhoto[] }) {
-  const [openIdx, setOpenIdx] = useState<number | null>(null);
+  const [layoutMode, setLayoutMode] = useState<'stacked' | 'grid'>('stacked');
+  const [shuffledPhotos, setShuffledPhotos] = useState(photos);
+  const [restackOffset, setRestackOffset] = useState(Math.floor(Math.random() * 10));
+
+  useEffect(() => {
+    setShuffledPhotos(shuffle(photos));
+  }, []);
+
+  const selectedPhotos = layoutMode === 'stacked' ? shuffledPhotos : photos;
+
+  const items = selectedPhotos.map((p, idx) => ({
+    title: p.caption || p.alt || 'Gallery Image',
+    image: normalize(p.src),
+    className: layoutMode === 'stacked' ? generateClassName(idx, restackOffset) : `grid-item col-span-1 row-span-1`,
+  }));
+
+  const handleToggleLayout = () => {
+    console.log('Toggle layout clicked, current mode:', layoutMode);
+    setLayoutMode(prev => {
+      const newMode = prev === 'stacked' ? 'grid' : 'stacked';
+      console.log('New mode:', newMode);
+      return newMode;
+    });
+  };
+
+  const handleRestack = () => {
+    console.log('Restack clicked, current mode:', layoutMode);
+    setLayoutMode('stacked');
+    setRestackOffset(prev => (prev + 1) % 10);
+    console.log('Set to stacked');
+  };
+
+  if (layoutMode === 'grid') {
+    return (
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 w-full">
+        <Button onClick={handleToggleLayout} variant="primary" className="col-span-full mb-4">
+          Switch to Stacked View
+        </Button>
+        {selectedPhotos.map((p, idx) => (
+          <DraggableCardBody key={idx} className="relative min-h-64 overflow-hidden rounded-md bg-neutral-100 p-6 shadow-2xl dark:bg-neutral-900">
+            <img
+              src={normalize(p.src)}
+              alt={p.caption || p.alt || 'Gallery Image'}
+              className="pointer-events-none relative z-10 h-64 w-full object-cover"
+              loading="lazy"
+            />
+            <h3 className="mt-4 text-center text-2xl font-bold text-neutral-700 dark:text-neutral-300">
+              {p.caption || p.alt || 'Gallery Image'}
+            </h3>
+          </DraggableCardBody>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {photos.map((p, idx) => {
-          const src = normalize(p.src);
-          return (
-            <figure
-              key={idx}
-              className="group cursor-zoom-in overflow-hidden rounded-lg border border-warmSand/60 bg-white shadow-soft"
-              onClick={() => setOpenIdx(idx)}
-              role="button"
-              aria-label="Open image"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') setOpenIdx(idx);
-              }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={src}
-                alt={p.alt ?? p.caption ?? 'Gallery image'}
-                className="aspect-[4/3] h-auto w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                loading="lazy"
-              />
-              {p.caption ? (
-                <figcaption className="px-3 py-2 text-sm text-ink/80">{p.caption}</figcaption>
-              ) : null}
-            </figure>
-          );
-        })}
+      <div className="flex justify-center space-x-4 mb-2">
+        <Button onClick={handleToggleLayout} variant="primary" className="p-2">
+          View Grid
+        </Button>
+        <Button onClick={handleRestack} variant="secondary" className="p-2">
+          Restack
+        </Button>
       </div>
-
-      {openIdx !== null ? (
-        <Lightbox
-          photos={photos.map((p) => ({
-            ...p,
-            src: normalize(p.src),
-          }))}
-          index={openIdx}
-          onClose={() => setOpenIdx(null)}
-          onPrev={() => setOpenIdx((i) => (i! > 0 ? i! - 1 : photos.length - 1))}
-          onNext={() => setOpenIdx((i) => (i! + 1) % photos.length)}
-        />
-      ) : null}
+      <DraggableCardContainer key={restackOffset} className="relative flex w-full justify-center overflow-visible">
+        {items.map((item, idx) => (
+          <DraggableCardBody key={idx} className={`${item.className} shadow-sm border-2 border-neutral-200 dark:border-neutral-800`}>
+            <img
+              src={item.image}
+              alt={item.title}
+              className="pointer-events-none relative z-10 h-64 w-64 object-cover"
+              loading="lazy"
+              draggable="false"
+            />
+            <h3 className="pointer-events-none mt-4 text-center text-2xl font-bold text-neutral-700 dark:text-neutral-300">
+              {item.title}
+            </h3>
+          </DraggableCardBody>
+        ))}
+      </DraggableCardContainer>
     </>
   );
 }
