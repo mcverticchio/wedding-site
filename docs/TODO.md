@@ -5,7 +5,7 @@ TODO:
 [] Change hero image
 [] Decide on all pics for photo gallery and add captions
 [] Style website
-[] Add a "Things to Do" section at the bottom of "Accomodations"??
+[] Add a "Things to Do" section at the bottom of "Accomodations" or a separate tab?
 
 [x] Add uiternity photo gallery component
 [x] Fill in hotel info and ratings

@@ -5,7 +5,7 @@ import { useState } from 'react';
 export type FAQ = { question: string; answer: string };
 
 export function FAQAccordion({ faqs }: { faqs: FAQ[] }) {
-  const [open, setOpen] = useState<Set<number>>(new Set(faqs.map((_, idx) => idx)));
+  const [open, setOpen] = useState<Set<number>>(new Set([0]));
 
   return (
     <div className="space-y-2">

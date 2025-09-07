@@ -1,3 +1,5 @@
+'use client';
+
 import { Card, CardBody, CardFooter, CardHeader } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { 
@@ -5,10 +7,12 @@ import {
   CurrencyDollarIcon, 
   CubeIcon,
 } from '@heroicons/react/24/outline';
+import { useState, useEffect } from 'react';
 
 export type RegistryLink = {
   name?: string;
   url?: string;
+  mobileUrl?: string;
   description?: string;
 };
 
@@ -52,43 +56,70 @@ const RegistryIcon = ({ name }: { name?: string }) => {
 };
 
 export function RegistryGrid({ links, note }: { links: RegistryLink[]; note?: string }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+
+    // Check on mount
+    checkIsMobile();
+
+    // Add event listener
+    window.addEventListener('resize', checkIsMobile);
+
+    // Cleanup
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+
+  const getButtonUrl = (link: RegistryLink) => {
+    if (isMobile && link.mobileUrl) {
+      return link.mobileUrl;
+    }
+    return link.url;
+  };
+
   return (
     <div className="space-y-8">
       {note && (
-          <p className="text-lg leading-relaxed text-ink/80">{note}</p>
+        <p className="text-lg leading-relaxed text-ink/80">{note}</p>
       )}
       
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {links.map((l, idx) => (
-          <Card key={idx}>
-            <CardHeader className="pb-4">
-              <div className="flex gap-3 items-center mb-4">
-                <RegistryIcon name={l.name} />
-                <h3 className="text-xl font-semibold transition-colors text-ink group-hover:text-autumnGreen">
-                  {l.name}
-                </h3>
-              </div>
-            </CardHeader>
-            <CardBody>
-              {l.description && (
-                <p className="leading-relaxed text-ink/70">{l.description}</p>
-              )}
-            </CardBody>
-            <CardFooter className="pt-4">
-              {l.url && (
-                <Button 
-                  as="a" 
-                  href={l.url as string} 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="px-6 py-3 w-full font-medium text-white rounded-lg transition-all duration-200 bg-autumnGreen hover:bg-autumnGreen/90 hover:shadow-md"
-                >
-                  {l.name?.toLowerCase().includes('amazon') || l.name?.toLowerCase().includes('stafford') ? 'View Registry' : 'Donate'}
-                </Button>
-              )}
-            </CardFooter>
-          </Card>
-        ))}
+        {links.map((l, idx) => {
+          const buttonUrl = getButtonUrl(l);
+          return (
+            <Card key={idx}>
+              <CardHeader className="pb-4">
+                <div className="flex gap-3 items-center mb-4">
+                  <RegistryIcon name={l.name} />
+                  <h3 className="text-xl font-semibold transition-colors text-ink group-hover:text-autumnGreen">
+                    {l.name}
+                  </h3>
+                </div>
+              </CardHeader>
+              <CardBody>
+                {l.description && (
+                  <p className="leading-relaxed text-ink/70">{l.description}</p>
+                )}
+              </CardBody>
+              <CardFooter className="pt-4">
+                {buttonUrl && (
+                  <Button 
+                    as="a" 
+                    href={buttonUrl} 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="px-6 py-3 w-full font-medium text-white rounded-lg transition-all duration-200 bg-autumnGreen hover:bg-autumnGreen/90 hover:shadow-md"
+                  >
+                    {l.name?.toLowerCase().includes('amazon') || l.name?.toLowerCase().includes('stafford') ? 'View Registry' : 'Donate'}
+                  </Button>
+                )}
+              </CardFooter>
+            </Card>
+          );
+        })}
       </div>
     </div>
   );

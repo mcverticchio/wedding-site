@@ -14,6 +14,7 @@
     {
       "name": "Give Cash",
       "url": "https://www.venmo.com/u/Caroline-Verticchio",
+      "mobileUrl": "venmo://paycharge?txn=pay&recipients=Caroline-Verticchio&note=WEDDING",
       "description": "Help us fund our honeymoon!"
     },
     {
