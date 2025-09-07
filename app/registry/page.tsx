@@ -34,7 +34,7 @@ export default function RegistryPage() {
   return (
     <main className="container py-10">
       <header className="mb-8">
-        <h1 className="font-display text-4xl font-bold tracking-tight text-ink">
+        <h1 className="text-4xl font-bold tracking-tight font-display text-ink">
           {data.title ?? 'Registry'}
         </h1>
         {data.intro ? <p className="mt-3 text-ink/80">{data.intro}</p> : null}

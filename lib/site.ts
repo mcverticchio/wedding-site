@@ -17,7 +17,7 @@ export type SiteData = {
 const defaultNav: NavItem[] = [
 
   { label: 'Schedule', href: '/schedule' },
-  { label: 'Travel', href: '/travel' },
+  { label: 'Accommodations', href: '/accommodations' },
   { label: 'Registry', href: '/registry' },
   { label: 'FAQs', href: '/faqs' },
   { label: 'Gallery', href: '/gallery' },

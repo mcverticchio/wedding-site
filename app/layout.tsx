@@ -8,11 +8,11 @@ export const metadata: Metadata = {
     default: 'Caroline & Zach',
     template: '%s | Caroline & Zach',
   },
-  description: 'Details, schedule, travel, and RSVP for our wedding.',
+  description: 'Details, schedule, accommodations, and RSVP for our wedding.',
   metadataBase: new URL('https://example.com'),
   openGraph: {
     title: 'Caroline & Zach',
-    description: 'Details, schedule, travel, and RSVP for our wedding.',
+    description: 'Details, schedule, accommodations, and RSVP for our wedding.',
     type: 'website',
     url: '/',
   },
@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang="en">
-      <body className="min-h-screen bg-cream text-ink antialiased flex flex-col">
+      <body className="flex flex-col min-h-screen antialiased bg-cream text-ink">
         <Header brand={site.title ?? 'Caroline & Zach'} subtitle={site.subtitle} nav={site.nav ?? []} />
         <main className="flex-1">{children}</main>
         <Footer text={site.footer} email={undefined} />

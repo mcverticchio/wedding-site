@@ -19,7 +19,6 @@ const nextConfig = {
           { source: '/index.html', destination: '/', permanent: true },
           { source: '/our-story.html', destination: '/our-story', permanent: true },
           { source: '/schedule.html', destination: '/schedule', permanent: true },
-          { source: '/travel.html', destination: '/travel', permanent: true },
           { source: '/accommodations.html', destination: '/accommodations', permanent: true },
           { source: '/registry.html', destination: '/registry', permanent: true },
           { source: '/faqs.html', destination: '/faqs', permanent: true },
