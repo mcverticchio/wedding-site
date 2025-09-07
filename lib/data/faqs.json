@@ -1,12 +1,16 @@
 {
   "faqs": [
     {
+      "q": "How do I RSVP and by when?",
+      "a": "Head to the RSVP link on the website and fill out the form. Please RSVP by June 1st, 2026."
+    },
+    {
       "q": "What is the dress code?",
-      "a": "Normal wedding cocktail attire for ceremony and reception. Smart casual for the rehearsal dinner and casual for Sunday brunch."
+      "a": "Cocktail attire for the ceremony and reception."
     },
     {
       "q": "Can I bring a plus-one?",
-      "a": "We kindly ask that only those listed on your invitation attend. If you have questions, email us at hello@example.com."
+      "a": "We kindly ask that only those listed on your invitation attend. If you have questions, please contact us."
     },
     {
       "q": "Are children invited?",
@@ -18,7 +22,7 @@
     },
     {
       "q": "Is parking available?",
-      "a": "Yes, parking is available at the venue, and rideshare is encouraged. See Venue & Travel for details."
+      "a": "Yes, parking is available at the venue. See Schedulefor details."
     },
     {
       "q": "What time should I arrive?",
@@ -27,10 +31,6 @@
     {
       "q": "Can we take photos or post on social media?",
       "a": "We’re happy for you to capture memories during the reception. During the ceremony, we kindly request you keep phones away."
-    },
-    {
-      "q": "Who can I contact with other questions?",
-      "a": "Email us at hello@example.com and we’ll get back to you as soon as we can."
     }
   ]
 }

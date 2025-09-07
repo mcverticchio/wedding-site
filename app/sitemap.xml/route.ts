@@ -19,7 +19,6 @@ export async function GET() {
   const routes = [
     '/',
     '/schedule',
-    '/travel',
     '/accommodations',
     '/registry',
     '/faqs',
