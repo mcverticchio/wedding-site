@@ -8,13 +8,6 @@
       "height": 1600
     },
     {
-      "src": "../assets/images/gallery-2.jpg",
-      "alt": "Candid laugh together",
-      "caption": "Candid moments",
-      "width": 1600,
-      "height": 1200
-    },
-    {
       "src": "../assets/images/gallery-3.jpg",
       "alt": "Close-up holding hands",
       "caption": "Little details",
@@ -23,8 +16,8 @@
     },
     {
       "src": "../assets/images/gallery-4.jpg",
-      "alt": "Walking through a park",
-      "caption": "Stroll through the park",
+      "alt": "14er",
+      "caption": "We climbed a 14er.",
       "width": 1600,
       "height": 1200
     },
@@ -193,6 +186,57 @@
       "src": "../assets/images/gallery-28.jpg",
       "alt": "Gallery photo 28",
       "caption": "Memories",
+      "width": 1200,
+      "height": 1600
+    }
+  ],
+  "engagement": [
+    {
+      "src": "../assets/images/engagement-1.jpeg",
+      "alt": "Engagement photo 1",
+      "caption": "Engagement",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/engagement-2.jpeg",
+      "alt": "Engagement photo 2",
+      "caption": "Engagement",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/engagement-3.jpeg",
+      "alt": "Engagement photo 3",
+      "caption": "Engagement",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/engagement-4.jpeg",
+      "alt": "Engagement photo 4",
+      "caption": "Engagement",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/engagement-5.jpeg",
+      "alt": "Engagement photo 5",
+      "caption": "Engagement",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/engagement-6.jpeg",
+      "alt": "Engagement photo 6",
+      "caption": "Engagement",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/engagement-7.jpeg",
+      "alt": "Engagement photo 7",
+      "caption": "Engagement",
       "width": 1200,
       "height": 1600
     }
