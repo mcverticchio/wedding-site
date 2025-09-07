@@ -239,6 +239,50 @@
       "caption": "Engagement",
       "width": 1200,
       "height": 1600
+    },
+    {
+      "src": "../assets/images/engagement-8.jpeg",
+      "alt": "Engagement photo 8",
+      "caption": "Engagement",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/engagement-9.jpeg",
+      "alt": "Engagement photo 9",
+      "caption": "Engagement",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/engagement-10.jpeg",
+      "alt": "Engagement photo 10",
+      "caption": "Engagement",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/engagement-11.jpeg",
+      "alt": "Engagement photo 11",
+      "caption": "Engagement",
+      "width": 1200,
+      "height": 1600
+    }
+  ],
+  "wedding": [
+    {
+      "src": "../assets/images/engagement-11.jpeg",
+      "alt": "Engagement photo 11",
+      "caption": "Engagement",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/engagement-12.jpeg",
+      "alt": "Engagement photo 12",
+      "caption": "Engagement",
+      "width": 1200,
+      "height": 1600
     }
   ]
 }

@@ -21,7 +21,6 @@ function normalize(rel: string) {
   return `/images/${filename}`;
 }
 
-
 function generateClassName(index: number, offset: number = 0) {
   const positions = [
     { top: '5', left: '10%', rotate: '-10deg' },
@@ -41,48 +40,31 @@ function generateClassName(index: number, offset: number = 0) {
     return `absolute top-${pos.top} right-[${pos.right}] rotate-[${pos.rotate}]`;
   }
   return `absolute top-${pos.top} left-[${pos.left}] rotate-[${pos.rotate}]`;
-}
-
-function shuffle<T>(array: T[]): T[] {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-}
+};
 
 export function GalleryGrid({ photos, engagementPhotos }: { photos: GalleryPhoto[], engagementPhotos: GalleryPhoto[] }) {
-  const [layoutMode, setLayoutMode] = useState<'stacked' | 'grid'>('stacked');
-  const [shuffledPhotos, setShuffledPhotos] = useState([...engagementPhotos, ...photos]);
+  const [layoutMode, setLayoutMode] = useState('grid');
+  const [stackedPhotos, setStackedPhotos] = useState<{ title: string; image: string }[]>([]);
   const [restackOffset, setRestackOffset] = useState(Math.floor(Math.random() * 10));
 
   useEffect(() => {
-    setShuffledPhotos(shuffle(photos));
-  }, []);
-
-  const selectedPhotos = layoutMode === 'stacked' ? shuffledPhotos : photos;
-
-  const items = [...engagementPhotos, ...selectedPhotos].map((p, idx) => ({
-    title: p.caption || p.alt || 'Gallery Image',
-    image: normalize(p.src),
-    className: layoutMode === 'stacked' ? generateClassName(idx, restackOffset) : `grid-item col-span-1 row-span-1`,
-  }));
+    const items = [...engagementPhotos, ...photos].map((p) => ({
+      title: p.caption || p.alt || 'Gallery Image',
+      image: normalize(p.src),
+    }));
+    setStackedPhotos(items);
+  }, [engagementPhotos, photos]);
 
   const handleToggleLayout = () => {
-    console.log('Toggle layout clicked, current mode:', layoutMode);
     setLayoutMode(prev => {
       const newMode = prev === 'stacked' ? 'grid' : 'stacked';
-      console.log('New mode:', newMode);
       return newMode;
     });
   };
 
   const handleRestack = () => {
-    console.log('Restack clicked, current mode:', layoutMode);
     setLayoutMode('stacked');
     setRestackOffset(prev => (prev + 1) % 10);
-    console.log('Set to stacked');
   };
 
   if (layoutMode === 'grid') {
@@ -106,7 +88,7 @@ export function GalleryGrid({ photos, engagementPhotos }: { photos: GalleryPhoto
         </div>
         <h2 className="my-8 text-2xl font-bold text-center text-neutral-700 dark:text-neutral-300">Gallery</h2>
         <div className="grid gap-4 w-full sm:grid-cols-2 lg:grid-cols-3">
-          {selectedPhotos.map((p, idx) => (
+          {photos.map((p, idx) => (
             <DraggableCardBody key={idx} className="overflow-hidden relative p-6 rounded-md shadow-2xl min-h-96 bg-neutral-100 dark:bg-neutral-900">
               <img
                 src={normalize(p.src)}
@@ -135,8 +117,8 @@ export function GalleryGrid({ photos, engagementPhotos }: { photos: GalleryPhoto
         </Button>
       </div>
       <DraggableCardContainer key={restackOffset} className="flex overflow-visible relative justify-center w-full">
-        {items.map((item, idx) => (
-          <DraggableCardBody key={idx} className={`${item.className} shadow-sm border-2 border-neutral-200 dark:border-neutral-800`}>
+        {stackedPhotos.map((item, idx) => (
+          <DraggableCardBody key={idx} className={`${generateClassName(idx, restackOffset)} shadow-sm border-2 border-neutral-200 dark:border-neutral-800`}>
             <img
               src={item.image}
               alt={item.title}

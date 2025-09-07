@@ -34,7 +34,7 @@ export default function Home() {
         </div>
         <div className="overflow-hidden mt-6 w-full max-w-3xl bg-white rounded-lg border border-warmSand/60 shadow-soft">
           <Image
-            src="/images/story/story-3.jpg"
+            src="/images/gallery/engagement-12.jpeg"
             alt="Couple photo"
             width={1600}
             height={900}
