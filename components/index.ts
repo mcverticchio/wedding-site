@@ -17,3 +17,4 @@ export { GalleryGrid } from './media/GalleryGrid';
 export { Lightbox } from './media/Lightbox';
 export { MapEmbed } from './map/MapEmbed';
 export { DraggableCardBody, DraggableCardContainer } from './ui/draggable-card';
+export { PasswordProtection } from './PasswordProtection';

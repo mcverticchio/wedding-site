@@ -21,7 +21,7 @@ export const DraggableCardBody = ({
   children?: React.ReactNode;
   dragHandle?: React.ReactNode;
 }) => {
-  const [isDragging, setIsDragging] = useState(false);
+  const [isDragging] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -172,12 +172,12 @@ export const DraggableCardBody = ({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        "relative min-h-96 w-80 overflow-hidden rounded-md bg-neutral-100 p-6 shadow-2xl transform-3d dark:bg-neutral-900",
+        "overflow-hidden relative p-6 rounded-md shadow-2xl min-h-100 w-100 bg-neutral-100 transform-3d dark:bg-neutral-900",
         className,
       )}
     >
       {dragHandle && (
-        <div className="absolute top-2 right-2 z-20 cursor-grab pointer-events-auto">
+        <div className="absolute top-2 right-2 z-20 pointer-events-auto cursor-grab">
           {dragHandle}
         </div>
       )}
@@ -189,7 +189,7 @@ export const DraggableCardBody = ({
           opacity: glareOpacity,
           zIndex: -1,
         }}
-        className="pointer-events-none absolute inset-0 bg-white select-none"
+        className="absolute inset-0 bg-white pointer-events-none select-none"
       />
     </motion.div>
   );

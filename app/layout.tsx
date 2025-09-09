@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { loadSiteData } from '../lib/site';
-import { Header, Footer } from '../components';
+import { Header, Footer, PasswordProtection } from '../components';
 
 export const metadata: Metadata = {
   title: {
@@ -24,13 +24,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const site = loadSiteData();
+  const pw = process.env.NEXT_PUBLIC_WEDDING_PASSWORD || "";
 
   return (
     <html lang="en">
       <body className="flex flex-col min-h-screen antialiased bg-cream text-ink">
-        <Header brand={site.title ?? 'Caroline & Zach'} subtitle={site.subtitle} nav={site.nav ?? []} />
-        <main className="flex-1">{children}</main>
-        <Footer text={site.footer} email={undefined} />
+        <PasswordProtection correctPassword={pw}>
+          <Header brand={site.title ?? 'Caroline & Zach'} subtitle={site.subtitle} nav={site.nav ?? []} />
+          <main className="flex-1">{children}</main>
+          <Footer text={site.footer} email={undefined} />
+        </PasswordProtection>
       </body>
     </html>
   );

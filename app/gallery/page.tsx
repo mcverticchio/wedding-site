@@ -11,21 +11,12 @@ type Photo = {
   height?: number;
 };
 
-type GalleryData = { title?: string; intro?: string; photos?: Photo[] };
+type GalleryData = { title?: string; intro?: string; photos?: Photo[], engagement?: Photo[] };
 
 function loadGalleryData(): GalleryData {
   const filePath = path.join(process.cwd(), 'lib', 'data', 'gallery.json');
   const raw = fs.readFileSync(filePath, 'utf-8');
   return JSON.parse(raw) as GalleryData;
-}
-
-function shuffle<T>(array: T[]): T[] {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
 }
 
 export const dynamic = 'force-static';
@@ -43,7 +34,12 @@ export const metadata: Metadata = {
 
 export default function GalleryPage() {
   const data = loadGalleryData();
-  let allPhotos = (data.photos ?? []).map((p) => ({
+  const allPhotos = (data.photos ?? []).map((p) => ({
+    ...p,
+    src: p.src ? p.src.replace(/^\.{0,2}\/?assets\/images\//, '') : '',
+  })) ?? [];
+
+  const engagementPhotos = (data.engagement ?? []).map((p) => ({
     ...p,
     src: p.src ? p.src.replace(/^\.{0,2}\/?assets\/images\//, '') : '',
   })) ?? [];
@@ -53,11 +49,11 @@ export default function GalleryPage() {
   return (
     <main className="container py-10">
       <header className="mb-8">
-        <h1 className="font-display text-4xl font-bold tracking-tight text-ink">{data.title ?? 'Gallery'}</h1>
+        <h1 className="text-4xl font-bold tracking-tight font-display text-ink">{data.title ?? 'Gallery'}</h1>
         {data.intro ? <p className="mt-3 text-ink/80">{data.intro}</p> : null}
       </header>
 
-      <GalleryGrid photos={selectedPhotos} />
+      <GalleryGrid photos={selectedPhotos} engagementPhotos={engagementPhotos} />
     </main>
   );
 }
