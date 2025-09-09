@@ -101,6 +101,27 @@ Vercel will handle the 404.html as a static fallback for missing files.
 - Update public/sitemap.xml URLs with your live domain.
 - Each page includes basic Open Graph tags; add a production absolute og:image URL in data/site.json (ogImage).
 
+## Environment Variables
+
+The site uses environment variables for configuration. Create a `.env.local` file in the project root:
+
+```bash
+# Copy the example file
+cp env.example .env.local
+```
+
+Then edit `.env.local` with your values:
+
+```bash
+# Password for accessing the wedding site
+NEXT_PUBLIC_WEDDING_PASSWORD=your_secure_password_here
+```
+
+**Important:** 
+- The `.env.local` file is already in `.gitignore` and won't be committed to version control
+- Use `NEXT_PUBLIC_` prefix for client-side environment variables in Next.js
+- For production deployment, set these environment variables in your hosting platform
+
 ## Local Preview
 
 - You can use a simple static server for local dev:
