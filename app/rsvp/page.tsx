@@ -3,15 +3,13 @@
 import { useMemo, useState } from 'react';
 import type { FormEvent } from 'react';
 import type { RsvpPayload } from '../../lib/supabase';
-import { submitRsvp } from '../server-actions/rsvp';
+import { getSupabaseClient } from '../../lib/supabase';
 import { PageHeading, Section, Button } from '../../components';
 
 export default function RsvpPage() {
   const hasEnv = useMemo(() => {
-    // These envs are only available on the server; for client awareness we rely on a server flag.
-    // Since this is a purely static/export setup, we can infer capability from a server-injected flag later.
-    // For now, we conservatively allow submit; the server action will no-op if env is missing and return a message.
-    return true;
+    // Check if client-side Supabase environment variables are available
+    return !!(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
   }, []);
 
   const [status, setStatus] = useState<null | { ok: boolean; msg: string }>(null);
@@ -58,14 +56,29 @@ export default function RsvpPage() {
 
     setSubmitting(true);
     setStatus(null);
+    
     try {
-      const res = await submitRsvp(payload);
-      if (res.ok) {
+      const supabase = getSupabaseClient();
+      if (!supabase) {
+        setStatus({ ok: false, msg: 'Supabase not configured. Please contact the site administrator.' });
+        return;
+      }
+
+      const { error } = await supabase.from('rsvps').insert({
+        full_name: payload.full_name,
+        email: payload.email ?? null,
+        attending: payload.attending,
+        guests: payload.guests ?? 0,
+        notes: payload.notes ?? null,
+        submitted_at: new Date().toISOString(),
+      });
+
+      if (error) {
+        setStatus({ ok: false, msg: error.message });
+      } else {
         setStatus({ ok: true, msg: 'RSVP submitted. Thank you!' });
         form.reset();
         setGuestNames([]);
-      } else {
-        setStatus({ ok: false, msg: res.error || 'Submission failed' });
       }
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Unknown error';
@@ -185,7 +198,7 @@ export default function RsvpPage() {
           </Button>
           {!hasEnv && (
             <span className="text-sm text-slate">
-              Backend not configured; submission is disabled.
+              Supabase not configured; submission is disabled.
             </span>
           )}
         </div>
