@@ -26,6 +26,8 @@ export function PasswordProtection({ children, correctPassword }: PasswordProtec
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    console.log('password', password);
+    console.log('correctPassword', correctPassword);
     
     if (password === correctPassword) {
       setIsAuthenticated(true);
