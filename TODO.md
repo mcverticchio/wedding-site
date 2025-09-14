@@ -1,8 +1,6 @@
 TODO:
 
 Zach:
-[] Add captions to images in gallery
-[] Pick, buy, and map domain
 
 Caroline:
 [] Finish RSVP page for +1 names
@@ -24,3 +22,5 @@ Done:
 [x] Change hero image to one from our engagement photos
 [x] Add pw protection to website
 [x] Update db table with extra cols (guest_1, guest_2, guest_3..) for +1s
+[x] Add captions to images in gallery
+[x] Pick, buy, and map domain
