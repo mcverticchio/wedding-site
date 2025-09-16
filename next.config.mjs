@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const isDev = process.env.NODE_ENV !== 'production';
-// Use no basePath in dev so http://localhost:3000/ works.
-// Use /wedding-site (or env) in production/export for GitHub Pages.
-const repoBase = isDev ? '' : (process.env.NEXT_PUBLIC_BASE_PATH || '/wedding-site');
+// For custom domain (cz26.site), no basePath is needed
+// Only use basePath for GitHub Pages project pages (username.github.io/repo-name)
+const repoBase = isDev ? '' : (process.env.NEXT_PUBLIC_BASE_PATH || '');
 
 const nextConfig = {
   output: 'export',            // static export for GitHub Pages
