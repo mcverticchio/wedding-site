@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { DraggableCardBody } from '../index';
 
 export type GalleryPhoto = {
@@ -26,11 +27,13 @@ export function GalleryGrid({ photos, engagementPhotos }: { photos: GalleryPhoto
       <div className="grid gap-4 w-full sm:grid-cols-2 lg:grid-cols-3">
         {engagementPhotos.map((p, idx) => (
           <DraggableCardBody key={idx} className="overflow-hidden relative p-6 rounded-md shadow-2xl min-h-96 bg-neutral-100 dark:bg-neutral-900">
-            <img
+            <Image
               src={normalize(p.src)}
               alt={p.caption || p.alt || 'Gallery Image'}
+              width={p.width || 1200}
+              height={p.height || 1600}
               className="object-cover relative z-10 w-full h-96 pointer-events-none"
-              loading="lazy"
+              priority={idx < 3}
             />
           </DraggableCardBody>
         ))}
@@ -39,11 +42,13 @@ export function GalleryGrid({ photos, engagementPhotos }: { photos: GalleryPhoto
       <div className="grid gap-4 w-full sm:grid-cols-2 lg:grid-cols-3">
         {photos.map((p, idx) => (
           <DraggableCardBody key={idx} className="overflow-hidden relative p-6 rounded-md shadow-2xl min-h-96 bg-neutral-100 dark:bg-neutral-900">
-            <img
+            <Image
               src={normalize(p.src)}
               alt={p.caption || p.alt || 'Gallery Image'}
+              width={p.width || 1200}
+              height={p.height || 1600}
               className="object-cover relative z-10 w-full h-96 pointer-events-none"
-              loading="lazy"
+              priority={idx < 6}
             />
             <h3 className="mt-4 text-2xl font-bold text-center text-neutral-700 dark:text-neutral-300">
               {p.caption || p.alt || 'Gallery Image'}
