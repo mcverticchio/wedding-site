@@ -47,7 +47,7 @@ export default function GalleryPage() {
   const selectedPhotos = allPhotos;
 
   return (
-    <main className="container py-10">
+    <main id="main-content" className="container py-10">
       <header className="mb-8">
         <h1 className="text-4xl font-bold tracking-tight font-display text-ink">{data.title ?? 'Gallery'}</h1>
         {data.intro ? <p className="mt-3 text-ink/80">{data.intro}</p> : null}

@@ -18,7 +18,7 @@ export default function Home() {
   const site = loadSiteData();
 
   return (
-    <main className="container py-6">
+    <main id="main-content" className="container py-6">
       <section className="grid place-items-center py-4">
         <div className="max-w-2xl text-center">
           <h1 className="text-6xl font-bold tracking-tight font-display md:text-7xl text-ink">
