@@ -16,6 +16,8 @@ export function FAQAccordion({ faqs }: { faqs: FAQ[] }) {
             <button
               className="flex justify-between items-center px-6 py-4 w-full font-medium text-left transition-colors duration-200 text-ink hover:bg-warmSand/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-autumnGreen"
               aria-expanded={isOpen}
+              aria-controls={`faq-answer-${idx}`}
+              id={`faq-question-${idx}`}
               onClick={() => {
                 const newOpen = new Set(open);
                 if (isOpen) {
@@ -27,12 +29,21 @@ export function FAQAccordion({ faqs }: { faqs: FAQ[] }) {
               }}
             >
               <span className="text-lg">{f.question}</span>
-              <span className="ml-4 text-xl font-light transition-transform duration-200 text-ink/60" style={{ transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)' }}>
+              <span
+                className="ml-4 text-xl font-light transition-transform duration-200 text-ink/60"
+                style={{ transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)' }}
+                aria-hidden="true"
+              >
                 +
               </span>
             </button>
             {isOpen && (
-              <div className="px-6 pb-6 border-t text-slate border-warmSand/30 bg-warmSand/5">
+              <div
+                id={`faq-answer-${idx}`}
+                className="px-6 pb-6 border-t text-slate border-warmSand/30 bg-warmSand/5"
+                role="region"
+                aria-labelledby={`faq-question-${idx}`}
+              >
                 <div className="pt-4 max-w-none prose prose-slate prose-p:leading-relaxed">{f.answer}</div>
               </div>
             )}

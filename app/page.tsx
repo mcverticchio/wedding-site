@@ -35,7 +35,7 @@ export default function Home() {
         <div className="overflow-hidden mt-6 w-full max-w-3xl bg-white rounded-lg border border-warmSand/60 shadow-soft">
           <Image
             src="/images/gallery/engagement-12.jpeg"
-            alt="Couple photo"
+            alt="Caroline and Zach engagement photo - featured wedding website image"
             width={1600}
             height={900}
             className="object-cover w-full h-auto"

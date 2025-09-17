@@ -29,7 +29,7 @@ export function GalleryGrid({ photos, engagementPhotos }: { photos: GalleryPhoto
           <DraggableCardBody key={idx} className="overflow-hidden relative p-6 rounded-md shadow-2xl min-h-96 bg-neutral-100 dark:bg-neutral-900">
             <Image
               src={normalize(p.src)}
-              alt={p.caption || p.alt || 'Gallery Image'}
+              alt={p.caption || p.alt || `Engagement photo ${idx + 1} of Caroline and Zach`}
               width={p.width || 1200}
               height={p.height || 1600}
               className="object-cover relative z-10 w-full h-96 pointer-events-none"
@@ -44,14 +44,14 @@ export function GalleryGrid({ photos, engagementPhotos }: { photos: GalleryPhoto
           <DraggableCardBody key={idx} className="overflow-hidden relative p-6 rounded-md shadow-2xl min-h-96 bg-neutral-100 dark:bg-neutral-900">
             <Image
               src={normalize(p.src)}
-              alt={p.caption || p.alt || 'Gallery Image'}
+              alt={p.caption || p.alt || `Wedding photo ${idx + 1} of Caroline and Zach`}
               width={p.width || 1200}
               height={p.height || 1600}
               className="object-cover relative z-10 w-full h-96 pointer-events-none"
               priority={idx < 6}
             />
             <h3 className="mt-4 text-2xl font-bold text-center text-neutral-700 dark:text-neutral-300">
-              {p.caption || p.alt || 'Gallery Image'}
+              {p.caption || p.alt || `Photo ${idx + 1}`}
             </h3>
           </DraggableCardBody>
         ))}
