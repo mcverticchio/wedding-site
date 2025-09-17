@@ -5,6 +5,7 @@ export type RsvpPayload = {
   email?: string;
   attending: boolean;
   guests?: number;
+  guest_names?: string[];
   notes?: string;
 };
 
