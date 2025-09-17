@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: '%s | Caroline & Zach',
   },
   description: 'Details, schedule, accommodations, and RSVP for our wedding.',
-  metadataBase: new URL('https://example.com'),
+  metadataBase: new URL('https://cz26.site'),
   openGraph: {
     title: 'Caroline & Zach',
     description: 'Details, schedule, accommodations, and RSVP for our wedding.',
