@@ -30,6 +30,19 @@ Based on comprehensive analysis of the wedding website project, here are priorit
   - Added guest value shifting logic for proper removal behavior
 - **Impact**: Smooth user experience, no data loss during form interaction
 - **User Experience**: Users can now type continuously in guest inputs without interruption
+- **Commit**: `0d4dc60`
+
+### 4. Semantic HTML Structure ✅ (Completed 2025-09-17)
+- **Issue**: Missing `<main>` landmarks and potential heading hierarchy problems
+- **Action**: Added proper semantic HTML structure across all pages
+- **Technical Solution**:
+  - Added `<main id="main-content">` elements to all 7 pages
+  - Fixed nested main element issue in layout.tsx
+  - Added skip-to-content link for keyboard navigation
+  - Verified proper heading hierarchy (h1 → h2 → h3)
+- **Impact**: Better screen reader navigation and accessibility compliance
+- **Accessibility**: Enhanced WCAG compliance and assistive technology support
+- **Commit**: `[COMMIT_HASH_PLACEHOLDER]`
 
 ## 🔥 **High Impact - Do Next**
 
@@ -117,16 +130,8 @@ Everything below can wait until after these core issues are resolved.
 
 ## ♿ **Accessibility Improvements**
 
-### 7. Enhanced semantic HTML
-- **Issue**: Inconsistent use of semantic elements
-- **Action**:
-  - Add `main` landmarks to all pages (only gallery has proper `<main>`)
-  - Add skip-to-content links
-  - Improve heading hierarchy (some pages jump from h1 to h3)
-- **Why**: Better screen reader navigation
-- **Priority**: High
 
-### 8. Keyboard navigation
+### 7. Keyboard navigation
 - **Action**:
   - Gallery lightbox needs better keyboard support
   - Mobile menu has good escape key handling but could use tab trapping
@@ -134,7 +139,7 @@ Everything below can wait until after these core issues are resolved.
 - **Why**: Accessibility compliance and usability
 - **Priority**: High
 
-### 9. Screen reader enhancements
+### 8. Screen reader enhancements
 - **Action**:
   - Add descriptive `alt` text for all images
   - Gallery images need better alt descriptions
@@ -145,7 +150,7 @@ Everything below can wait until after these core issues are resolved.
 
 ## 🛠️ **Code Quality & Maintainability**
 
-### 10. TypeScript improvements
+### 9. TypeScript improvements
 - **Action**:
   - Add stricter type checking in `tsconfig.json`
   - Define proper interfaces for all data types
@@ -154,7 +159,7 @@ Everything below can wait until after these core issues are resolved.
 - **Why**: Better type safety and developer experience
 - **Priority**: Medium
 
-### 11. Component architecture
+### 10. Component architecture
 - **Action**:
   - Extract reusable form components from RSVP page
   - Create consistent error/loading state components
@@ -162,7 +167,7 @@ Everything below can wait until after these core issues are resolved.
 - **Why**: Better maintainability and reusability
 - **Priority**: Medium
 
-### 12. Data validation
+### 11. Data validation
 - **Action**:
   - Implement Zod schemas for all JSON data files
   - Add runtime validation for data loading functions
@@ -172,7 +177,7 @@ Everything below can wait until after these core issues are resolved.
 
 ## 📊 **Analytics & Monitoring**
 
-### 13. Enable analytics
+### 12. Enable analytics
 - **Location**: Config exists but disabled in `lib/data/site.json:15-19`
 - **Action**:
   - Implement Plausible or similar privacy-focused analytics
@@ -181,7 +186,7 @@ Everything below can wait until after these core issues are resolved.
 - **Why**: Understand user behavior and site performance
 - **Priority**: Low
 
-### 14. Error monitoring
+### 13. Error monitoring
 - **Action**:
   - Add Sentry or similar for production error tracking
   - Implement proper error boundaries
@@ -191,7 +196,7 @@ Everything below can wait until after these core issues are resolved.
 
 ## 🔧 **Development Experience**
 
-### 15. Add development tools
+### 14. Add development tools
 - **Action**:
   - Add Prettier configuration file (installed but no config)
   - Make ESLint rules stricter
@@ -200,7 +205,7 @@ Everything below can wait until after these core issues are resolved.
 - **Why**: Consistent code style and quality
 - **Priority**: Low
 
-### 16. Testing infrastructure
+### 15. Testing infrastructure
 - **Issue**: No tests currently exist
 - **Action**:
   - Add Jest and React Testing Library
@@ -212,7 +217,7 @@ Everything below can wait until after these core issues are resolved.
 
 ## 📱 **PWA Features**
 
-### 17. Progressive Web App
+### 16. Progressive Web App
 - **Action**:
   - Add service worker for offline functionality
   - Implement app manifest for home screen installation
@@ -223,7 +228,7 @@ Everything below can wait until after these core issues are resolved.
 
 ## 🎨 **Design System Enhancements**
 
-### 18. Component consistency
+### 17. Component consistency
 - **Action**:
   - Standardize spacing and sizing patterns
   - Create design tokens for consistent theming

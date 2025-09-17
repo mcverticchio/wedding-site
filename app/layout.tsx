@@ -30,8 +30,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className="flex flex-col min-h-screen antialiased bg-cream text-ink">
         <PasswordProtection correctPassword={pw}>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-autumnGreen text-white px-4 py-2 rounded-md font-medium z-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-autumnGreen"
+          >
+            Skip to main content
+          </a>
           <Header brand={site.title ?? 'Caroline & Zach'} subtitle={site.subtitle} nav={site.nav ?? []} />
-          <main className="flex-1">{children}</main>
+          <div className="flex-1">{children}</div>
           <Footer text={site.footer} email={undefined} />
         </PasswordProtection>
       </body>

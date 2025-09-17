@@ -4,7 +4,7 @@ import { useMemo, useState, useRef, useCallback, useEffect } from 'react';
 import type { FormEvent } from 'react';
 import type { RsvpPayload } from '../../lib/supabase';
 import { getSupabaseClient } from '../../lib/supabase';
-import { PageHeading, Section, Button } from '../../components';
+import { PageHeading, Button } from '../../components';
 
 export default function RsvpPage() {
   const hasEnv = useMemo(() => {
@@ -137,7 +137,7 @@ export default function RsvpPage() {
   }
 
   return (
-    <Section>
+    <main id="main-content" className="container py-10">
       <PageHeading title="RSVP" subtitle="Please RSVP by March 31, 2027." />
 
       <form ref={formRef} onSubmit={onSubmit} className="p-6 space-y-5 max-w-xl rounded-lg border shadow-sm border-warmSand bg-cream">
@@ -298,6 +298,6 @@ export default function RsvpPage() {
           </div>
         )}
       </form>
-    </Section>
+    </main>
   );
 }

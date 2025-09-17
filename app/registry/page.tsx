@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 export default function RegistryPage() {
   const data = loadRegistryData();
   return (
-    <main className="container py-10">
+    <main id="main-content" className="container py-10">
       <header className="mb-8">
         <h1 className="text-4xl font-bold tracking-tight font-display text-ink">
           {data.title ?? 'Registry'}
