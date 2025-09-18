@@ -11,14 +11,14 @@ export function Skeleton({
   variant = 'rectangular',
   width,
   height,
-  lines = 1
+  lines = 1,
 }: SkeletonProps) {
   const baseClasses = 'animate-pulse bg-warmSand/30';
 
   const variantClasses = {
     rectangular: 'rounded-md',
     circular: 'rounded-full',
-    text: 'rounded-sm'
+    text: 'rounded-sm',
   };
 
   const baseStyle = {
@@ -32,7 +32,13 @@ export function Skeleton({
         {Array.from({ length: lines }).map((_, index) => {
           const lineStyle = {
             ...baseStyle,
-            width: width ? (typeof width === 'number' ? `${width}px` : width) : (index === lines - 1 ? '75%' : '100%'),
+            width: width
+              ? typeof width === 'number'
+                ? `${width}px`
+                : width
+              : index === lines - 1
+                ? '75%'
+                : '100%',
           };
 
           return (

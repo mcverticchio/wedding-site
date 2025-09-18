@@ -19,27 +19,27 @@ export const colors = {
 
   // Neutral Palette
   neutral: {
-    ink: '#1e1d1a',          // Primary text
-    slate: '#5c6a66',        // Secondary text
-    cream: '#f7f3ee',        // Background
-    warmSand: '#e9dfd3',     // Borders, dividers
+    ink: '#1e1d1a', // Primary text
+    slate: '#5c6a66', // Secondary text
+    cream: '#f7f3ee', // Background
+    warmSand: '#e9dfd3', // Borders, dividers
   },
 
   // Semantic Colors
   semantic: {
-    success: '#16a34a',      // Success states
-    warning: '#d97706',      // Warning states
-    error: '#dc2626',        // Error states, validation
-    info: '#0284c7',         // Info states
+    success: '#16a34a', // Success states
+    warning: '#d97706', // Warning states
+    error: '#dc2626', // Error states, validation
+    info: '#0284c7', // Info states
   },
 
   // Interactive States
   interactive: {
-    hover: 'rgba(46, 75, 63, 0.1)',     // autumnGreen/10
-    focus: 'rgba(46, 75, 63, 0.2)',     // autumnGreen/20
-    active: 'rgba(46, 75, 63, 0.3)',    // autumnGreen/30
+    hover: 'rgba(46, 75, 63, 0.1)', // autumnGreen/10
+    focus: 'rgba(46, 75, 63, 0.2)', // autumnGreen/20
+    active: 'rgba(46, 75, 63, 0.3)', // autumnGreen/30
     disabled: 'rgba(92, 106, 102, 0.5)', // slate/50
-  }
+  },
 } as const;
 
 // =============================================================================
@@ -55,17 +55,17 @@ export const typography = {
 
   // Font Sizes (rem values)
   fontSize: {
-    xs: '0.75rem',     // 12px
-    sm: '0.875rem',    // 14px
-    base: '1rem',      // 16px
-    lg: '1.125rem',    // 18px
-    xl: '1.25rem',     // 20px
-    '2xl': '1.5rem',   // 24px
+    xs: '0.75rem', // 12px
+    sm: '0.875rem', // 14px
+    base: '1rem', // 16px
+    lg: '1.125rem', // 18px
+    xl: '1.25rem', // 20px
+    '2xl': '1.5rem', // 24px
     '3xl': '1.875rem', // 30px
-    '4xl': '2.25rem',  // 36px
-    '5xl': '3rem',     // 48px
-    '6xl': '3.75rem',  // 60px
-    '7xl': '4.5rem',   // 72px
+    '4xl': '2.25rem', // 36px
+    '5xl': '3rem', // 48px
+    '6xl': '3.75rem', // 60px
+    '7xl': '4.5rem', // 72px
   },
 
   // Font Weights
@@ -94,23 +94,23 @@ export const spacing = {
   // Base spacing scale (rem values)
   scale: {
     0: '0',
-    0.5: '0.125rem',   // 2px
-    1: '0.25rem',      // 4px
-    2: '0.5rem',       // 8px
-    3: '0.75rem',      // 12px
-    4: '1rem',         // 16px
-    5: '1.25rem',      // 20px
-    6: '1.5rem',       // 24px
-    8: '2rem',         // 32px
-    10: '2.5rem',      // 40px
-    12: '3rem',        // 48px
-    16: '4rem',        // 64px
-    20: '5rem',        // 80px
-    24: '6rem',        // 96px
-    32: '8rem',        // 128px
-    40: '10rem',       // 160px
-    48: '12rem',       // 192px
-    64: '16rem',       // 256px
+    0.5: '0.125rem', // 2px
+    1: '0.25rem', // 4px
+    2: '0.5rem', // 8px
+    3: '0.75rem', // 12px
+    4: '1rem', // 16px
+    5: '1.25rem', // 20px
+    6: '1.5rem', // 24px
+    8: '2rem', // 32px
+    10: '2.5rem', // 40px
+    12: '3rem', // 48px
+    16: '4rem', // 64px
+    20: '5rem', // 80px
+    24: '6rem', // 96px
+    32: '8rem', // 128px
+    40: '10rem', // 160px
+    48: '12rem', // 192px
+    64: '16rem', // 256px
   },
 
   // Container max widths
@@ -120,7 +120,7 @@ export const spacing = {
     lg: '1024px',
     xl: '1280px',
     '2xl': '1536px',
-    wrap: '1200px',    // Custom wedding site container
+    wrap: '1200px', // Custom wedding site container
   },
 } as const;
 
@@ -171,7 +171,7 @@ export const shadows = {
 export const interactive = {
   // Touch Targets (minimum sizes for accessibility)
   touchTarget: {
-    minimum: '44px',  // WCAG minimum
+    minimum: '44px', // WCAG minimum
     comfortable: '48px',
     large: '56px',
   },

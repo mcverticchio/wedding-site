@@ -25,7 +25,13 @@ export function VenueCard({ venue }: { venue: Venue }) {
         {venue.notes ? <p className="mt-2 text-ink/80">{venue.notes}</p> : null}
         {venue.map_link ? (
           <div className="mt-3">
-            <Button as="a" href={venue.map_link as string} target="_blank" rel="noreferrer" variant="secondary">
+            <Button
+              as="a"
+              href={venue.map_link as string}
+              target="_blank"
+              rel="noreferrer"
+              variant="secondary"
+            >
               Open in Google Maps
             </Button>
           </div>

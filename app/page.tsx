@@ -5,10 +5,12 @@ import { loadSiteData } from '../lib/site';
 
 export const metadata: Metadata = {
   title: 'Home',
-  description: 'Welcome to our wedding website with details, RSVP, schedule, accommodations, and more.',
+  description:
+    'Welcome to our wedding website with details, RSVP, schedule, accommodations, and more.',
   openGraph: {
     title: 'Home | Wedding Site',
-    description: 'Welcome to our wedding website with details, RSVP, schedule, accommodations, and more.',
+    description:
+      'Welcome to our wedding website with details, RSVP, schedule, accommodations, and more.',
     url: '/',
     type: 'website',
   },
@@ -28,8 +30,12 @@ export default function Home() {
             {site.date_display ?? 'Date TBA'} • {site.city ?? 'Location TBA'}
           </p>
           <div className="flex gap-3 justify-center mt-8">
-            <Button as="link" href="/rsvp">RSVP</Button>
-            <Button as="link" href="/schedule" variant="secondary">View Schedule</Button>
+            <Button as="link" href="/rsvp">
+              RSVP
+            </Button>
+            <Button as="link" href="/schedule" variant="secondary">
+              View Schedule
+            </Button>
           </div>
         </div>
         <div className="overflow-hidden mt-6 w-full max-w-3xl bg-white rounded-lg border border-warmSand/60 shadow-soft">

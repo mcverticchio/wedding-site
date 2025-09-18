@@ -11,7 +11,7 @@ type Photo = {
   height?: number;
 };
 
-type GalleryData = { title?: string; intro?: string; photos?: Photo[], engagement?: Photo[] };
+type GalleryData = { title?: string; intro?: string; photos?: Photo[]; engagement?: Photo[] };
 
 function loadGalleryData(): GalleryData {
   const filePath = path.join(process.cwd(), 'lib', 'data', 'gallery.json');
@@ -34,22 +34,26 @@ export const metadata: Metadata = {
 
 export default function GalleryPage() {
   const data = loadGalleryData();
-  const allPhotos = (data.photos ?? []).map((p) => ({
-    ...p,
-    src: p.src ? p.src.replace(/^\.{0,2}\/?assets\/images\//, '') : '',
-  })) ?? [];
+  const allPhotos =
+    (data.photos ?? []).map((p) => ({
+      ...p,
+      src: p.src ? p.src.replace(/^\.{0,2}\/?assets\/images\//, '') : '',
+    })) ?? [];
 
-  const engagementPhotos = (data.engagement ?? []).map((p) => ({
-    ...p,
-    src: p.src ? p.src.replace(/^\.{0,2}\/?assets\/images\//, '') : '',
-  })) ?? [];
+  const engagementPhotos =
+    (data.engagement ?? []).map((p) => ({
+      ...p,
+      src: p.src ? p.src.replace(/^\.{0,2}\/?assets\/images\//, '') : '',
+    })) ?? [];
 
   const selectedPhotos = allPhotos;
 
   return (
     <main id="main-content" className="container py-10">
       <header className="mb-8">
-        <h1 className="text-4xl font-bold tracking-tight font-display text-ink">{data.title ?? 'Gallery'}</h1>
+        <h1 className="text-4xl font-bold tracking-tight font-display text-ink">
+          {data.title ?? 'Gallery'}
+        </h1>
         {data.intro ? <p className="mt-3 text-ink/80">{data.intro}</p> : null}
       </header>
 

@@ -27,7 +27,10 @@ export function FAQAccordion({ faqs }: { faqs: FAQ[] }) {
       {faqs.map((f, idx) => {
         const isOpen = open.has(idx);
         return (
-          <div key={idx} className="overflow-hidden bg-white rounded-lg border shadow-sm border-warmSand/60">
+          <div
+            key={idx}
+            className="overflow-hidden bg-white rounded-lg border shadow-sm border-warmSand/60"
+          >
             <button
               className="flex justify-between items-center px-6 py-5 w-full min-h-[64px] font-medium text-left transition-all duration-200 text-ink hover:bg-warmSand/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-autumnGreen focus-visible:ring-offset-2 touch-manipulation active:scale-[0.99]"
               aria-expanded={isOpen}
@@ -51,7 +54,9 @@ export function FAQAccordion({ faqs }: { faqs: FAQ[] }) {
                 role="region"
                 aria-labelledby={`faq-question-${idx}`}
               >
-                <div className="pt-4 max-w-none prose prose-slate prose-p:leading-relaxed touch-manipulation">{f.answer}</div>
+                <div className="pt-4 max-w-none prose prose-slate prose-p:leading-relaxed touch-manipulation">
+                  {f.answer}
+                </div>
               </div>
             )}
           </div>

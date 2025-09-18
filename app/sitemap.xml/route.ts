@@ -16,15 +16,7 @@ export async function GET() {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
   // Known static routes
-  const routes = [
-    '/',
-    '/schedule',
-    '/accommodations',
-    '/registry',
-    '/faqs',
-    '/gallery',
-    '/rsvp',
-  ];
+  const routes = ['/', '/schedule', '/accommodations', '/registry', '/faqs', '/gallery', '/rsvp'];
 
   // Optionally include dynamic items from data if needed in the future
   // Example: galleries, hotels, venues, etc.

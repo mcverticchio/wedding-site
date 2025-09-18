@@ -47,6 +47,7 @@ wedding-site-main/
 ## Key Features
 
 ### Authentication
+
 - Password-protected site using `NEXT_PUBLIC_WEDDING_PASSWORD` environment variable
 - Session-based authentication with elegant login form
 - Loading states and error handling
@@ -92,7 +93,9 @@ wedding-site-main/
 ## Data Management
 
 ### Static Data (JSON-driven)
+
 All content is managed through JSON files in `lib/data/`:
+
 - `site.json` - Basic site configuration, couple info, theme colors
 - `story.json` - Relationship timeline
 - `schedule.json` - Wedding events with calendar integration
@@ -103,6 +106,7 @@ All content is managed through JSON files in `lib/data/`:
 - `faqs.json` - Frequently asked questions
 
 ### Dynamic Data (Supabase)
+
 - RSVP submissions stored in `rsvps` table
 - Environment variables: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 - Client-side integration with error handling and loading states
@@ -110,6 +114,7 @@ All content is managed through JSON files in `lib/data/`:
 ## Design System
 
 ### Color Palette
+
 - **Autumn Green** (`#2e4b3f`) - Primary actions, navigation
 - **Burnt Orange** (`#b5562b`) - Accent color
 - **Warm Sand** (`#e9dfd3`) - Borders and dividers
@@ -120,6 +125,7 @@ All content is managed through JSON files in `lib/data/`:
 ### Components Architecture
 
 **UI Components** (`components/ui/`)
+
 - `Button.tsx` - Three variants (primary, secondary, ghost)
 - `Card.tsx` - Modular card system with Header, Body, Footer
 - `PageHeading.tsx` - Consistent page titles
@@ -127,10 +133,12 @@ All content is managed through JSON files in `lib/data/`:
 - `draggable-card.tsx` - Interactive gallery components
 
 **Layout Components** (`components/layout/`)
+
 - `Header.tsx` - Responsive navigation with mobile hamburger menu
 - `Footer.tsx` - Simple footer with copyright and contact
 
 **Data Components** (`components/data/`)
+
 - `FAQAccordion.tsx` - Expandable Q&A sections
 - `ScheduleList.tsx` - Event timeline display
 - `VenueCard.tsx` - Venue information cards
@@ -139,6 +147,7 @@ All content is managed through JSON files in `lib/data/`:
 - `Timeline.tsx` - Relationship story timeline
 
 **Media Components** (`components/media/`)
+
 - `GalleryGrid.tsx` - Interactive photo gallery with dual modes
 - `ImageWithCaption.tsx` - Photo display with captions
 - `Lightbox.tsx` - Photo viewing modal
@@ -146,18 +155,21 @@ All content is managed through JSON files in `lib/data/`:
 ## Configuration Files
 
 ### Next.js Configuration (`next.config.mjs`)
+
 - Static export for GitHub Pages
 - Base path handling for custom domains
 - Image optimization disabled for static hosting
 - Development redirects for legacy HTML routes
 
 ### Tailwind Configuration (`tailwind.config.js`)
+
 - Custom color palette
 - Extended border radius values
 - Custom shadows and spacing
 - Responsive breakpoints
 
 ### TypeScript Configuration (`tsconfig.json`)
+
 - Path aliases for clean imports (`@/components/*`, `@/lib/*`)
 - Strict type checking
 - ES2022 target with modern features
@@ -165,16 +177,19 @@ All content is managed through JSON files in `lib/data/`:
 ## Environment Variables
 
 ### Required
+
 - `NEXT_PUBLIC_WEDDING_PASSWORD` - Site access password
 - `NEXT_PUBLIC_SUPABASE_URL` - Supabase project URL
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Supabase anonymous key
 
 ### Optional
+
 - `NEXT_PUBLIC_BASE_PATH` - For GitHub Pages project pages
 
 ## Development & Deployment
 
 ### Scripts
+
 - `npm run dev` - Development server
 - `npm run build` - Production build with static export
 - `npm run start` - Production server
@@ -182,6 +197,7 @@ All content is managed through JSON files in `lib/data/`:
 - `npm run preview` - Build and start for testing
 
 ### Deployment
+
 - Configured for GitHub Pages with custom domain
 - Static export generates standalone HTML/CSS/JS
 - CNAME file for custom domain (cz26.site)
@@ -190,18 +206,21 @@ All content is managed through JSON files in `lib/data/`:
 ## Key Implementation Details
 
 ### Image Handling
+
 - Organized in `/public/images/` with subfolders (gallery, events, travel, story)
 - Path normalization from legacy asset structures
 - Proper alt text and captions for accessibility
 - Lazy loading for performance
 
 ### State Management
+
 - React hooks for component state
 - Session storage for authentication persistence
 - Form state management with validation
 - Interactive gallery mode switching
 
 ### Accessibility
+
 - Proper ARIA labels and roles
 - Keyboard navigation support
 - Focus management for modals and menus
@@ -209,6 +228,7 @@ All content is managed through JSON files in `lib/data/`:
 - Semantic HTML structure
 
 ### Performance
+
 - Static site generation for fast loading
 - Optimized images with proper dimensions
 - Lazy loading for non-critical content

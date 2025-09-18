@@ -40,8 +40,10 @@ function loadAccommodationsData() {
   const venues = safeRead<{ travel?: TravelData['travel'] }>(path.join(dataDir, 'venues.json'));
   return {
     intro: venues?.travel?.intro,
-    hotels: (hotels?.hotels ?? []).map((h) => ({ ...h, 
-      image: h.image ? h.image.replace(/^\.?\.?\/assets\/images\//, '') : h.image })),
+    hotels: (hotels?.hotels ?? []).map((h) => ({
+      ...h,
+      image: h.image ? h.image.replace(/^\.?\.?\/assets\/images\//, '') : h.image,
+    })),
     travel: {
       airports: (venues?.travel?.airports ?? []).map((a) => ({
         ...a,
@@ -57,17 +59,21 @@ export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
   title: 'Accommodations',
-  description: 'Hotel details, airports, rideshare info, weather, and embedded maps for the wedding.',
+  description:
+    'Hotel details, airports, rideshare info, weather, and embedded maps for the wedding.',
   openGraph: {
     title: 'Accommodations | Wedding Site',
-    description: 'Hotel details, airports, rideshare info, weather, and embedded maps for the wedding.',
+    description:
+      'Hotel details, airports, rideshare info, weather, and embedded maps for the wedding.',
     url: '/accommodations',
     type: 'article',
   },
 };
 
 export default function AccommodationsPage() {
-  const data = loadAccommodationsData() as ReturnType<typeof loadAccommodationsData> & { hotels: Hotel[] };
+  const data = loadAccommodationsData() as ReturnType<typeof loadAccommodationsData> & {
+    hotels: Hotel[];
+  };
 
   return (
     <main id="main-content" className="container py-10">
@@ -81,7 +87,10 @@ export default function AccommodationsPage() {
           <h2 className="text-2xl font-semibold text-ink">Airports</h2>
           <ul className="grid gap-4 mt-4 sm:grid-cols-2">
             {data.travel.airports.map((a, idx) => (
-              <li key={idx} className="p-4 bg-white rounded-lg border border-warmSand/60 shadow-soft">
+              <li
+                key={idx}
+                className="p-4 bg-white rounded-lg border border-warmSand/60 shadow-soft"
+              >
                 {a.image ? (
                   <ImageWithSkeleton
                     src={`/images/${a.image}`}
@@ -91,7 +100,9 @@ export default function AccommodationsPage() {
                     className="object-cover mb-3 w-full h-40 rounded-md"
                   />
                 ) : null}
-                <div className="font-medium text-ink">{a.name} {a.code ? `(${a.code})` : ''}</div>
+                <div className="font-medium text-ink">
+                  {a.name} {a.code ? `(${a.code})` : ''}
+                </div>
                 {a.notes ? <p className="mt-1 text-ink/80">{a.notes}</p> : null}
               </li>
             ))}

@@ -21,9 +21,9 @@ export function getSupabaseClient() {
     console.warn('Supabase environment variables not configured');
     return null;
   }
-  
-  return createClient(url, key, { 
-    auth: { persistSession: false } 
+
+  return createClient(url, key, {
+    auth: { persistSession: false },
   });
 }
 

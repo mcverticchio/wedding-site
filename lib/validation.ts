@@ -11,16 +11,11 @@ export const rsvpSchema = z.object({
     .max(100, 'Full name must be less than 100 characters')
     .trim(),
 
-  email: z
-    .string()
-    .email('Please enter a valid email address')
-    .optional()
-    .or(z.literal('')),
+  email: z.string().email('Please enter a valid email address').optional().or(z.literal('')),
 
-  attending: z
-    .enum(['yes', 'no'], {
-      required_error: 'Please select whether you will be attending',
-    }),
+  attending: z.enum(['yes', 'no'], {
+    required_error: 'Please select whether you will be attending',
+  }),
 
   guest_names: z
     .array(
@@ -29,7 +24,7 @@ export const rsvpSchema = z.object({
         .min(1, 'Guest name cannot be empty')
         .min(2, 'Guest name must be at least 2 characters')
         .max(100, 'Guest name must be less than 100 characters')
-        .trim()
+        .trim(),
     )
     .optional(),
 
@@ -61,7 +56,7 @@ export type FieldErrors = {
  */
 export function validateRsvpForm(
   formData: FormData,
-  guestCount: number
+  guestCount: number,
 ): { success: true; data: RsvpFormData } | { success: false; errors: FieldErrors } {
   const full_name = String(formData.get('full_name') || '').trim();
   const email = String(formData.get('email') || '').trim();
