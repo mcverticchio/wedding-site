@@ -51,7 +51,7 @@ export function Header({ brand, subtitle, nav }: { brand: string; subtitle?: str
           type="button"
           aria-label={open ? 'Close menu' : 'Open menu'}
           onClick={() => setOpen((v) => !v)}
-          className="ml-auto md:hidden inline-flex items-center gap-2 rounded px-3 py-2 text-cream/80 hover:bg-cream/10 active:scale-[.98]"
+          className="ml-auto md:hidden inline-flex items-center justify-center gap-2 rounded-lg p-3 min-h-[44px] min-w-[44px] text-cream/80 hover:bg-cream/10 active:scale-[.95] transition-all duration-200 touch-manipulation focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-autumnGreen"
           ref={firstFocusRef}
         >
           {open ? (
@@ -70,8 +70,8 @@ export function Header({ brand, subtitle, nav }: { brand: string; subtitle?: str
                   key={item.href}
                   href={item.href as Route}
                   className={[
-                    'inline-flex items-center whitespace-nowrap text-sm transition-colors',
-                    active ? 'text-cream font-medium' : 'text-cream/80 hover:text-cream',
+                    'inline-flex items-center whitespace-nowrap text-sm transition-all duration-200 py-2 px-3 rounded-md min-h-[44px] touch-manipulation hover:bg-cream/10 focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-autumnGreen',
+                    active ? 'text-cream font-medium bg-cream/10' : 'text-cream/80 hover:text-cream',
                   ].join(' ')}
                 >
                   {item.label}
@@ -81,7 +81,7 @@ export function Header({ brand, subtitle, nav }: { brand: string; subtitle?: str
           </div>
           <Link
             href={'/rsvp' as Route}
-            className="inline-flex items-center whitespace-nowrap text-sm font-semibold rounded-md px-3 py-1.5 border border-cream bg-cream text-autumnGreen hover:bg-cream/90 shadow-sm"
+            className="inline-flex items-center justify-center whitespace-nowrap text-sm font-semibold rounded-md px-4 py-2 min-h-[44px] border border-cream bg-cream text-autumnGreen hover:bg-cream/90 hover:shadow-md shadow-sm transition-all duration-200 touch-manipulation active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-autumnGreen"
           >
             RSVP
           </Link>
@@ -98,7 +98,7 @@ export function Header({ brand, subtitle, nav }: { brand: string; subtitle?: str
               className="pointer-events-auto mx-auto mt-2 w-full max-w-[820px] origin-top rounded-2xl rounded-t-none bg-autumnGreen text-cream shadow-[0_18px_50px_rgba(0,0,0,0.35)] ring-1 ring-black/20 animate-in fade-in-0 slide-in-from-top-2 duration-200"
               onClick={(e) => e.stopPropagation()}
             >
-              <nav className="grid max-h-[70vh] gap-1.5 overflow-y-auto px-6 py-4">
+              <nav className="grid max-h-[70vh] gap-2 overflow-y-auto px-6 py-4">
                 {nav?.map((item) => {
                   const active = pathname === item.href;
                   const isRsvp = item.href === '/rsvp';
@@ -107,8 +107,8 @@ export function Header({ brand, subtitle, nav }: { brand: string; subtitle?: str
                       key={item.href}
                       href={item.href as Route}
                       className={[
-                        'rounded-md px-4 py-3 text-lg',
-                        isRsvp ? 'bg-cream text-autumnGreen font-semibold' : (active ? 'bg-cream/10 text-cream' : 'text-cream/90 hover:bg-cream/10 hover:text-cream'),
+                        'rounded-lg px-6 py-4 text-lg min-h-[56px] flex items-center transition-all duration-200 touch-manipulation active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-autumnGreen',
+                        isRsvp ? 'bg-cream text-autumnGreen font-semibold shadow-md hover:bg-cream/90' : (active ? 'bg-cream/10 text-cream font-medium' : 'text-cream/90 hover:bg-cream/10 hover:text-cream'),
                       ].join(' ')}
                     >
                       {isRsvp ? 'RSVP' : item.label}

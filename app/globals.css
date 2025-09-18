@@ -28,3 +28,78 @@ a {
 .container {
   @apply px-4 mx-auto max-w-7xl sm:px-6 lg:px-8;
 }
+
+/* Touch-optimized styles */
+* {
+  /* Smooth touch scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
+  /* Prevent tap highlight on iOS */
+  -webkit-tap-highlight-color: transparent;
+  /* Disable callouts on long press */
+  -webkit-touch-callout: none;
+  /* Prevent text selection on touch elements */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Re-enable text selection for content elements */
+p, h1, h2, h3, h4, h5, h6, li, td, th, span, div[role="main"], article, section {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* Input and form elements need text selection */
+input, textarea, [contenteditable="true"] {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  /* Prevent zoom on focus for inputs */
+  font-size: 16px;
+}
+
+/* Touch-friendly utilities */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.touch-manipulation {
+  touch-action: manipulation;
+}
+
+/* Disable browser zoom on double tap */
+.no-zoom {
+  touch-action: pan-x pan-y;
+}
+
+/* Enhanced focus visible for mobile */
+.focus-visible-enhanced:focus-visible {
+  outline: 2px solid theme('colors.autumnGreen');
+  outline-offset: 2px;
+  border-radius: theme('borderRadius.md');
+}
+
+/* Custom scrollbar for mobile webkit */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: theme('colors.warmSand/0.3');
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: theme('colors.autumnGreen/0.6');
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.autumnGreen/0.8');
+}
