@@ -13,7 +13,7 @@ export const DraggableCardBody = ({
   return (
     <div
       className={cn(
-        "overflow-hidden relative p-6 rounded-md shadow-2xl min-h-96 bg-neutral-100 dark:bg-neutral-900",
+        "overflow-hidden relative p-6 rounded-md shadow-2xl min-h-96 bg-cream border border-warmSand/30",
         className,
       )}
     >
