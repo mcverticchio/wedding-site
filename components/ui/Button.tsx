@@ -59,11 +59,7 @@ export function Button({
   }
 
   return (
-    <button
-      className={cls}
-      disabled={isDisabled}
-      {...(props as ComponentProps<'button'>)}
-    >
+    <button className={cls} disabled={isDisabled} {...(props as ComponentProps<'button'>)}>
       {content}
     </button>
   );

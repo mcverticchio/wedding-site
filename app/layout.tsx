@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const site = loadSiteData();
-  const pw = process.env.NEXT_PUBLIC_WEDDING_PASSWORD || "";
+  const pw = process.env.NEXT_PUBLIC_WEDDING_PASSWORD || '';
 
   return (
     <html lang="en">
@@ -36,7 +36,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           >
             Skip to main content
           </a>
-          <Header brand={site.title ?? 'Caroline & Zach'} subtitle={site.subtitle} nav={site.nav ?? []} />
+          <Header
+            brand={site.title ?? 'Caroline & Zach'}
+            subtitle={site.subtitle}
+            nav={site.nav ?? []}
+          />
           <div className="flex-1">{children}</div>
           <Footer text={site.footer} email={undefined} />
         </PasswordProtection>

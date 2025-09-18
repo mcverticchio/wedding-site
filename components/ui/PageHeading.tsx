@@ -12,7 +12,12 @@ export function PageHeading({
   className?: string;
 }) {
   return (
-    <header className={['mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between', className].join(' ')}>
+    <header
+      className={[
+        'mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between',
+        className,
+      ].join(' ')}
+    >
       <div>
         <h1 className="text-4xl font-bold tracking-tight text-ink">{title}</h1>
         {subtitle ? <p className="mt-2 text-slate">{subtitle}</p> : null}

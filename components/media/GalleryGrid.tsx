@@ -4,7 +4,7 @@ import { DraggableCardBody } from '../index';
 import { ImageWithSkeleton } from '../ui/ImageWithSkeleton';
 
 export type GalleryPhoto = {
-  src: string;      // expected relative to /public/images, e.g. 'gallery/gallery-1.jpg'
+  src: string; // expected relative to /public/images, e.g. 'gallery/gallery-1.jpg'
   alt?: string;
   caption?: string;
   width?: number;
@@ -20,13 +20,22 @@ function normalize(rel: string) {
   return `/images/${filename}`;
 }
 
-export function GalleryGrid({ photos, engagementPhotos }: { photos: GalleryPhoto[], engagementPhotos: GalleryPhoto[] }) {
+export function GalleryGrid({
+  photos,
+  engagementPhotos,
+}: {
+  photos: GalleryPhoto[];
+  engagementPhotos: GalleryPhoto[];
+}) {
   return (
     <div className="relative">
       <h2 className="my-8 text-2xl font-bold text-center text-ink">Engagement Photos</h2>
       <div className="grid gap-4 w-full sm:grid-cols-2 lg:grid-cols-3">
         {engagementPhotos.map((p, idx) => (
-          <DraggableCardBody key={idx} className="overflow-hidden relative p-6 rounded-md shadow-2xl min-h-96 bg-cream border border-warmSand/30">
+          <DraggableCardBody
+            key={idx}
+            className="overflow-hidden relative p-6 rounded-md shadow-2xl min-h-96 bg-cream border border-warmSand/30"
+          >
             <ImageWithSkeleton
               src={normalize(p.src)}
               alt={p.caption || p.alt || `Engagement photo ${idx + 1} of Caroline and Zach`}
@@ -41,7 +50,10 @@ export function GalleryGrid({ photos, engagementPhotos }: { photos: GalleryPhoto
       <h2 className="my-8 text-2xl font-bold text-center text-ink">Gallery</h2>
       <div className="grid gap-4 w-full sm:grid-cols-2 lg:grid-cols-3">
         {photos.map((p, idx) => (
-          <DraggableCardBody key={idx} className="overflow-hidden relative p-6 rounded-md shadow-2xl min-h-96 bg-cream border border-warmSand/30">
+          <DraggableCardBody
+            key={idx}
+            className="overflow-hidden relative p-6 rounded-md shadow-2xl min-h-96 bg-cream border border-warmSand/30"
+          >
             <ImageWithSkeleton
               src={normalize(p.src)}
               alt={p.caption || p.alt || `Wedding photo ${idx + 1} of Caroline and Zach`}

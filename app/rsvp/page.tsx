@@ -41,13 +41,17 @@ export default function RsvpPage() {
     Object.entries(preservedValues.current).forEach(([name, value]) => {
       if (name === 'attending') {
         // Handle radio buttons specially - need to check all radio buttons with this name
-        const radioButtons = formRef.current?.querySelectorAll(`input[name="${name}"]`) as NodeListOf<HTMLInputElement>;
-        radioButtons?.forEach(radio => {
+        const radioButtons = formRef.current?.querySelectorAll(
+          `input[name="${name}"]`,
+        ) as NodeListOf<HTMLInputElement>;
+        radioButtons?.forEach((radio) => {
           radio.checked = radio.value === value;
         });
       } else {
         // Handle regular inputs
-        const element = formRef.current?.querySelector(`[name="${name}"]`) as HTMLInputElement | HTMLTextAreaElement;
+        const element = formRef.current?.querySelector(`[name="${name}"]`) as
+          | HTMLInputElement
+          | HTMLTextAreaElement;
         if (element) {
           element.value = value;
         }
@@ -58,7 +62,7 @@ export default function RsvpPage() {
   const addGuest = () => {
     if (guestCount < 3) {
       saveFormValues();
-      setGuestCount(prev => prev + 1);
+      setGuestCount((prev) => prev + 1);
       // Haptic feedback
       if (navigator.vibrate) {
         navigator.vibrate(10);
@@ -77,7 +81,7 @@ export default function RsvpPage() {
         delete preservedValues.current[`guest_${i}`];
       }
     }
-    setGuestCount(prev => prev - 1);
+    setGuestCount((prev) => prev - 1);
     // Haptic feedback
     if (navigator.vibrate) {
       navigator.vibrate(15);
@@ -132,7 +136,8 @@ export default function RsvpPage() {
           if (fieldName.startsWith('guest_')) {
             if (trimmedValue) {
               // Validate guest name
-              const guestSchema = z.string()
+              const guestSchema = z
+                .string()
                 .min(2, 'Guest name must be at least 2 characters')
                 .max(100, 'Guest name must be less than 100 characters');
               guestSchema.parse(trimmedValue);
@@ -184,11 +189,14 @@ export default function RsvpPage() {
 
     setSubmitting(true);
     setStatus(null);
-    
+
     try {
       const supabase = getSupabaseClient();
       if (!supabase) {
-        setStatus({ ok: false, msg: 'Supabase not configured. Please contact the site administrator.' });
+        setStatus({
+          ok: false,
+          msg: 'Supabase not configured. Please contact the site administrator.',
+        });
         return;
       }
 
@@ -239,7 +247,11 @@ export default function RsvpPage() {
     <main id="main-content" className="container py-10">
       <PageHeading title="RSVP" subtitle="Please RSVP by March 31, 2027." />
 
-      <form ref={formRef} onSubmit={onSubmit} className="p-6 space-y-5 max-w-xl rounded-lg border shadow-sm border-warmSand bg-cream">
+      <form
+        ref={formRef}
+        onSubmit={onSubmit}
+        className="p-6 space-y-5 max-w-xl rounded-lg border shadow-sm border-warmSand bg-cream"
+      >
         <div>
           <label htmlFor="full_name" className="block text-sm font-medium text-ink">
             Full name *
@@ -281,14 +293,33 @@ export default function RsvpPage() {
         </div>
 
         <fieldset>
-          <legend className="block text-sm font-medium text-ink">Will you be attending the wedding?</legend>
-          <div className="flex flex-col sm:flex-row gap-3 mt-3" role="radiogroup" aria-labelledby="attending-legend">
+          <legend className="block text-sm font-medium text-ink">
+            Will you be attending the wedding?
+          </legend>
+          <div
+            className="flex flex-col sm:flex-row gap-3 mt-3"
+            role="radiogroup"
+            aria-labelledby="attending-legend"
+          >
             <label className="inline-flex gap-3 items-center p-4 text-base text-ink cursor-pointer rounded-lg border transition-all duration-200 hover:bg-warmSand/20 has-[:checked]:bg-autumnGreen/10 has-[:checked]:border-autumnGreen touch-manipulation min-h-[56px]">
-              <input className="w-5 h-5 accent-autumnGreen focus:outline-none focus:ring-2 focus:ring-autumnGreen focus:ring-offset-2" type="radio" name="attending" value="yes" defaultChecked aria-describedby="attending-yes-desc" />
+              <input
+                className="w-5 h-5 accent-autumnGreen focus:outline-none focus:ring-2 focus:ring-autumnGreen focus:ring-offset-2"
+                type="radio"
+                name="attending"
+                value="yes"
+                defaultChecked
+                aria-describedby="attending-yes-desc"
+              />
               <span className="font-medium">Yes, I will attend</span>
             </label>
             <label className="inline-flex gap-3 items-center p-4 text-base text-ink cursor-pointer rounded-lg border transition-all duration-200 hover:bg-warmSand/20 has-[:checked]:bg-autumnGreen/10 has-[:checked]:border-autumnGreen touch-manipulation min-h-[56px]">
-              <input className="w-5 h-5 accent-autumnGreen focus:outline-none focus:ring-2 focus:ring-autumnGreen focus:ring-offset-2" type="radio" name="attending" value="no" aria-describedby="attending-no-desc" />
+              <input
+                className="w-5 h-5 accent-autumnGreen focus:outline-none focus:ring-2 focus:ring-autumnGreen focus:ring-offset-2"
+                type="radio"
+                name="attending"
+                value="no"
+                aria-describedby="attending-no-desc"
+              />
               <span className="font-medium">No, I cannot attend</span>
             </label>
           </div>
@@ -305,7 +336,9 @@ export default function RsvpPage() {
               {guestCount >= 1 && (
                 <div>
                   <div className="flex gap-2 items-center">
-                    <label htmlFor="guest_0" className="sr-only">First additional guest name</label>
+                    <label htmlFor="guest_0" className="sr-only">
+                      First additional guest name
+                    </label>
                     <input
                       id="guest_0"
                       type="text"
@@ -320,129 +353,168 @@ export default function RsvpPage() {
                       aria-describedby={fieldErrors.guest_0 ? 'guest_0-error' : undefined}
                       onBlur={(e) => validateField('guest_0', e.target.value)}
                     />
-                  <button
-                    type="button"
-                    onClick={() => removeGuest(0)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        removeGuest(0);
-                      }
-                    }}
-                    className="flex justify-center items-center min-w-[44px] min-h-[44px] text-red-600 rounded-lg transition-all duration-200 hover:text-red-800 hover:bg-red-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 touch-manipulation active:scale-[0.95]"
-                    aria-label="Remove guest 1"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
+                    <button
+                      type="button"
+                      onClick={() => removeGuest(0)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          removeGuest(0);
+                        }
+                      }}
+                      className="flex justify-center items-center min-w-[44px] min-h-[44px] text-red-600 rounded-lg transition-all duration-200 hover:text-red-800 hover:bg-red-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 touch-manipulation active:scale-[0.95]"
+                      aria-label="Remove guest 1"
+                    >
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                  {renderFieldError('guest_0')}
                 </div>
-                {renderFieldError('guest_0')}
-              </div>
-            )}
+              )}
 
-            {guestCount >= 2 && (
-              <div>
-                <div className="flex gap-2 items-center">
-                  <label htmlFor="guest_1" className="sr-only">Second additional guest name</label>
-                  <input
-                    id="guest_1"
-                    type="text"
-                    name="guest_1"
-                    placeholder="Guest 2 name"
-                    aria-label="Second additional guest full name"
-                    className={`flex-1 px-4 py-3 rounded-lg border shadow-sm focus:outline-none transition-all duration-200 touch-manipulation min-h-[48px] text-base ${
-                      fieldErrors.guest_1
-                        ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200'
-                        : 'border-warmSand focus:border-autumnGreen focus:ring-2 focus:ring-autumnGreen/20'
-                    }`}
-                    aria-describedby={fieldErrors.guest_1 ? 'guest_1-error' : undefined}
-                    onBlur={(e) => validateField('guest_1', e.target.value)}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => removeGuest(1)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        removeGuest(1);
-                      }
-                    }}
-                    className="flex justify-center items-center min-w-[44px] min-h-[44px] text-red-600 rounded-lg transition-all duration-200 hover:text-red-800 hover:bg-red-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 touch-manipulation active:scale-[0.95]"
-                    aria-label="Remove guest 2"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
+              {guestCount >= 2 && (
+                <div>
+                  <div className="flex gap-2 items-center">
+                    <label htmlFor="guest_1" className="sr-only">
+                      Second additional guest name
+                    </label>
+                    <input
+                      id="guest_1"
+                      type="text"
+                      name="guest_1"
+                      placeholder="Guest 2 name"
+                      aria-label="Second additional guest full name"
+                      className={`flex-1 px-4 py-3 rounded-lg border shadow-sm focus:outline-none transition-all duration-200 touch-manipulation min-h-[48px] text-base ${
+                        fieldErrors.guest_1
+                          ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200'
+                          : 'border-warmSand focus:border-autumnGreen focus:ring-2 focus:ring-autumnGreen/20'
+                      }`}
+                      aria-describedby={fieldErrors.guest_1 ? 'guest_1-error' : undefined}
+                      onBlur={(e) => validateField('guest_1', e.target.value)}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removeGuest(1)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          removeGuest(1);
+                        }
+                      }}
+                      className="flex justify-center items-center min-w-[44px] min-h-[44px] text-red-600 rounded-lg transition-all duration-200 hover:text-red-800 hover:bg-red-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 touch-manipulation active:scale-[0.95]"
+                      aria-label="Remove guest 2"
+                    >
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                  {renderFieldError('guest_1')}
                 </div>
-                {renderFieldError('guest_1')}
-              </div>
-            )}
+              )}
 
-            {guestCount >= 3 && (
-              <div>
-                <div className="flex gap-2 items-center">
-                  <label htmlFor="guest_2" className="sr-only">Third additional guest name</label>
-                  <input
-                    id="guest_2"
-                    type="text"
-                    name="guest_2"
-                    placeholder="Guest 3 name"
-                    aria-label="Third additional guest full name"
-                    className={`flex-1 px-4 py-3 rounded-lg border shadow-sm focus:outline-none transition-all duration-200 touch-manipulation min-h-[48px] text-base ${
-                      fieldErrors.guest_2
-                        ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200'
-                        : 'border-warmSand focus:border-autumnGreen focus:ring-2 focus:ring-autumnGreen/20'
-                    }`}
-                    aria-describedby={fieldErrors.guest_2 ? 'guest_2-error' : undefined}
-                    onBlur={(e) => validateField('guest_2', e.target.value)}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => removeGuest(2)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        removeGuest(2);
-                      }
-                    }}
-                    className="flex justify-center items-center min-w-[44px] min-h-[44px] text-red-600 rounded-lg transition-all duration-200 hover:text-red-800 hover:bg-red-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 touch-manipulation active:scale-[0.95]"
-                    aria-label="Remove guest 3"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
+              {guestCount >= 3 && (
+                <div>
+                  <div className="flex gap-2 items-center">
+                    <label htmlFor="guest_2" className="sr-only">
+                      Third additional guest name
+                    </label>
+                    <input
+                      id="guest_2"
+                      type="text"
+                      name="guest_2"
+                      placeholder="Guest 3 name"
+                      aria-label="Third additional guest full name"
+                      className={`flex-1 px-4 py-3 rounded-lg border shadow-sm focus:outline-none transition-all duration-200 touch-manipulation min-h-[48px] text-base ${
+                        fieldErrors.guest_2
+                          ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200'
+                          : 'border-warmSand focus:border-autumnGreen focus:ring-2 focus:ring-autumnGreen/20'
+                      }`}
+                      aria-describedby={fieldErrors.guest_2 ? 'guest_2-error' : undefined}
+                      onBlur={(e) => validateField('guest_2', e.target.value)}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removeGuest(2)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          removeGuest(2);
+                        }
+                      }}
+                      className="flex justify-center items-center min-w-[44px] min-h-[44px] text-red-600 rounded-lg transition-all duration-200 hover:text-red-800 hover:bg-red-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 touch-manipulation active:scale-[0.95]"
+                      aria-label="Remove guest 3"
+                    >
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                  {renderFieldError('guest_2')}
                 </div>
-                {renderFieldError('guest_2')}
-              </div>
-            )}
-            
-            {guestCount < 3 && (
-              <button
-                type="button"
-                onClick={addGuest}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    addGuest();
-                  }
-                }}
-                className="flex gap-3 items-center justify-center px-6 py-3 min-h-[48px] text-base font-medium rounded-lg border transition-all duration-200 text-autumnGreen hover:text-autumnGreen/80 hover:bg-autumnGreen/5 border-autumnGreen/30 hover:border-autumnGreen/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-autumnGreen focus-visible:ring-offset-2 touch-manipulation active:scale-[0.98]"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
-                Add guest
-              </button>
-            )}
+              )}
+
+              {guestCount < 3 && (
+                <button
+                  type="button"
+                  onClick={addGuest}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      addGuest();
+                    }
+                  }}
+                  className="flex gap-3 items-center justify-center px-6 py-3 min-h-[48px] text-base font-medium rounded-lg border transition-all duration-200 text-autumnGreen hover:text-autumnGreen/80 hover:bg-autumnGreen/5 border-autumnGreen/30 hover:border-autumnGreen/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-autumnGreen focus-visible:ring-offset-2 touch-manipulation active:scale-[0.98]"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                    />
+                  </svg>
+                  Add guest
+                </button>
+              )}
             </div>
 
             {/* {guestNames.length > 0 && ( */}
-              <p className="mt-2 text-sm text-ink/70">
-                Total attending: {1 + guestCount} {1 + guestCount === 1 ? 'person' : 'people'}
-              </p>
+            <p className="mt-2 text-sm text-ink/70">
+              Total attending: {1 + guestCount} {1 + guestCount === 1 ? 'person' : 'people'}
+            </p>
             {/* )} */}
           </fieldset>
         </div>
@@ -471,12 +543,7 @@ export default function RsvpPage() {
         </div>
 
         <div className="flex gap-3 items-center">
-          <Button
-            as="button"
-            type="submit"
-            disabled={!hasEnv}
-            loading={submitting}
-          >
+          <Button as="button" type="submit" disabled={!hasEnv} loading={submitting}>
             Submit RSVP
           </Button>
           {!hasEnv && (

@@ -7,7 +7,10 @@ export function Footer({ text, email }: { text?: string; email?: string }) {
         {text ? <div>{text}</div> : null}
         {email ? (
           <div className="mt-2">
-            <Link href={`mailto:${email}`} className="text-autumnGreen underline-offset-4 hover:underline">
+            <Link
+              href={`mailto:${email}`}
+              className="text-autumnGreen underline-offset-4 hover:underline"
+            >
               {email}
             </Link>
           </div>

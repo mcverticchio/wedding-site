@@ -2,11 +2,7 @@ const { tokens } = require('./lib/design-tokens');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './app/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './lib/**/*.{ts,tsx}'
-  ],
+  content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './lib/**/*.{ts,tsx}'],
   theme: {
     extend: {
       // Wedding Color Palette (mapped from design tokens)
@@ -91,8 +87,8 @@ module.exports = {
 
       // Breakpoints (explicitly defined for consistency)
       screens: tokens.breakpoints,
-    }
+    },
   },
   corePlugins: { preflight: true },
-  plugins: []
+  plugins: [],
 };

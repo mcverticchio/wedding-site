@@ -7,7 +7,7 @@ export type Hotel = {
   address?: string;
   distance?: string;
   rating?: number;
-  link?: string;        // booking or website
+  link?: string; // booking or website
   map?: string;
   image?: string;
   alt?: string;
@@ -37,7 +37,9 @@ export function HotelCard({ hotel }: { hotel: Hotel }) {
         </div>
         {addr ? <div className="mt-1 text-sm text-ink/80">{addr}</div> : null}
         {typeof hotel.rating === 'number' ? (
-          <div className="mt-1 text-sm text-ink/80">{'⭐'.repeat(Math.max(0, Math.min(5, hotel.rating)))}</div>
+          <div className="mt-1 text-sm text-ink/80">
+            {'⭐'.repeat(Math.max(0, Math.min(5, hotel.rating)))}
+          </div>
         ) : null}
       </CardHeader>
       <CardBody>
@@ -50,7 +52,7 @@ export function HotelCard({ hotel }: { hotel: Hotel }) {
         ) : null}
         {hotel.notes ? <p className="mt-2 text-ink/80">{hotel.notes}</p> : null}
       </CardBody>
-      {(hotel.link || hotel.map) ? (
+      {hotel.link || hotel.map ? (
         <CardFooter>
           <div className="flex flex-wrap gap-3">
             {hotel.link ? (
@@ -59,7 +61,13 @@ export function HotelCard({ hotel }: { hotel: Hotel }) {
               </Button>
             ) : null}
             {hotel.map ? (
-              <Button as="a" href={hotel.map as string} target="_blank" rel="noreferrer" variant="secondary">
+              <Button
+                as="a"
+                href={hotel.map as string}
+                target="_blank"
+                rel="noreferrer"
+                variant="secondary"
+              >
                 View Map
               </Button>
             ) : null}

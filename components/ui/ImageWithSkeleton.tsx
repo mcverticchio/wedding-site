@@ -21,7 +21,7 @@ export function ImageWithSkeleton({
   height,
   className = '',
   priority = false,
-  fill = false
+  fill = false,
 }: ImageWithSkeletonProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
