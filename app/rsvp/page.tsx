@@ -59,6 +59,10 @@ export default function RsvpPage() {
     if (guestCount < 3) {
       saveFormValues();
       setGuestCount(prev => prev + 1);
+      // Haptic feedback
+      if (navigator.vibrate) {
+        navigator.vibrate(10);
+      }
     }
   };
 
@@ -74,6 +78,10 @@ export default function RsvpPage() {
       }
     }
     setGuestCount(prev => prev - 1);
+    // Haptic feedback
+    if (navigator.vibrate) {
+      navigator.vibrate(15);
+    }
   };
 
   // Real-time field validation
@@ -240,10 +248,10 @@ export default function RsvpPage() {
             id="full_name"
             name="full_name"
             type="text"
-            className={`px-3 py-2 mt-1 w-full rounded-md border shadow-sm focus:outline-none ${
+            className={`px-4 py-3 mt-1 w-full rounded-lg border shadow-sm focus:outline-none transition-all duration-200 touch-manipulation min-h-[48px] text-base ${
               fieldErrors.full_name
-                ? 'border-red-500 focus:border-red-500'
-                : 'border-warmSand focus:border-autumnGreen'
+                ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200'
+                : 'border-warmSand focus:border-autumnGreen focus:ring-2 focus:ring-autumnGreen/20'
             }`}
             placeholder="Your full name"
             aria-describedby={fieldErrors.full_name ? 'full_name-error' : undefined}
@@ -260,10 +268,10 @@ export default function RsvpPage() {
             id="email"
             name="email"
             type="email"
-            className={`px-3 py-2 mt-1 w-full rounded-md border shadow-sm focus:outline-none ${
+            className={`px-4 py-3 mt-1 w-full rounded-lg border shadow-sm focus:outline-none transition-all duration-200 touch-manipulation min-h-[48px] text-base ${
               fieldErrors.email
-                ? 'border-red-500 focus:border-red-500'
-                : 'border-warmSand focus:border-autumnGreen'
+                ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200'
+                : 'border-warmSand focus:border-autumnGreen focus:ring-2 focus:ring-autumnGreen/20'
             }`}
             placeholder="email"
             aria-describedby={fieldErrors.email ? 'email-error' : undefined}
@@ -274,12 +282,14 @@ export default function RsvpPage() {
 
         <fieldset>
           <legend className="block text-sm font-medium text-ink">Will you be attending the wedding?</legend>
-          <div className="flex gap-6 mt-2" role="radiogroup" aria-labelledby="attending-legend">
-            <label className="inline-flex gap-2 items-center text-sm text-ink cursor-pointer">
-              <input className="w-4 h-4 accent-autumnGreen focus:outline-none focus:ring-2 focus:ring-autumnGreen focus:ring-offset-2" type="radio" name="attending" value="yes" defaultChecked aria-describedby="attending-yes-desc" /> Yes, I will attend
+          <div className="flex flex-col sm:flex-row gap-3 mt-3" role="radiogroup" aria-labelledby="attending-legend">
+            <label className="inline-flex gap-3 items-center p-4 text-base text-ink cursor-pointer rounded-lg border transition-all duration-200 hover:bg-warmSand/20 has-[:checked]:bg-autumnGreen/10 has-[:checked]:border-autumnGreen touch-manipulation min-h-[56px]">
+              <input className="w-5 h-5 accent-autumnGreen focus:outline-none focus:ring-2 focus:ring-autumnGreen focus:ring-offset-2" type="radio" name="attending" value="yes" defaultChecked aria-describedby="attending-yes-desc" />
+              <span className="font-medium">Yes, I will attend</span>
             </label>
-            <label className="inline-flex gap-2 items-center text-sm text-ink cursor-pointer">
-              <input className="w-4 h-4 accent-autumnGreen focus:outline-none focus:ring-2 focus:ring-autumnGreen focus:ring-offset-2" type="radio" name="attending" value="no" aria-describedby="attending-no-desc" /> No, I cannot attend
+            <label className="inline-flex gap-3 items-center p-4 text-base text-ink cursor-pointer rounded-lg border transition-all duration-200 hover:bg-warmSand/20 has-[:checked]:bg-autumnGreen/10 has-[:checked]:border-autumnGreen touch-manipulation min-h-[56px]">
+              <input className="w-5 h-5 accent-autumnGreen focus:outline-none focus:ring-2 focus:ring-autumnGreen focus:ring-offset-2" type="radio" name="attending" value="no" aria-describedby="attending-no-desc" />
+              <span className="font-medium">No, I cannot attend</span>
             </label>
           </div>
           {renderFieldError('attending')}
@@ -302,10 +312,10 @@ export default function RsvpPage() {
                       name="guest_0"
                       placeholder="Guest 1 name"
                       aria-label="First additional guest full name"
-                      className={`flex-1 px-3 py-2 rounded-md border shadow-sm focus:outline-none ${
+                      className={`flex-1 px-4 py-3 rounded-lg border shadow-sm focus:outline-none transition-all duration-200 touch-manipulation min-h-[48px] text-base ${
                         fieldErrors.guest_0
-                          ? 'border-red-500 focus:border-red-500'
-                          : 'border-warmSand focus:border-autumnGreen'
+                          ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200'
+                          : 'border-warmSand focus:border-autumnGreen focus:ring-2 focus:ring-autumnGreen/20'
                       }`}
                       aria-describedby={fieldErrors.guest_0 ? 'guest_0-error' : undefined}
                       onBlur={(e) => validateField('guest_0', e.target.value)}
@@ -319,7 +329,7 @@ export default function RsvpPage() {
                         removeGuest(0);
                       }
                     }}
-                    className="flex justify-center items-center w-8 h-8 text-red-600 rounded-full transition-colors hover:text-red-800 hover:bg-red-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
+                    className="flex justify-center items-center min-w-[44px] min-h-[44px] text-red-600 rounded-lg transition-all duration-200 hover:text-red-800 hover:bg-red-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 touch-manipulation active:scale-[0.95]"
                     aria-label="Remove guest 1"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -341,10 +351,10 @@ export default function RsvpPage() {
                     name="guest_1"
                     placeholder="Guest 2 name"
                     aria-label="Second additional guest full name"
-                    className={`flex-1 px-3 py-2 rounded-md border shadow-sm focus:outline-none ${
+                    className={`flex-1 px-4 py-3 rounded-lg border shadow-sm focus:outline-none transition-all duration-200 touch-manipulation min-h-[48px] text-base ${
                       fieldErrors.guest_1
-                        ? 'border-red-500 focus:border-red-500'
-                        : 'border-warmSand focus:border-autumnGreen'
+                        ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200'
+                        : 'border-warmSand focus:border-autumnGreen focus:ring-2 focus:ring-autumnGreen/20'
                     }`}
                     aria-describedby={fieldErrors.guest_1 ? 'guest_1-error' : undefined}
                     onBlur={(e) => validateField('guest_1', e.target.value)}
@@ -358,7 +368,7 @@ export default function RsvpPage() {
                         removeGuest(1);
                       }
                     }}
-                    className="flex justify-center items-center w-8 h-8 text-red-600 rounded-full transition-colors hover:text-red-800 hover:bg-red-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
+                    className="flex justify-center items-center min-w-[44px] min-h-[44px] text-red-600 rounded-lg transition-all duration-200 hover:text-red-800 hover:bg-red-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 touch-manipulation active:scale-[0.95]"
                     aria-label="Remove guest 2"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -380,10 +390,10 @@ export default function RsvpPage() {
                     name="guest_2"
                     placeholder="Guest 3 name"
                     aria-label="Third additional guest full name"
-                    className={`flex-1 px-3 py-2 rounded-md border shadow-sm focus:outline-none ${
+                    className={`flex-1 px-4 py-3 rounded-lg border shadow-sm focus:outline-none transition-all duration-200 touch-manipulation min-h-[48px] text-base ${
                       fieldErrors.guest_2
-                        ? 'border-red-500 focus:border-red-500'
-                        : 'border-warmSand focus:border-autumnGreen'
+                        ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200'
+                        : 'border-warmSand focus:border-autumnGreen focus:ring-2 focus:ring-autumnGreen/20'
                     }`}
                     aria-describedby={fieldErrors.guest_2 ? 'guest_2-error' : undefined}
                     onBlur={(e) => validateField('guest_2', e.target.value)}
@@ -397,7 +407,7 @@ export default function RsvpPage() {
                         removeGuest(2);
                       }
                     }}
-                    className="flex justify-center items-center w-8 h-8 text-red-600 rounded-full transition-colors hover:text-red-800 hover:bg-red-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
+                    className="flex justify-center items-center min-w-[44px] min-h-[44px] text-red-600 rounded-lg transition-all duration-200 hover:text-red-800 hover:bg-red-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 touch-manipulation active:scale-[0.95]"
                     aria-label="Remove guest 3"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -419,7 +429,7 @@ export default function RsvpPage() {
                     addGuest();
                   }
                 }}
-                className="flex gap-2 items-center px-4 py-2 text-sm font-medium rounded-md border transition-colors text-autumnGreen hover:text-autumnGreen/80 hover:bg-autumnGreen/5 border-autumnGreen/30 hover:border-autumnGreen/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-autumnGreen focus-visible:ring-offset-2"
+                className="flex gap-3 items-center justify-center px-6 py-3 min-h-[48px] text-base font-medium rounded-lg border transition-all duration-200 text-autumnGreen hover:text-autumnGreen/80 hover:bg-autumnGreen/5 border-autumnGreen/30 hover:border-autumnGreen/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-autumnGreen focus-visible:ring-offset-2 touch-manipulation active:scale-[0.98]"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -447,10 +457,10 @@ export default function RsvpPage() {
             rows={4}
             placeholder="Any dietary restrictions, song requests, or special accommodations"
             aria-describedby={`notes-description${fieldErrors.notes ? ' notes-error' : ''}`}
-            className={`px-3 py-2 mt-1 w-full rounded-md border shadow-sm focus:outline-none ${
+            className={`px-4 py-3 mt-1 w-full rounded-lg border shadow-sm focus:outline-none transition-all duration-200 touch-manipulation text-base resize-y ${
               fieldErrors.notes
-                ? 'border-red-500 focus:border-red-500'
-                : 'border-warmSand focus:border-autumnGreen'
+                ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200'
+                : 'border-warmSand focus:border-autumnGreen focus:ring-2 focus:ring-autumnGreen/20'
             }`}
             onBlur={(e) => validateField('notes', e.target.value)}
           />

@@ -11,7 +11,7 @@
       "address": "393 East Main St, Spartanburg, SC 29302",
       "map": "https://maps.google.com/?q=First+Presbyterian+Church+Spartanburg+Chapel",
       "description": "Head to the small chapel at First Presbyterian Church for the ceremony. The chapel is located behind the main church building. We recommend parking at The Piedmont Club and walking to the church next door (1-minute walk). Once the ceremony concludes, we will walk back to the Piedmont Club.",
-      "image": "../assets/images/ceremony.jpg",
+      "image": "../assets/images/ceremony.webp",
       "alt": "Indoor chapel ceremony setting",
       "calendar": {
         "start": "2026-06-27T16:00:00-04:00",
@@ -29,7 +29,7 @@
       "address": "361 East Main St, Spartanburg, SC 29302",
       "map": "https://maps.google.com/?q=Piedmont+Club+Spartanburg",
       "description": "After the ceremony, join us for a cocktail hour, buffet-style dinner, and dancing!",
-      "image": "../assets/images/reception.jpg",
+      "image": "../assets/images/reception.webp",
       "alt": "Reception hall at The Piedmont Club",
       "calendar": {
         "start": "2026-06-27T17:00:00-04:00",

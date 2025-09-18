@@ -1,6 +1,10 @@
-TODO:
+# TODO
 
 Zach:
+[] Finish Improvements.md
+[] Standardize/optimize all images with Mazanoke on umbrel to webp
+[] Finalize gallery photos and captions
+[] Understand why engagement photo 11 and 12 are in wedding array, not engagement photo array
 
 Caroline:
 [] Finish RSVP page for +1 names
