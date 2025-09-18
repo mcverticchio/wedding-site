@@ -1,5 +1,5 @@
 import { Button } from '../components';
-import Image from 'next/image';
+import { ImageWithSkeleton } from '../components/ui/ImageWithSkeleton';
 import type { Metadata } from 'next';
 import { loadSiteData } from '../lib/site';
 
@@ -33,7 +33,7 @@ export default function Home() {
           </div>
         </div>
         <div className="overflow-hidden mt-6 w-full max-w-3xl bg-white rounded-lg border border-warmSand/60 shadow-soft">
-          <Image
+          <ImageWithSkeleton
             src="/images/gallery/engagement-12.jpeg"
             alt="Caroline and Zach engagement photo - featured wedding website image"
             width={1600}

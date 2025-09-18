@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { ImageWithSkeleton } from '../ui/ImageWithSkeleton';
 
 export type TimelineItem = {
   date?: string;
@@ -24,11 +25,12 @@ export function Timeline({ items }: { items: TimelineItem[] }) {
             </div>
             <div className="rounded-lg border border-warmSand/60 bg-white shadow-soft overflow-hidden">
               {img ? (
-                <img
+                <ImageWithSkeleton
                   src={img}
                   alt={it.alt ?? it.title ?? 'Timeline image'}
+                  width={600}
+                  height={224}
                   className="h-56 w-full object-cover"
-                  loading="lazy"
                 />
               ) : null}
               <div className="p-4">

@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { HotelCard } from '../../components';
+import { ImageWithSkeleton } from '../../components/ui/ImageWithSkeleton';
 import type { Metadata } from 'next';
 
 type Hotel = {
@@ -82,8 +83,13 @@ export default function AccommodationsPage() {
             {data.travel.airports.map((a, idx) => (
               <li key={idx} className="p-4 bg-white rounded-lg border border-warmSand/60 shadow-soft">
                 {a.image ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={`/images/${a.image}`} alt={a.alt ?? a.name ?? 'Airport'} className="object-cover mb-3 w-full h-40 rounded-md" loading="lazy" />
+                  <ImageWithSkeleton
+                    src={`/images/${a.image}`}
+                    alt={a.alt ?? a.name ?? 'Airport'}
+                    width={400}
+                    height={160}
+                    className="object-cover mb-3 w-full h-40 rounded-md"
+                  />
                 ) : null}
                 <div className="font-medium text-ink">{a.name} {a.code ? `(${a.code})` : ''}</div>
                 {a.notes ? <p className="mt-1 text-ink/80">{a.notes}</p> : null}

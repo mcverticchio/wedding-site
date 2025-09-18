@@ -461,8 +461,13 @@ export default function RsvpPage() {
         </div>
 
         <div className="flex gap-3 items-center">
-          <Button as="button" type="submit" disabled={submitting || !hasEnv}>
-            {submitting ? 'Submitting…' : 'Submit RSVP'}
+          <Button
+            as="button"
+            type="submit"
+            disabled={!hasEnv}
+            loading={submitting}
+          >
+            Submit RSVP
           </Button>
           {!hasEnv && (
             <span className="text-sm text-slate" role="alert">

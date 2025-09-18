@@ -1,4 +1,5 @@
 import type { ComponentProps, ReactNode } from 'react';
+import { Spinner } from './Spinner';
 
 type Variants = 'primary' | 'secondary' | 'ghost';
 
@@ -18,22 +19,32 @@ export function Button({
   as = 'button',
   variant = 'primary',
   className = '',
+  loading = false,
   children,
   ...props
 }: {
   as?: 'button' | 'a' | 'link';
   variant?: Variants;
   className?: string;
+  loading?: boolean;
   children: ReactNode;
 } & ComponentProps<'button'> &
   ComponentProps<'a'> & { href?: string }) {
   const cls = `${base} ${styles[variant]} ${className}`.trim();
+  const isDisabled = loading || props.disabled;
+
+  const content = (
+    <>
+      {loading && <Spinner size="sm" className="mr-2" />}
+      {children}
+    </>
+  );
 
   if (as === 'link') {
     const { href = '#', ...rest } = props;
     return (
       <a href={href} className={cls} {...rest}>
-        {children}
+        {content}
       </a>
     );
   }
@@ -42,14 +53,18 @@ export function Button({
     const { href = '#', ...rest } = props;
     return (
       <a href={href} className={cls} {...rest}>
-        {children}
+        {content}
       </a>
     );
   }
 
   return (
-    <button className={cls} {...(props as ComponentProps<'button'>)}>
-      {children}
+    <button
+      className={cls}
+      disabled={isDisabled}
+      {...(props as ComponentProps<'button'>)}
+    >
+      {content}
     </button>
   );
 }

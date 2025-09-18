@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { ImageWithSkeleton } from '../ui/ImageWithSkeleton';
 
 export function ImageWithCaption({
   src,
@@ -15,8 +16,15 @@ export function ImageWithCaption({
 }) {
   return (
     <figure className={['overflow-hidden rounded-lg border border-warmSand/60 bg-white shadow-soft', className].join(' ')}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src} alt={alt} className={['w-full object-cover', ratio].join(' ')} loading="lazy" />
+      <div className={ratio}>
+        <ImageWithSkeleton
+          src={src}
+          alt={alt}
+          width={600}
+          height={450}
+          className="w-full h-full object-cover"
+        />
+      </div>
       {caption ? <figcaption className="px-4 py-2 text-sm text-ink/80">{caption}</figcaption> : null}
     </figure>
   );

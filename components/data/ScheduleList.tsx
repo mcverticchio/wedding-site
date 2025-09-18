@@ -1,5 +1,6 @@
 import { Card, CardBody, CardHeader } from '../ui/Card';
 import { Button } from '../ui/Button';
+import { ImageWithSkeleton } from '../ui/ImageWithSkeleton';
 
 export type ScheduleEvent = {
   id?: string;
@@ -38,16 +39,17 @@ export function ScheduleList({ events }: { events: ScheduleEvent[] }) {
                   <div className="flex flex-col sm:flex-row">
                     {/* Image Section */}
                     {img ? (
-                      <div className="sm:w-56 sm:flex-shrink-0">
-                        <img
+                      <div className="sm:w-56 sm:h-48 sm:flex-shrink-0 overflow-hidden">
+                        <ImageWithSkeleton
                           src={img}
                           alt={e.alt ?? e.title ?? 'Event image'}
-                          className="object-cover w-full h-48 rounded-t-lg sm:h-full sm:rounded-l-lg sm:rounded-tr-none"
-                          loading="lazy"
+                          width={400}
+                          height={300}
+                          className="object-cover w-full h-48 rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none"
                         />
                       </div>
                     ) : null}
-                    
+
                     {/* Text Content Section */}
                     <div className="flex-1">
                       <CardHeader>
