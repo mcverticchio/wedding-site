@@ -1,5 +1,6 @@
 import { Card, CardBody, CardHeader, CardFooter } from '../ui/Card';
 import { Button } from '../ui/Button';
+import { ImageWithSkeleton } from '../ui/ImageWithSkeleton';
 
 export type Hotel = {
   name?: string;
@@ -21,12 +22,12 @@ export function HotelCard({ hotel }: { hotel: Hotel }) {
   return (
     <Card>
       {img ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
+        <ImageWithSkeleton
           src={img}
           alt={hotel.alt ?? hotel.name ?? 'Hotel'}
+          width={400}
+          height={176}
           className="h-44 w-full rounded-t-lg object-cover"
-          loading="lazy"
         />
       ) : null}
       <CardHeader>

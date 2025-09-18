@@ -1,7 +1,7 @@
 'use client';
 
-import Image from 'next/image';
 import { DraggableCardBody } from '../index';
+import { ImageWithSkeleton } from '../ui/ImageWithSkeleton';
 
 export type GalleryPhoto = {
   src: string;      // expected relative to /public/images, e.g. 'gallery/gallery-1.jpg'
@@ -27,7 +27,7 @@ export function GalleryGrid({ photos, engagementPhotos }: { photos: GalleryPhoto
       <div className="grid gap-4 w-full sm:grid-cols-2 lg:grid-cols-3">
         {engagementPhotos.map((p, idx) => (
           <DraggableCardBody key={idx} className="overflow-hidden relative p-6 rounded-md shadow-2xl min-h-96 bg-neutral-100 dark:bg-neutral-900">
-            <Image
+            <ImageWithSkeleton
               src={normalize(p.src)}
               alt={p.caption || p.alt || `Engagement photo ${idx + 1} of Caroline and Zach`}
               width={p.width || 1200}
@@ -42,7 +42,7 @@ export function GalleryGrid({ photos, engagementPhotos }: { photos: GalleryPhoto
       <div className="grid gap-4 w-full sm:grid-cols-2 lg:grid-cols-3">
         {photos.map((p, idx) => (
           <DraggableCardBody key={idx} className="overflow-hidden relative p-6 rounded-md shadow-2xl min-h-96 bg-neutral-100 dark:bg-neutral-900">
-            <Image
+            <ImageWithSkeleton
               src={normalize(p.src)}
               alt={p.caption || p.alt || `Wedding photo ${idx + 1} of Caroline and Zach`}
               width={p.width || 1200}
