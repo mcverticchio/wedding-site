@@ -93,9 +93,10 @@ Based on comprehensive analysis of the wedding website project, here are priorit
   - Developed `ImageWithSkeleton` wrapper for progressive image loading
   - Added loading states to RSVP form submission and gallery images
   - Implemented error handling for failed image loads with fallback UI
+  - Fixed schedule layout and removed unused Lightbox component
 - **Impact**: Professional loading experience with immediate user feedback
 - **User Experience**: Users see clear loading indicators and smooth transitions during interactions
-- **Commit**: `[COMMIT_HASH_PLACEHOLDER]`
+- **Commit**: `bb323e3`
 
 **Current Priority:** Loading states complete. Focus shifts to mobile UX improvements and performance optimization.
 

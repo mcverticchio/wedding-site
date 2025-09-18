@@ -21,7 +21,7 @@ export function Skeleton({
     text: 'rounded-sm'
   };
 
-  const style = {
+  const baseStyle = {
     width: typeof width === 'number' ? `${width}px` : width,
     height: typeof height === 'number' ? `${height}px` : height,
   };
@@ -29,18 +29,22 @@ export function Skeleton({
   if (variant === 'text' && lines > 1) {
     return (
       <div className={`space-y-2 ${className}`}>
-        {Array.from({ length: lines }).map((_, index) => (
-          <div
-            key={index}
-            className={`${baseClasses} ${variantClasses.text} h-4`}
-            style={{
-              width: index === lines - 1 ? '75%' : '100%', // Last line is shorter
-              ...style
-            }}
-            role="presentation"
-            aria-hidden="true"
-          />
-        ))}
+        {Array.from({ length: lines }).map((_, index) => {
+          const lineStyle = {
+            ...baseStyle,
+            width: width ? (typeof width === 'number' ? `${width}px` : width) : (index === lines - 1 ? '75%' : '100%'),
+          };
+
+          return (
+            <div
+              key={index}
+              className={`${baseClasses} ${variantClasses.text} h-4`}
+              style={lineStyle}
+              role="presentation"
+              aria-hidden="true"
+            />
+          );
+        })}
       </div>
     );
   }
@@ -48,7 +52,7 @@ export function Skeleton({
   return (
     <div
       className={`${baseClasses} ${variantClasses[variant]} ${className}`}
-      style={style}
+      style={baseStyle}
       role="presentation"
       aria-hidden="true"
     />
