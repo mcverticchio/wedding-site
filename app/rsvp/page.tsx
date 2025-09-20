@@ -301,9 +301,9 @@ export default function RsvpPage() {
             role="radiogroup"
             aria-labelledby="attending-legend"
           >
-            <label className="inline-flex gap-3 items-center p-4 text-base text-ink cursor-pointer rounded-lg border transition-all duration-200 hover:bg-warmSand/20 has-[:checked]:bg-autumnGreen/10 has-[:checked]:border-autumnGreen touch-manipulation min-h-[56px]">
+            <label className="inline-flex gap-3 items-center p-4 text-base text-ink cursor-pointer rounded-lg border transition-all duration-200 hover:bg-warmSand/20 has-[:checked]:bg-watercolorBlue/10 has-[:checked]:border-watercolorBlue touch-manipulation min-h-[56px]">
               <input
-                className="w-5 h-5 accent-autumnGreen focus:outline-none focus:ring-2 focus:ring-autumnGreen focus:ring-offset-2"
+                className="w-5 h-5 accent-watercolorBlue focus:outline-none focus:ring-2 focus:ring-watercolorBlue focus:ring-offset-2"
                 type="radio"
                 name="attending"
                 value="yes"
@@ -312,9 +312,9 @@ export default function RsvpPage() {
               />
               <span className="font-medium">Yes, I will attend</span>
             </label>
-            <label className="inline-flex gap-3 items-center p-4 text-base text-ink cursor-pointer rounded-lg border transition-all duration-200 hover:bg-warmSand/20 has-[:checked]:bg-autumnGreen/10 has-[:checked]:border-autumnGreen touch-manipulation min-h-[56px]">
+            <label className="inline-flex gap-3 items-center p-4 text-base text-ink cursor-pointer rounded-lg border transition-all duration-200 hover:bg-warmSand/20 has-[:checked]:bg-watercolorBlue/10 has-[:checked]:border-watercolorBlue touch-manipulation min-h-[56px]">
               <input
-                className="w-5 h-5 accent-autumnGreen focus:outline-none focus:ring-2 focus:ring-autumnGreen focus:ring-offset-2"
+                className="w-5 h-5 accent-watercolorBlue focus:outline-none focus:ring-2 focus:ring-watercolorBlue focus:ring-offset-2"
                 type="radio"
                 name="attending"
                 value="no"

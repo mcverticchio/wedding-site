@@ -23,7 +23,7 @@ export function Section({
       <Wrap>
         {title ? (
           <div className="mb-6">
-            <h2 className="text-2xl font-semibold tracking-tight text-ink">{title}</h2>
+            <h2 className="text-2xl font-semibold tracking-tight text-watercolorBlueDark">{title}</h2>
             {subtitle ? <p className="mt-2 text-slate">{subtitle}</p> : null}
           </div>
         ) : null}

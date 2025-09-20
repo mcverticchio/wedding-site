@@ -17,11 +17,19 @@ export const colors = {
     goldAccent: '#c8a36a',
   },
 
+  // Watercolor Blue Palette
+  blue: {
+    watercolor: '#52647e', // Main watercolor blue
+    watercolorLight: '#6b7a8a', // Lighter watercolor blue
+    watercolorDark: '#3d4a5c', // Darker watercolor blue
+    watercolorWash: '#7a8a9a', // Washed out watercolor effect
+  },
+
   // Neutral Palette
   neutral: {
     ink: '#1e1d1a', // Primary text
     slate: '#5c6a66', // Secondary text
-    cream: '#f7f3ee', // Background
+    cream: '#f6f6ee', // Background
     warmSand: '#e9dfd3', // Borders, dividers
   },
 
@@ -162,6 +170,7 @@ export const shadows = {
   xl: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
   '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
   soft: '0 8px 30px rgba(0,0,0,.08)', // Custom wedding site shadow
+  watercolor: '0 4px 20px rgba(82, 100, 126, 0.15)', // Watercolor blue shadow
 } as const;
 
 // =============================================================================

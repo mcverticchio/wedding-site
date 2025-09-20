@@ -4,15 +4,14 @@ import Link from 'next/link';
 import type { Route } from 'next';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import { HomeIcon } from '@heroicons/react/24/outline';
 
 export type NavItem = { label: string; href: string };
 
 export function Header({
-  brand,
   subtitle,
   nav,
 }: {
-  brand: string;
   subtitle?: string;
   nav: NavItem[];
 }) {
@@ -47,16 +46,13 @@ export function Header({
   return (
     <header className="sticky top-0 z-40 bg-transparent">
       <div className="container py-3 px-4 overflow-visible">
-        <div className="relative flex h-14 items-center gap-4 overflow-visible rounded-2xl bg-autumnGreen px-5 text-cream shadow-[0_2px_30px_-10px_rgba(0,0,0,0.35)]">
+        <div className="relative flex h-14 items-center gap-4 overflow-visible rounded-2xl bg-watercolorBlue px-5 text-[#f6f6ee] shadow-watercolor">
           <div className="flex items-center gap-3 whitespace-nowrap">
-            <Link
-              href="/"
-              className="text-xl font-semibold tracking-tight text-cream whitespace-nowrap"
-            >
-              {brand}
+            <Link href="/" className="flex items-center justify-center w-10 h-10 rounded-lg bg-cream/10 hover:bg-cream/20 transition-colors">
+              <HomeIcon className="w-6 h-6 text-[#f6f6ee]" />
             </Link>
             {subtitle ? (
-              <div className="hidden sm:block text-sm leading-none text-cream/80">{subtitle}</div>
+              <div className="hidden sm:block text-sm leading-none text-[#f6f6ee]/80">{subtitle}</div>
             ) : null}
           </div>
 
@@ -64,7 +60,7 @@ export function Header({
             type="button"
             aria-label={open ? 'Close menu' : 'Open menu'}
             onClick={() => setOpen((v) => !v)}
-            className="ml-auto md:hidden inline-flex items-center justify-center gap-2 rounded-lg p-3 min-h-[44px] min-w-[44px] text-cream/80 hover:bg-cream/10 active:scale-[.95] transition-all duration-200 touch-manipulation focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-autumnGreen"
+            className="ml-auto md:hidden inline-flex items-center justify-center gap-2 rounded-lg p-3 min-h-[44px] min-w-[44px] text-[#f6f6ee]/80 hover:bg-cream/10 active:scale-[.95] transition-all duration-200 touch-manipulation focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-autumnGreen"
             ref={firstFocusRef}
           >
             {open ? (
@@ -101,7 +97,7 @@ export function Header({
             )}
           </button>
 
-          <nav className="hidden md:flex items-center gap-x-8 ml-auto text-cream/90 leading-none">
+          <nav className="hidden md:flex items-center gap-x-8 ml-auto text-[#f6f6ee]/90 leading-none">
             <div className="flex items-center gap-x-6">
               {nav
                 ?.filter((i) => i.href !== '/rsvp')
@@ -114,8 +110,8 @@ export function Header({
                       className={[
                         'inline-flex items-center whitespace-nowrap text-sm transition-all duration-200 py-2 px-3 rounded-md min-h-[44px] touch-manipulation hover:bg-cream/10 focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-autumnGreen',
                         active
-                          ? 'text-cream font-medium bg-cream/10'
-                          : 'text-cream/80 hover:text-cream',
+                          ? 'text-[#f6f6ee] font-medium bg-cream/10'
+                          : 'text-[#f6f6ee]/80 hover:text-[#f6f6ee]',
                       ].join(' ')}
                     >
                       {item.label}

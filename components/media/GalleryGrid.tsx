@@ -29,7 +29,7 @@ export function GalleryGrid({
 }) {
   return (
     <div className="relative">
-      <h2 className="my-8 text-2xl font-bold text-center text-ink">Engagement Photos</h2>
+        <h2 className="my-8 text-2xl font-bold text-center text-watercolorBlueDark">Engagement Photos</h2>
       <div className="grid gap-4 w-full sm:grid-cols-2 lg:grid-cols-3">
         {engagementPhotos.map((p, idx) => (
           <DraggableCardBody
@@ -47,7 +47,7 @@ export function GalleryGrid({
           </DraggableCardBody>
         ))}
       </div>
-      <h2 className="my-8 text-2xl font-bold text-center text-ink">Gallery</h2>
+        <h2 className="my-8 text-2xl font-bold text-center text-watercolorBlueDark">Gallery</h2>
       <div className="grid gap-4 w-full sm:grid-cols-2 lg:grid-cols-3">
         {photos.map((p, idx) => (
           <DraggableCardBody
@@ -62,7 +62,7 @@ export function GalleryGrid({
               className="object-cover relative z-10 w-full h-96 pointer-events-none"
               priority={idx < 6}
             />
-            <h3 className="mt-4 text-2xl font-bold text-center text-ink">
+            <h3 className="mt-4 text-2xl font-bold text-center text-watercolorBlueDark">
               {p.caption || p.alt || `Photo ${idx + 1}`}
             </h3>
           </DraggableCardBody>
