@@ -32,7 +32,7 @@ export function HotelCard({ hotel }: { hotel: Hotel }) {
       ) : null}
       <CardHeader>
         <div className="flex flex-wrap items-baseline justify-between gap-2">
-          <h3 className="text-lg font-semibold text-ink">{hotel.name}</h3>
+          <h3 className="text-lg font-semibold text-watercolorBlueDark">{hotel.name}</h3>
           {hotel.distance ? <div className="text-sm text-ink/70">{hotel.distance} away</div> : null}
         </div>
         {addr ? <div className="mt-1 text-sm text-ink/80">{addr}</div> : null}

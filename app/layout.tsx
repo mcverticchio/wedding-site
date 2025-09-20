@@ -32,12 +32,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <PasswordProtection correctPassword={pw}>
           <a
             href="#main-content"
-            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-autumnGreen text-white px-4 py-2 rounded-md font-medium z-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-autumnGreen"
+            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-autumnGreen text-[#f6f6ee] px-4 py-2 rounded-md font-medium z-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-autumnGreen"
           >
             Skip to main content
           </a>
           <Header
-            brand={site.title ?? 'Caroline & Zach'}
             subtitle={site.subtitle}
             nav={site.nav ?? []}
           />

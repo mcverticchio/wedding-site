@@ -16,7 +16,7 @@ export function VenueCard({ venue }: { venue: Venue }) {
   return (
     <Card>
       <CardHeader>
-        <h3 className="text-lg font-semibold text-ink">{venue.name}</h3>
+        <h3 className="text-lg font-semibold text-watercolorBlueDark">{venue.name}</h3>
         {addr ? <div className="mt-1 text-sm text-ink/80">{addr}</div> : null}
       </CardHeader>
       <CardBody>

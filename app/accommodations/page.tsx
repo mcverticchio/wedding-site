@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { HotelCard } from '../../components';
+import { HotelCard, PageHeading } from '../../components';
 import { ImageWithSkeleton } from '../../components/ui/ImageWithSkeleton';
 import type { Metadata } from 'next';
 
@@ -76,15 +76,15 @@ export default function AccommodationsPage() {
   };
 
   return (
-    <main id="main-content" className="container py-10">
-      <header className="mb-8">
-        <h1 className="text-4xl font-bold tracking-tight font-display text-ink">Accommodations</h1>
-        {data.intro ? <p className="mt-3 text-ink/80">{data.intro}</p> : null}
-      </header>
+    <main id="main-content">
+      <PageHeading 
+        title="Accommodations" 
+        subtitle={data.intro} 
+      />
 
       {data.travel.airports.length > 0 ? (
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold text-ink">Airports</h2>
+          <h2 className="text-2xl font-semibold text-watercolorBlueDark">Airports</h2>
           <ul className="grid gap-4 mt-4 sm:grid-cols-2">
             {data.travel.airports.map((a, idx) => (
               <li
@@ -112,7 +112,7 @@ export default function AccommodationsPage() {
 
       {data.hotels?.length ? (
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold text-ink">Hotels</h2>
+          <h2 className="text-2xl font-semibold text-watercolorBlueDark">Hotels</h2>
           <div className="grid gap-6 mt-4 sm:grid-cols-2">
             {data.hotels.map((h, idx) => (
               <HotelCard key={idx} hotel={h} />

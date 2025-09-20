@@ -16,6 +16,12 @@ module.exports = {
         slate: tokens.colors.neutral.slate,
         goldAccent: tokens.colors.primary.goldAccent,
 
+        // Watercolor blue colors
+        watercolorBlue: tokens.colors.blue.watercolor,
+        watercolorBlueLight: tokens.colors.blue.watercolorLight,
+        watercolorBlueDark: tokens.colors.blue.watercolorDark,
+        watercolorBlueWash: tokens.colors.blue.watercolorWash,
+
         // Semantic colors
         success: tokens.colors.semantic.success,
         warning: tokens.colors.semantic.warning,
@@ -57,7 +63,10 @@ module.exports = {
       },
 
       // Shadows (mapped from design tokens)
-      boxShadow: tokens.shadows,
+      boxShadow: {
+        ...tokens.shadows,
+        watercolor: tokens.shadows.watercolor,
+      },
 
       // Touch targets for accessibility
       minHeight: {

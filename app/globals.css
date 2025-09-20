@@ -5,7 +5,7 @@
 /* CSS reset refinements and base theming */
 :root {
   /* Legacy palette (keeping for compatibility) */
-  --bg: 247 243 238; /* cream */
+  --bg: 246 246 238; /* cream */
   --fg: 30 29 26; /* ink */
 
   /* Design Token Colors */
@@ -14,7 +14,7 @@
   --color-gold-accent: #c8a36a;
   --color-ink: #1e1d1a;
   --color-slate: #5c6a66;
-  --color-cream: #f7f3ee;
+  --color-cream: #f6f6ee;
   --color-warm-sand: #e9dfd3;
 
   /* Semantic Colors */
