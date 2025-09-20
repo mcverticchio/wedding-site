@@ -26,7 +26,7 @@ export function PasswordProtection({ children, correctPassword }: PasswordProtec
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    
+
     if (password === correctPassword) {
       setIsAuthenticated(true);
       sessionStorage.setItem('wedding-site-authenticated', 'true');
@@ -53,7 +53,7 @@ export function PasswordProtection({ children, correctPassword }: PasswordProtec
               <h1 className="mb-2 text-3xl font-bold text-ink">Welcome</h1>
               <p className="text-ink/80">Please enter the password from your invitation</p>
             </div>
-            
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <input
@@ -65,14 +65,12 @@ export function PasswordProtection({ children, correctPassword }: PasswordProtec
                   required
                   autoFocus
                 />
-                {error && (
-                  <p className="mt-2 text-sm text-red-600">{error}</p>
-                )}
+                {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
               </div>
-              
-              <Button 
-                type="submit" 
-                variant="primary" 
+
+              <Button
+                type="submit"
+                variant="primary"
                 className="w-full"
                 disabled={!password.trim()}
               >
@@ -85,9 +83,5 @@ export function PasswordProtection({ children, correctPassword }: PasswordProtec
     );
   }
 
-  return (
-    <>
-      {children}
-    </>
-  );
+  return <>{children}</>;
 }

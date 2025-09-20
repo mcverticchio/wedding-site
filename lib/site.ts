@@ -15,7 +15,6 @@ export type SiteData = {
 };
 
 const defaultNav: NavItem[] = [
-
   { label: 'Schedule', href: '/schedule' },
   { label: 'Accommodations', href: '/accommodations' },
   { label: 'Registry', href: '/registry' },
@@ -36,7 +35,7 @@ export function loadSiteData(): SiteData {
       footer: parsed.footer ?? '© ' + new Date().getFullYear() + ' Caroline & Zach',
       date_display: parsed.date_display ?? 'TBA',
       city: parsed.city ?? 'TBA',
-      names: parsed.names
+      names: parsed.names,
     };
   } catch {
     return { nav: defaultNav, title: 'Wedding Site', footer: '© ' + new Date().getFullYear() };

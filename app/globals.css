@@ -4,19 +4,105 @@
 
 /* CSS reset refinements and base theming */
 :root {
-  /* modernized palette */
+  /* Legacy palette (keeping for compatibility) */
   --bg: 247 243 238; /* cream */
-  --fg: 30 29 26;    /* ink */
+  --fg: 30 29 26; /* ink */
+
+  /* Design Token Colors */
+  --color-autumn-green: #2e4b3f;
+  --color-burnt-orange: #b5562b;
+  --color-gold-accent: #c8a36a;
+  --color-ink: #1e1d1a;
+  --color-slate: #5c6a66;
+  --color-cream: #f7f3ee;
+  --color-warm-sand: #e9dfd3;
+
+  /* Semantic Colors */
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-error: #dc2626;
+  --color-info: #0284c7;
+
+  /* Interactive States */
+  --color-hover: rgba(46, 75, 63, 0.1);
+  --color-focus: rgba(46, 75, 63, 0.2);
+  --color-active: rgba(46, 75, 63, 0.3);
+  --color-disabled: rgba(92, 106, 102, 0.5);
+
+  /* Typography */
+  --font-family-display: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-family-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  /* Spacing Scale */
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-base: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-base: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.08);
+
+  /* Interactive */
+  --touch-target-minimum: 44px;
+  --touch-target-comfortable: 48px;
+  --touch-target-large: 56px;
+
+  /* Transitions */
+  --transition-fast: 75ms;
+  --transition-normal: 200ms;
+  --transition-slow: 300ms;
+
+  /* Transform scales */
+  --scale-press: 0.95;
+  --scale-button-press: 0.98;
+  --scale-subtle: 0.99;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
 body {
   background-color: rgb(var(--bg));
   color: rgb(var(--fg));
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Noto Sans,
+    Ubuntu,
+    Cantarell,
+    Helvetica Neue,
+    Arial,
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol';
 }
 
 /* Better default link styles */
@@ -27,4 +113,94 @@ a {
 /* Container utility */
 .container {
   @apply px-4 mx-auto max-w-7xl sm:px-6 lg:px-8;
+}
+
+/* Touch-optimized styles */
+* {
+  /* Smooth touch scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
+  /* Prevent tap highlight on iOS */
+  -webkit-tap-highlight-color: transparent;
+  /* Disable callouts on long press */
+  -webkit-touch-callout: none;
+  /* Prevent text selection on touch elements */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Re-enable text selection for content elements */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+td,
+th,
+span,
+div[role='main'],
+article,
+section {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* Input and form elements need text selection */
+input,
+textarea,
+[contenteditable='true'] {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  /* Prevent zoom on focus for inputs */
+  font-size: 16px;
+}
+
+/* Touch-friendly utilities */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.touch-manipulation {
+  touch-action: manipulation;
+}
+
+/* Disable browser zoom on double tap */
+.no-zoom {
+  touch-action: pan-x pan-y;
+}
+
+/* Enhanced focus visible for mobile */
+.focus-visible-enhanced:focus-visible {
+  outline: 2px solid theme('colors.autumnGreen');
+  outline-offset: 2px;
+  border-radius: theme('borderRadius.md');
+}
+
+/* Custom scrollbar for mobile webkit */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: theme('colors.warmSand/0.3');
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: theme('colors.autumnGreen/0.6');
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.autumnGreen/0.8');
 }

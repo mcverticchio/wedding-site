@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { ImageWithSkeleton } from '../ui/ImageWithSkeleton';
 
 export type TimelineItem = {
   date?: string;
@@ -20,15 +21,18 @@ export function Timeline({ items }: { items: TimelineItem[] }) {
         return (
           <li key={idx} className="grid items-start gap-6 md:grid-cols-[200px,1fr]">
             <div className="md:text-right">
-              {it.date ? <div className="text-sm font-medium text-autumnGreen">{it.date}</div> : null}
+              {it.date ? (
+                <div className="text-sm font-medium text-autumnGreen">{it.date}</div>
+              ) : null}
             </div>
             <div className="rounded-lg border border-warmSand/60 bg-white shadow-soft overflow-hidden">
               {img ? (
-                <img
+                <ImageWithSkeleton
                   src={img}
                   alt={it.alt ?? it.title ?? 'Timeline image'}
+                  width={600}
+                  height={224}
                   className="h-56 w-full object-cover"
-                  loading="lazy"
                 />
               ) : null}
               <div className="p-4">

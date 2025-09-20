@@ -2,10 +2,10 @@
 const isDev = process.env.NODE_ENV !== 'production';
 // For custom domain (cz26.site), no basePath is needed
 // Only use basePath for GitHub Pages project pages (username.github.io/repo-name)
-const repoBase = isDev ? '' : (process.env.NEXT_PUBLIC_BASE_PATH || '');
+const repoBase = isDev ? '' : process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 const nextConfig = {
-  output: 'export',            // static export for GitHub Pages
+  output: 'export', // static export for GitHub Pages
   reactStrictMode: true,
   basePath: repoBase || undefined,
   assetPrefix: repoBase ? repoBase + '/' : undefined,

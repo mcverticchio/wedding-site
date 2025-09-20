@@ -1,7 +1,4 @@
 .next
 .DS_Store
-.env*
-.crush
-
+.env
 node_modules
-out
