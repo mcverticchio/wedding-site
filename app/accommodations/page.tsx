@@ -76,7 +76,7 @@ export default function AccommodationsPage() {
   };
 
   return (
-    <main id="main-content">
+    <main id="main-content" className="container py-10">
       <PageHeading 
         title="Accommodations" 
         subtitle={data.intro} 
