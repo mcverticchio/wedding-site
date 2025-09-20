@@ -68,7 +68,7 @@ export default function SchedulePage() {
   });
 
   return (
-    <main className="container py-10">
+    <main id="main-content" className="container py-10">
       <header className="mb-8">
         <h1 className="font-display text-4xl font-bold tracking-tight text-ink">
           {data.title ?? 'Schedule'}

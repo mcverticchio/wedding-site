@@ -30,9 +30,11 @@ export default function FaqsPage() {
   const faqs = (data.faqs ?? []).map((f) => ({ question: f.q ?? '', answer: f.a ?? '' }));
 
   return (
-    <main className="container py-10">
+    <main id="main-content" className="container py-10">
       <header className="mb-8">
-        <h1 className="font-display text-4xl font-bold tracking-tight text-ink">{data.title ?? 'FAQs'}</h1>
+        <h1 className="font-display text-4xl font-bold tracking-tight text-ink">
+          {data.title ?? 'FAQs'}
+        </h1>
         {data.intro ? <p className="mt-3 text-ink/80">{data.intro}</p> : null}
       </header>
 

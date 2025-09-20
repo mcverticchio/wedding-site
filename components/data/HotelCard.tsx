@@ -1,12 +1,13 @@
 import { Card, CardBody, CardHeader, CardFooter } from '../ui/Card';
 import { Button } from '../ui/Button';
+import { ImageWithSkeleton } from '../ui/ImageWithSkeleton';
 
 export type Hotel = {
   name?: string;
   address?: string;
   distance?: string;
   rating?: number;
-  link?: string;        // booking or website
+  link?: string; // booking or website
   map?: string;
   image?: string;
   alt?: string;
@@ -21,12 +22,12 @@ export function HotelCard({ hotel }: { hotel: Hotel }) {
   return (
     <Card>
       {img ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
+        <ImageWithSkeleton
           src={img}
           alt={hotel.alt ?? hotel.name ?? 'Hotel'}
+          width={400}
+          height={176}
           className="h-44 w-full rounded-t-lg object-cover"
-          loading="lazy"
         />
       ) : null}
       <CardHeader>
@@ -36,7 +37,9 @@ export function HotelCard({ hotel }: { hotel: Hotel }) {
         </div>
         {addr ? <div className="mt-1 text-sm text-ink/80">{addr}</div> : null}
         {typeof hotel.rating === 'number' ? (
-          <div className="mt-1 text-sm text-ink/80">{'⭐'.repeat(Math.max(0, Math.min(5, hotel.rating)))}</div>
+          <div className="mt-1 text-sm text-ink/80">
+            {'⭐'.repeat(Math.max(0, Math.min(5, hotel.rating)))}
+          </div>
         ) : null}
       </CardHeader>
       <CardBody>
@@ -49,7 +52,7 @@ export function HotelCard({ hotel }: { hotel: Hotel }) {
         ) : null}
         {hotel.notes ? <p className="mt-2 text-ink/80">{hotel.notes}</p> : null}
       </CardBody>
-      {(hotel.link || hotel.map) ? (
+      {hotel.link || hotel.map ? (
         <CardFooter>
           <div className="flex flex-wrap gap-3">
             {hotel.link ? (
@@ -58,7 +61,13 @@ export function HotelCard({ hotel }: { hotel: Hotel }) {
               </Button>
             ) : null}
             {hotel.map ? (
-              <Button as="a" href={hotel.map as string} target="_blank" rel="noreferrer" variant="secondary">
+              <Button
+                as="a"
+                href={hotel.map as string}
+                target="_blank"
+                rel="noreferrer"
+                variant="secondary"
+              >
                 View Map
               </Button>
             ) : null}

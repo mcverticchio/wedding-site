@@ -1,11 +1,14 @@
-TODO:
+# TODO
 
 Zach:
+[] Finish Improvements.md
+[] Standardize/optimize all images with Mazanoke on umbrel to webp
+[] Finalize gallery photos and captions
+[] Understand why engagement photo 11 and 12 are in wedding array, not engagement photo array
 
 Caroline:
 [] Finish RSVP page for +1 names
 [] Fix supabase backend with RLS
-[] Publish to GH pages (cz26.site)
 [] Add a "Things to Do" section at the bottom of "Accomodations" or a separate tab?
 [] Style website
 
@@ -24,3 +27,4 @@ Done:
 [x] Update db table with extra cols (guest_1, guest_2, guest_3..) for +1s
 [x] Add captions to images in gallery
 [x] Pick, buy, and map domain
+[x] Publish to GH pages (cz26.site)
