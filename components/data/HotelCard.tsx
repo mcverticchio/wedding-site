@@ -27,7 +27,7 @@ export function HotelCard({ hotel }: { hotel: Hotel }) {
           alt={hotel.alt ?? hotel.name ?? 'Hotel'}
           width={400}
           height={176}
-          className="object-cover w-full h-44 rounded-t-lg"
+          className="object-cover w-full h-[300px] rounded-t-lg"
         />
       ) : null}
       <CardHeader>

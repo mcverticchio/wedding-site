@@ -251,7 +251,7 @@ export default function RsvpPage() {
         <form
           ref={formRef}
           onSubmit={onSubmit}
-          className="flex-1 p-6 space-y-5 max-w-xl rounded-lg border shadow-sm border-warmSand bg-cream"
+          className="flex-1 p-6 space-y-5 max-w-lg rounded-lg border shadow-sm border-warmSand bg-cream"
         >
         <div>
           <label htmlFor="full_name" className="block text-sm font-medium text-ink">
