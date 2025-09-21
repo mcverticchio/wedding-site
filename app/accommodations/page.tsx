@@ -97,7 +97,7 @@ export default function AccommodationsPage() {
                     alt={a.alt ?? a.name ?? 'Airport'}
                     width={400}
                     height={160}
-                    className="object-cover mb-3 w-full h-40 rounded-md"
+                    className="object-cover mb-3 w-full rounded-md h-[300px]"
                   />
                 ) : null}
                 <div className="font-medium text-ink">

@@ -34,6 +34,7 @@
   --font-family-body: var(--font-radley), serif;
   --font-family-radley: var(--font-radley), serif;
   --font-family-sans: var(--font-radley), serif;
+  --letter-spacing-normal: 0.25rem;
 
   /* Spacing Scale */
   --spacing-0: 0;
@@ -208,11 +209,12 @@ textarea,
 }
 
 #main-content {
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
+  padding-left: var(--spacing-12);
+  padding-right: var(--spacing-12);
 }
 
 /* Make Radley the default font for all elements */
 * {
   font-family: var(--font-radley), serif;
+  letter-spacing: 0.1rem;
 }

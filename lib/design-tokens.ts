@@ -94,6 +94,14 @@ export const typography = {
     relaxed: '1.625',
     loose: '2',
   },
+
+  // Letter Spacing
+  letterSpacing: {
+    tight: '-0.025em',
+    normal: '0.1rem',
+    wide: '0.15rem',
+    wider: '0.2rem',
+  },
 } as const;
 
 // =============================================================================

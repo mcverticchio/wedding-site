@@ -45,6 +45,7 @@ module.exports = {
       fontSize: tokens.typography.fontSize,
       fontWeight: tokens.typography.fontWeight,
       lineHeight: tokens.typography.lineHeight,
+      letterSpacing: tokens.typography.letterSpacing,
 
       // Spacing (mapped from design tokens)
       spacing: tokens.spacing.scale,
