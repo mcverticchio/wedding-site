@@ -101,7 +101,7 @@ export function RegistryGrid({ links, note }: { links: RegistryLink[]; note?: st
               <CardHeader className="pb-4">
                 <div className="flex gap-3 items-center mb-4">
                   <RegistryIcon name={l.name} />
-                  <h3 className="text-xl font-semibold transition-colors text-ink group-hover:text-autumnGreen">
+                  <h3 className="text-xl font-medium transition-colors text-ink group-hover:text-autumnGreen">
                     {l.name}
                   </h3>
                 </div>

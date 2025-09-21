@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { FAQAccordion } from '../../components';
+import { FAQAccordion, PageHeading } from '../../components';
 import type { Metadata } from 'next';
 
 type FaqItem = { q?: string; a?: string };
@@ -31,12 +31,10 @@ export default function FaqsPage() {
 
   return (
     <main id="main-content" className="container py-10">
-      <header className="mb-8">
-        <h1 className="font-display text-4xl font-bold tracking-tight text-ink">
-          {data.title ?? 'FAQs'}
-        </h1>
-        {data.intro ? <p className="mt-3 text-ink/80">{data.intro}</p> : null}
-      </header>
+      <PageHeading 
+        title={data.title ?? 'FAQs'} 
+        subtitle={data.intro} 
+      />
 
       <FAQAccordion faqs={faqs} />
     </main>

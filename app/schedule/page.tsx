@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { ScheduleList } from '../../components';
+import { ScheduleList, PageHeading } from '../../components';
 import type { Metadata } from 'next';
 
 type EventItem = {
@@ -69,12 +69,10 @@ export default function SchedulePage() {
 
   return (
     <main id="main-content" className="container py-10">
-      <header className="mb-8">
-        <h1 className="font-display text-4xl font-bold tracking-tight text-ink">
-          {data.title ?? 'Schedule'}
-        </h1>
-        {data.intro ? <p className="mt-3 text-ink/80">{data.intro}</p> : null}
-      </header>
+      <PageHeading 
+        title={data.title ?? 'Schedule'} 
+        subtitle={data.intro} 
+      />
 
       <ScheduleList events={events} />
     </main>

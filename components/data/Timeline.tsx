@@ -25,18 +25,18 @@ export function Timeline({ items }: { items: TimelineItem[] }) {
                 <div className="text-sm font-medium text-autumnGreen">{it.date}</div>
               ) : null}
             </div>
-            <div className="rounded-lg border border-warmSand/60 bg-white shadow-soft overflow-hidden">
+            <div className="overflow-hidden bg-white rounded-lg border border-warmSand/60 shadow-soft">
               {img ? (
                 <ImageWithSkeleton
                   src={img}
                   alt={it.alt ?? it.title ?? 'Timeline image'}
                   width={600}
                   height={224}
-                  className="h-56 w-full object-cover"
+                  className="object-cover w-full h-56"
                 />
               ) : null}
               <div className="p-4">
-                {it.title ? <h3 className="text-lg font-semibold text-ink">{it.title}</h3> : null}
+                {it.title ? <h3 className="text-lg font-medium text-watercolorBlueDark">{it.title}</h3> : null}
                 {it.text ? <p className="mt-2 text-slate">{it.text}</p> : null}
               </div>
             </div>

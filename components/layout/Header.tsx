@@ -4,15 +4,14 @@ import Link from 'next/link';
 import type { Route } from 'next';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import { HomeIcon } from '@heroicons/react/24/outline';
 
 export type NavItem = { label: string; href: string };
 
 export function Header({
-  brand,
   subtitle,
   nav,
 }: {
-  brand: string;
   subtitle?: string;
   nav: NavItem[];
 }) {
@@ -46,17 +45,14 @@ export function Header({
 
   return (
     <header className="sticky top-0 z-40 bg-transparent">
-      <div className="container py-3 px-4 overflow-visible">
-        <div className="relative flex h-14 items-center gap-4 overflow-visible rounded-2xl bg-autumnGreen px-5 text-cream shadow-[0_2px_30px_-10px_rgba(0,0,0,0.35)]">
-          <div className="flex items-center gap-3 whitespace-nowrap">
-            <Link
-              href="/"
-              className="text-xl font-semibold tracking-tight text-cream whitespace-nowrap"
-            >
-              {brand}
+      <div className="container overflow-visible px-4 py-3">
+        <div className="relative flex h-14 items-center gap-4 overflow-visible rounded-2xl bg-watercolorBlue px-5 text-[#f6f6ee] shadow-watercolor">
+          <div className="flex gap-3 items-center whitespace-nowrap">
+            <Link href="/" className="flex justify-center items-center w-10 h-10 rounded-lg transition-colors bg-cream/10 hover:bg-cream/20">
+              <HomeIcon className="w-6 h-6 text-[#f6f6ee]" />
             </Link>
             {subtitle ? (
-              <div className="hidden sm:block text-sm leading-none text-cream/80">{subtitle}</div>
+              <div className="hidden sm:block text-sm leading-none text-[#f6f6ee]/80">{subtitle}</div>
             ) : null}
           </div>
 
@@ -64,7 +60,7 @@ export function Header({
             type="button"
             aria-label={open ? 'Close menu' : 'Open menu'}
             onClick={() => setOpen((v) => !v)}
-            className="ml-auto md:hidden inline-flex items-center justify-center gap-2 rounded-lg p-3 min-h-[44px] min-w-[44px] text-cream/80 hover:bg-cream/10 active:scale-[.95] transition-all duration-200 touch-manipulation focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-autumnGreen"
+            className="ml-auto md:hidden inline-flex items-center justify-center gap-2 rounded-lg p-3 min-h-[44px] min-w-[44px] text-[#f6f6ee]/80 hover:bg-cream/10 active:scale-[.95] transition-all duration-200 touch-manipulation focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-autumnGreen"
             ref={firstFocusRef}
           >
             {open ? (
@@ -101,8 +97,8 @@ export function Header({
             )}
           </button>
 
-          <nav className="hidden md:flex items-center gap-x-8 ml-auto text-cream/90 leading-none">
-            <div className="flex items-center gap-x-6">
+          <nav className="hidden md:flex items-center gap-x-8 ml-auto text-[#f6f6ee]/90 leading-none">
+            <div className="flex gap-x-6 items-center">
               {nav
                 ?.filter((i) => i.href !== '/rsvp')
                 .map((item) => {
@@ -114,8 +110,8 @@ export function Header({
                       className={[
                         'inline-flex items-center whitespace-nowrap text-sm transition-all duration-200 py-2 px-3 rounded-md min-h-[44px] touch-manipulation hover:bg-cream/10 focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-autumnGreen',
                         active
-                          ? 'text-cream font-medium bg-cream/10'
-                          : 'text-cream/80 hover:text-cream',
+                          ? 'text-[#f6f6ee] font-medium bg-cream/10'
+                          : 'text-[#f6f6ee]/80 hover:text-[#f6f6ee]',
                       ].join(' ')}
                     >
                       {item.label}
@@ -125,7 +121,7 @@ export function Header({
             </div>
             <Link
               href={'/rsvp' as Route}
-              className="inline-flex items-center justify-center whitespace-nowrap text-sm font-semibold rounded-md px-4 py-2 min-h-[44px] border border-cream bg-cream text-autumnGreen hover:bg-cream/90 hover:shadow-md shadow-sm transition-all duration-200 touch-manipulation active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-autumnGreen"
+              className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium rounded-md px-4 py-2 min-h-[44px] border border-cream bg-cream text-autumnGreen hover:bg-watercolorBlue/80 hover:text-cream hover:shadow-md shadow-sm transition-all duration-200 touch-manipulation active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-autumnGreen"
             >
               RSVP
             </Link>
@@ -134,13 +130,13 @@ export function Header({
       </div>
 
       {open ? (
-        <div className="absolute left-0 right-0 z-50" aria-hidden={!open}>
+        <div className="absolute right-0 left-0 z-50" aria-hidden={!open}>
           <div className="pointer-events-none">
             <div
               role="dialog"
               aria-modal="true"
               aria-label="Navigation"
-              className="pointer-events-auto mx-auto mt-2 w-full max-w-[820px] origin-top rounded-2xl rounded-t-none bg-autumnGreen text-cream shadow-[0_18px_50px_rgba(0,0,0,0.35)] ring-1 ring-black/20 animate-in fade-in-0 slide-in-from-top-2 duration-200"
+              className="pointer-events-auto mx-auto mt-2 w-full max-w-[820px] origin-top rounded-2xl rounded-t-none bg-watercolorBlue text-cream shadow-[0_18px_50px_rgba(0,0,0,0.35)] ring-1 ring-black/20 animate-in fade-in-0 slide-in-from-top-2 duration-200"
               onClick={(e) => e.stopPropagation()}
             >
               <nav className="grid max-h-[70vh] gap-2 overflow-y-auto px-6 py-4">
@@ -154,7 +150,7 @@ export function Header({
                       className={[
                         'rounded-lg px-6 py-4 text-lg min-h-[56px] flex items-center transition-all duration-200 touch-manipulation active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-cream/50 focus-visible:ring-offset-2 focus-visible:ring-offset-autumnGreen',
                         isRsvp
-                          ? 'bg-cream text-autumnGreen font-semibold shadow-md hover:bg-cream/90'
+                          ? 'bg-cream text-autumnGreen font-medium shadow-md hover:bg-cream/90'
                           : active
                             ? 'bg-cream/10 text-cream font-medium'
                             : 'text-cream/90 hover:bg-cream/10 hover:text-cream',

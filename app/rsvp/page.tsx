@@ -247,11 +247,12 @@ export default function RsvpPage() {
     <main id="main-content" className="container py-10">
       <PageHeading title="RSVP" subtitle="Please RSVP by March 31, 2027." />
 
-      <form
-        ref={formRef}
-        onSubmit={onSubmit}
-        className="p-6 space-y-5 max-w-xl rounded-lg border shadow-sm border-warmSand bg-cream"
-      >
+      <div className="flex flex-col gap-8 items-start lg:flex-row">
+        <form
+          ref={formRef}
+          onSubmit={onSubmit}
+          className="flex-1 p-6 space-y-5 max-w-lg rounded-lg border shadow-sm border-warmSand bg-cream"
+        >
         <div>
           <label htmlFor="full_name" className="block text-sm font-medium text-ink">
             Full name *
@@ -297,13 +298,13 @@ export default function RsvpPage() {
             Will you be attending the wedding?
           </legend>
           <div
-            className="flex flex-col sm:flex-row gap-3 mt-3"
+            className="flex flex-col gap-3 mt-3 sm:flex-row"
             role="radiogroup"
             aria-labelledby="attending-legend"
           >
-            <label className="inline-flex gap-3 items-center p-4 text-base text-ink cursor-pointer rounded-lg border transition-all duration-200 hover:bg-warmSand/20 has-[:checked]:bg-autumnGreen/10 has-[:checked]:border-autumnGreen touch-manipulation min-h-[56px]">
+            <label className="inline-flex gap-3 items-center p-4 text-base text-ink cursor-pointer rounded-lg border transition-all duration-200 hover:bg-warmSand/20 has-[:checked]:bg-watercolorBlue/10 has-[:checked]:border-watercolorBlue touch-manipulation min-h-[56px]">
               <input
-                className="w-5 h-5 accent-autumnGreen focus:outline-none focus:ring-2 focus:ring-autumnGreen focus:ring-offset-2"
+                className="w-5 h-5 accent-watercolorBlue focus:outline-none focus:ring-2 focus:ring-watercolorBlue focus:ring-offset-2"
                 type="radio"
                 name="attending"
                 value="yes"
@@ -312,9 +313,9 @@ export default function RsvpPage() {
               />
               <span className="font-medium">Yes, I will attend</span>
             </label>
-            <label className="inline-flex gap-3 items-center p-4 text-base text-ink cursor-pointer rounded-lg border transition-all duration-200 hover:bg-warmSand/20 has-[:checked]:bg-autumnGreen/10 has-[:checked]:border-autumnGreen touch-manipulation min-h-[56px]">
+            <label className="inline-flex gap-3 items-center p-4 text-base text-ink cursor-pointer rounded-lg border transition-all duration-200 hover:bg-warmSand/20 has-[:checked]:bg-watercolorBlue/10 has-[:checked]:border-watercolorBlue touch-manipulation min-h-[56px]">
               <input
-                className="w-5 h-5 accent-autumnGreen focus:outline-none focus:ring-2 focus:ring-autumnGreen focus:ring-offset-2"
+                className="w-5 h-5 accent-watercolorBlue focus:outline-none focus:ring-2 focus:ring-watercolorBlue focus:ring-offset-2"
                 type="radio"
                 name="attending"
                 value="no"
@@ -528,7 +529,7 @@ export default function RsvpPage() {
             name="notes"
             rows={4}
             placeholder="Any dietary restrictions, song requests, or special accommodations"
-            aria-describedby={`notes-description${fieldErrors.notes ? ' notes-error' : ''}`}
+            aria-describedby={fieldErrors.notes ? 'notes-error' : undefined}
             className={`px-4 py-3 mt-1 w-full rounded-lg border shadow-sm focus:outline-none transition-all duration-200 touch-manipulation text-base resize-y ${
               fieldErrors.notes
                 ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200'
@@ -537,9 +538,6 @@ export default function RsvpPage() {
             onBlur={(e) => validateField('notes', e.target.value)}
           />
           {renderFieldError('notes')}
-          <p id="notes-description" className="mt-1 text-xs text-ink/60">
-            Please let us know about any dietary needs, song requests, or special accommodations
-          </p>
         </div>
 
         <div className="flex gap-3 items-center">
@@ -563,7 +561,16 @@ export default function RsvpPage() {
             {status.msg}
           </div>
         )}
-      </form>
+        </form>
+
+        <div className="flex-shrink-0 lg:max-w-sm">
+          <img
+            src="/images/dachshund.png"
+            alt="Adorable dachshund"
+            className="w-full h-auto rounded-lg shadow-sm"
+          />
+        </div>
+      </div>
     </main>
   );
 }
