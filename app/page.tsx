@@ -25,7 +25,7 @@ export default function Home() {
       <section className="grid place-items-center min-h-[calc(100vh-200px)]">
         <div className="w-full max-w-4xl">
           {/* Image first */}
-          <div className="overflow-hidden w-full bg-white rounded-lg border border-warmSand/60 shadow-soft mb-8">
+          <div className="overflow-hidden mb-8 w-full bg-white rounded-lg border border-warmSand/60 shadow-soft">
             <ImageWithSkeleton
               src="/images/gallery/engagement-12.jpeg"
               alt="Caroline and Zach engagement photo - featured wedding website image"
@@ -37,7 +37,7 @@ export default function Home() {
           </div>
           
           {/* Text content below */}
-          <div className="max-w-2xl mx-auto text-center">
+          <div className="mx-auto max-w-2xl text-center">
             {/* Names as image */}
             <div className="mb-6">
               <Image
@@ -45,7 +45,7 @@ export default function Home() {
                 alt="Caroline and Zach"
                 width={600}
                 height={120}
-                className="mx-auto h-20 sm:h-24 md:h-28 w-auto"
+                className="mx-auto w-auto h-20 sm:h-24 md:h-28"
                 priority
               />
             </div>

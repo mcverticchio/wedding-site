@@ -101,7 +101,7 @@ export function RegistryGrid({ links, note }: { links: RegistryLink[]; note?: st
               <CardHeader className="pb-4">
                 <div className="flex gap-3 items-center mb-4">
                   <RegistryIcon name={l.name} />
-                  <h3 className="text-xl font-semibold transition-colors text-watercolorBlueDark group-hover:text-watercolorBlue">
+                  <h3 className="text-xl font-medium transition-colors text-ink group-hover:text-autumnGreen">
                     {l.name}
                   </h3>
                 </div>
@@ -116,7 +116,7 @@ export function RegistryGrid({ links, note }: { links: RegistryLink[]; note?: st
                     href={buttonUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="px-6 py-3 w-full font-medium text-[#f6f6ee] rounded-lg transition-all duration-200 bg-autumnGreen hover:bg-autumnGreen/90 hover:shadow-md"
+                    className="px-6 py-3 w-full font-medium text-white rounded-lg transition-all duration-200 bg-autumnGreen hover:bg-autumnGreen/90 hover:shadow-md"
                   >
                     {l.name?.toLowerCase().includes('amazon') ||
                     l.name?.toLowerCase().includes('stafford')

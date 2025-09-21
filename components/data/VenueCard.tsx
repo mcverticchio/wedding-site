@@ -16,7 +16,7 @@ export function VenueCard({ venue }: { venue: Venue }) {
   return (
     <Card>
       <CardHeader>
-        <h3 className="text-lg font-semibold text-watercolorBlueDark">{venue.name}</h3>
+        <h3 className="text-lg font-medium text-watercolorBlueDark">{venue.name}</h3>
         {addr ? <div className="mt-1 text-sm text-ink/80">{addr}</div> : null}
       </CardHeader>
       <CardBody>
@@ -37,10 +37,10 @@ export function VenueCard({ venue }: { venue: Venue }) {
           </div>
         ) : null}
         {venue.embed_src ? (
-          <div className="mt-4 overflow-hidden rounded-md border border-warmSand/60">
+          <div className="overflow-hidden mt-4 rounded-md border border-warmSand/60">
             <iframe
               src={venue.embed_src}
-              className="h-64 w-full"
+              className="w-full h-64"
               style={{ border: 0 }}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

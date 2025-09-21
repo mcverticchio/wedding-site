@@ -1,7 +1,25 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { loadSiteData } from '../lib/site';
-import { Header, Footer, PasswordProtection } from '../components';
+import { Header, PasswordProtection } from '../components';
+import localFont from 'next/font/local';
+
+const radley = localFont({
+  src: [
+    {
+      path: '../public/fonts/Radley-Regular.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Radley-Italic.ttf',
+      weight: '400',
+      style: 'italic',
+    },
+  ],
+  variable: '--font-radley',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: {
@@ -27,7 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const pw = process.env.NEXT_PUBLIC_WEDDING_PASSWORD || '';
 
   return (
-    <html lang="en">
+    <html lang="en" className={radley.variable}>
       <body className="flex flex-col min-h-screen antialiased bg-cream text-ink">
         <PasswordProtection correctPassword={pw}>
           <a
@@ -41,7 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             nav={site.nav ?? []}
           />
           <div className="flex-1">{children}</div>
-          <Footer text={site.footer} email={undefined} />
+          {/* <Footer text={site.footer} email={undefined} /> */}
         </PasswordProtection>
       </body>
     </html>
