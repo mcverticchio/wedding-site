@@ -19,8 +19,8 @@ export function PageHeading({
       ].join(' ')}
     >
       <div>
-        <h1 className="text-4xl font-bold tracking-tight text-ink">{title}</h1>
-        {subtitle ? <p className="mt-2 text-slate">{subtitle}</p> : null}
+        <h1 className="text-4xl font-medium tracking-tight text-watercolorBlueDark">{title}</h1>
+        {subtitle ? <p className="mt-2 text-watercolorBlueDark">{subtitle}</p> : null}
       </div>
       {right ? <div className="shrink-0">{right}</div> : null}
     </header>

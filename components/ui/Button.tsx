@@ -8,11 +8,11 @@ const base =
 
 const styles: Record<Variants, string> = {
   primary:
-    'bg-autumnGreen text-cream hover:bg-autumnGreen/90 hover:shadow-lg focus-visible:ring-autumnGreen ring-offset-cream',
+    'bg-watercolorBlue text-[#f6f6ee] hover:bg-watercolorBlueDark hover:shadow-lg focus-visible:ring-watercolorBlue ring-offset-cream',
   secondary:
-    'border border-autumnGreen/30 text-autumnGreen hover:bg-warmSand/40 hover:border-autumnGreen/50 hover:shadow-md focus-visible:ring-autumnGreen ring-offset-cream',
+    'border border-watercolorBlue/30 text-watercolorBlue hover:bg-watercolorBlue/10 hover:border-watercolorBlue/50 hover:shadow-md focus-visible:ring-watercolorBlue ring-offset-cream',
   ghost:
-    'text-autumnGreen hover:bg-warmSand/40 hover:shadow-sm focus-visible:ring-autumnGreen ring-offset-cream',
+    'text-watercolorBlue hover:bg-watercolorBlue/10 hover:shadow-sm focus-visible:ring-watercolorBlue ring-offset-cream',
 };
 
 export function Button({

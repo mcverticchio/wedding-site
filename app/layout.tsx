@@ -1,7 +1,25 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { loadSiteData } from '../lib/site';
-import { Header, Footer, PasswordProtection } from '../components';
+import { Header, PasswordProtection } from '../components';
+import localFont from 'next/font/local';
+
+const radley = localFont({
+  src: [
+    {
+      path: '../public/fonts/Radley-Regular.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Radley-Italic.ttf',
+      weight: '400',
+      style: 'italic',
+    },
+  ],
+  variable: '--font-radley',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: {
@@ -27,22 +45,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const pw = process.env.NEXT_PUBLIC_WEDDING_PASSWORD || '';
 
   return (
-    <html lang="en">
+    <html lang="en" className={radley.variable}>
       <body className="flex flex-col min-h-screen antialiased bg-cream text-ink">
         <PasswordProtection correctPassword={pw}>
           <a
             href="#main-content"
-            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-autumnGreen text-white px-4 py-2 rounded-md font-medium z-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-autumnGreen"
+            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-autumnGreen text-[#f6f6ee] px-4 py-2 rounded-md font-medium z-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-autumnGreen"
           >
             Skip to main content
           </a>
           <Header
-            brand={site.title ?? 'Caroline & Zach'}
             subtitle={site.subtitle}
             nav={site.nav ?? []}
           />
           <div className="flex-1">{children}</div>
-          <Footer text={site.footer} email={undefined} />
+          {/* <Footer text={site.footer} email={undefined} /> */}
         </PasswordProtection>
       </body>
     </html>

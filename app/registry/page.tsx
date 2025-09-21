@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { RegistryGrid } from '../../components';
+import { RegistryGrid, PageHeading } from '../../components';
 import type { Metadata } from 'next';
 
 type RegistryData = {
@@ -33,12 +33,10 @@ export default function RegistryPage() {
   const data = loadRegistryData();
   return (
     <main id="main-content" className="container py-10">
-      <header className="mb-8">
-        <h1 className="text-4xl font-bold tracking-tight font-display text-ink">
-          {data.title ?? 'Registry'}
-        </h1>
-        {data.intro ? <p className="mt-3 text-ink/80">{data.intro}</p> : null}
-      </header>
+      <PageHeading 
+        title={data.title ?? 'Registry'} 
+        subtitle={data.intro} 
+      />
       <RegistryGrid links={data.links ?? []} note={data.note} />
     </main>
   );

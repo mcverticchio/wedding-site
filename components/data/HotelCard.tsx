@@ -27,12 +27,12 @@ export function HotelCard({ hotel }: { hotel: Hotel }) {
           alt={hotel.alt ?? hotel.name ?? 'Hotel'}
           width={400}
           height={176}
-          className="h-44 w-full rounded-t-lg object-cover"
+          className="object-cover w-full h-[300px] rounded-t-lg"
         />
       ) : null}
       <CardHeader>
-        <div className="flex flex-wrap items-baseline justify-between gap-2">
-          <h3 className="text-lg font-semibold text-ink">{hotel.name}</h3>
+        <div className="flex flex-wrap gap-2 justify-between items-baseline">
+          <h3 className="text-lg font-medium text-watercolorBlueDark">{hotel.name}</h3>
           {hotel.distance ? <div className="text-sm text-ink/70">{hotel.distance} away</div> : null}
         </div>
         {addr ? <div className="mt-1 text-sm text-ink/80">{addr}</div> : null}

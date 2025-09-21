@@ -17,11 +17,19 @@ export const colors = {
     goldAccent: '#c8a36a',
   },
 
+  // Watercolor Blue Palette
+  blue: {
+    watercolor: '#52647e', // Main watercolor blue
+    watercolorLight: '#6b7a8a', // Lighter watercolor blue
+    watercolorDark: '#3d4a5c', // Darker watercolor blue
+    watercolorWash: '#7a8a9a', // Washed out watercolor effect
+  },
+
   // Neutral Palette
   neutral: {
     ink: '#1e1d1a', // Primary text
     slate: '#5c6a66', // Secondary text
-    cream: '#f7f3ee', // Background
+    cream: '#f6f6ee', // Background
     warmSand: '#e9dfd3', // Borders, dividers
   },
 
@@ -49,23 +57,25 @@ export const colors = {
 export const typography = {
   // Font Families
   fontFamily: {
-    display: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-    body: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+    display: ['Radley', 'serif'],
+    body: ['Radley', 'serif'],
+    radley: ['Radley', 'serif'],
+    sans: ['Radley', 'serif'],
   },
 
   // Font Sizes (rem values)
   fontSize: {
-    xs: '0.75rem', // 12px
-    sm: '0.875rem', // 14px
-    base: '1rem', // 16px
-    lg: '1.125rem', // 18px
-    xl: '1.25rem', // 20px
-    '2xl': '1.5rem', // 24px
-    '3xl': '1.875rem', // 30px
-    '4xl': '2.25rem', // 36px
-    '5xl': '3rem', // 48px
-    '6xl': '3.75rem', // 60px
-    '7xl': '4.5rem', // 72px
+    xs: '0.875rem', // 14px (was 12px)
+    sm: '1rem', // 16px (was 14px)
+    base: '1.125rem', // 18px (was 16px)
+    lg: '1.25rem', // 20px (was 18px)
+    xl: '1.375rem', // 22px (was 20px)
+    '2xl': '1.625rem', // 26px (was 24px)
+    '3xl': '2rem', // 32px (was 30px)
+    '4xl': '2.5rem', // 40px (was 36px)
+    '5xl': '3.25rem', // 52px (was 48px)
+    '6xl': '4rem', // 64px (was 60px)
+    '7xl': '4.75rem', // 76px (was 72px)
   },
 
   // Font Weights
@@ -83,6 +93,14 @@ export const typography = {
     normal: '1.5',
     relaxed: '1.625',
     loose: '2',
+  },
+
+  // Letter Spacing
+  letterSpacing: {
+    tight: '-0.025em',
+    normal: '0.1rem',
+    wide: '0.15rem',
+    wider: '0.2rem',
   },
 } as const;
 
@@ -162,6 +180,7 @@ export const shadows = {
   xl: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
   '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
   soft: '0 8px 30px rgba(0,0,0,.08)', // Custom wedding site shadow
+  watercolor: '0 4px 20px rgba(82, 100, 126, 0.15)', // Watercolor blue shadow
 } as const;
 
 // =============================================================================
