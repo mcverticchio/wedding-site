@@ -84,7 +84,7 @@ export default function AccommodationsPage() {
 
       {data.travel.airports.length > 0 ? (
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold text-watercolorBlueDark">Airports</h2>
+          <h2 className="text-2xl font-medium text-watercolorBlueDark">Airports</h2>
           <ul className="grid gap-4 mt-4 sm:grid-cols-2">
             {data.travel.airports.map((a, idx) => (
               <li
@@ -112,7 +112,7 @@ export default function AccommodationsPage() {
 
       {data.hotels?.length ? (
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold text-watercolorBlueDark">Hotels</h2>
+          <h2 className="text-2xl font-medium text-watercolorBlueDark">Hotels</h2>
           <div className="grid gap-6 mt-4 sm:grid-cols-2">
             {data.hotels.map((h, idx) => (
               <HotelCard key={idx} hotel={h} />

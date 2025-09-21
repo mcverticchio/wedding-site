@@ -33,7 +33,7 @@ export function ScheduleList({ events }: { events: ScheduleEvent[] }) {
           return (
             <li key={e.id ?? `${e.title}-${e.time}`} className="relative">
               {/* Timeline dot */}
-              <div className="hidden absolute left-6 z-10 w-4 h-4 rounded-full border-4 border-white shadow-sm bg-ink sm:block" />
+              <div className="hidden absolute left-6 z-10 w-4 h-4 rounded-full border-4 border-white shadow-sm bg-watercolorBlue sm:block" />
 
               {/* Content */}
               <div className="sm:ml-16">
@@ -41,7 +41,7 @@ export function ScheduleList({ events }: { events: ScheduleEvent[] }) {
                   <div className="flex flex-col sm:flex-row">
                     {/* Image Section */}
                     {img ? (
-                      <div className="sm:w-56 sm:h-48 sm:flex-shrink-0 overflow-hidden">
+                      <div className="overflow-hidden sm:w-56 sm:h-48 sm:flex-shrink-0">
                         <ImageWithSkeleton
                           src={img}
                           alt={e.alt ?? e.title ?? 'Event image'}
@@ -56,7 +56,7 @@ export function ScheduleList({ events }: { events: ScheduleEvent[] }) {
                     <div className="flex-1">
                       <CardHeader>
                         <div className="flex gap-2 justify-between items-baseline">
-                          <div className="text-2xl font-semibold text-ink">{e.title}</div>
+                          <div className="text-2xl font-medium text-ink">{e.title}</div>
                           {e.time || e.day ? (
                             <div className="px-2 py-1 text-sm font-medium rounded-full text-ink/70 bg-ink/5">
                               {[e.day, e.time].filter(Boolean).join(' • ')}

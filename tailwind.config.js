@@ -39,6 +39,8 @@ module.exports = {
       fontFamily: {
         display: tokens.typography.fontFamily.display,
         body: tokens.typography.fontFamily.body,
+        radley: tokens.typography.fontFamily.radley,
+        sans: tokens.typography.fontFamily.sans,
       },
       fontSize: tokens.typography.fontSize,
       fontWeight: tokens.typography.fontWeight,

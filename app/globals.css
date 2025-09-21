@@ -30,8 +30,10 @@
   --color-disabled: rgba(92, 106, 102, 0.5);
 
   /* Typography */
-  --font-family-display: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-family-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-family-display: var(--font-radley), serif;
+  --font-family-body: var(--font-radley), serif;
+  --font-family-radley: var(--font-radley), serif;
+  --font-family-sans: var(--font-radley), serif;
 
   /* Spacing Scale */
   --spacing-0: 0;
@@ -203,4 +205,14 @@ textarea,
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: theme('colors.autumnGreen/0.8');
+}
+
+#main-content {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+/* Make Radley the default font for all elements */
+* {
+  font-family: var(--font-radley), serif;
 }
