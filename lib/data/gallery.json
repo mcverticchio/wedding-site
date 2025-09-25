@@ -2,36 +2,36 @@
   "photos": [
     {
       "src": "../assets/images/gallery-1.jpg",
-      "alt": "Engagement photo in autumn leaves",
-      "caption": "Searching for sea creatures",
+      "alt": "Our first date at Standley Lake",
+      "caption": "Our first date at Standley Lake",
       "width": 1200,
       "height": 1600
     },
     {
       "src": "../assets/images/gallery-2.jpg",
-      "alt": "On a beach in Hawaii",
-      "caption": "On a beach in Hawaii",
+      "alt": "Hiking Lost lake trail",
+      "caption": "Hiking Lost lake trail",
       "width": 1200,
       "height": 1600
     },
     {
       "src": "../assets/images/gallery-3.jpg",
-      "alt": "Doing a hike",
-      "caption": "Doing a hike",
+      "alt": "Our first bike ride together",
+      "caption": "Our first bike ride together",
       "width": 1200,
       "height": 1600
     },
     {
       "src": "../assets/images/gallery-4.jpg",
-      "alt": "We climbed a 14er",
-      "caption": "We climbed a 14er",
+      "alt": "More hiking",
+      "caption": "More hiking",
       "width": 1600,
       "height": 1200
     },
     {
       "src": "../assets/images/gallery-5.jpg",
-      "alt": "South Dakota sunset",
-      "caption": "South Dakota sunset",
+      "alt": "ETHDenver",
+      "caption": "ETHDenver",
       "width": 1600,
       "height": 1200
     },
@@ -44,148 +44,148 @@
     },
     {
       "src": "../assets/images/gallery-7.jpg",
-      "alt": "A day in Eldora",
-      "caption": "A day in Eldora",
+      "alt": "Hawaii One",
+      "caption": "Hawaii Trip",
       "width": 1200,
       "height": 1600
     },
     {
       "src": "../assets/images/gallery-8.jpg",
-      "alt": "Walking around Coot Lake",
-      "caption": "Walking around Coot Lake",
+      "alt": "Hawaii Two",
+      "caption": "Hawaii Trip: Waimea Canyon",
       "width": 1200,
       "height": 1600
     },
     {
       "src": "../assets/images/gallery-9.jpg",
-      "alt": "Wedding in Hawaii",
-      "caption": "Wedding in Hawaii",
+      "alt": "Hawaii Three",
+      "caption": "Hawaii Trip",
       "width": 1200,
       "height": 1600
     },
     {
       "src": "../assets/images/gallery-10.jpg",
-      "alt": "Waimea Canyon",
-      "caption": "Waimea Canyon",
+      "alt": "Hawaii Four",
+      "caption": "Hawaii Trip",
       "width": 1200,
       "height": 1600
     },
     {
       "src": "../assets/images/gallery-11.jpg",
-      "alt": "At the Continental Divide",
-      "caption": "At the Continental Divide",
+      "alt": "Hawaii Five",
+      "caption": "Hawaii Trip",
       "width": 1200,
       "height": 1600
     },
     {
       "src": "../assets/images/gallery-12.jpg",
-      "alt": "Glenwood Springs greenery",
-      "caption": "Glenwood Springs greenery",
+      "alt": "Hawaii Six",
+      "caption": "Hawaii Trip",
       "width": 1200,
       "height": 1600
     },
     {
       "src": "../assets/images/gallery-13.jpg",
-      "alt": "Moab camping",
-      "caption": "Moab camping",
+      "alt": "Hawaii Seven",
+      "caption": "Hawaii Trip",
       "width": 1200,
       "height": 1600
     },
     {
       "src": "../assets/images/gallery-14.jpg",
-      "alt": "Proposal atop Mt Gallbraith",
-      "caption": "Proposal atop Mt Gallbraith",
+      "alt": "Hawaii Eight",
+      "caption": "Hawaii Trip",
       "width": 1200,
       "height": 1600
     },
     {
       "src": "../assets/images/gallery-15.jpg",
-      "alt": "Hackathon Day",
-      "caption": "Hackathon Day",
+      "alt": "South Carolina One",
+      "caption": "South Carolina Trip",
       "width": 1200,
       "height": 1600
     },
     {
       "src": "../assets/images/gallery-16.jpg",
-      "alt": "The Space Soiree 2024",
-      "caption": "The Space Soiree 2024",
+      "alt": "South Carolina Two",
+      "caption": "South Carolina Trip",
       "width": 1200,
       "height": 1600
     },
     {
       "src": "../assets/images/gallery-17.jpg",
-      "alt": "Close-up smiling",
-      "caption": "Up in the alpine",
+      "alt": "South Carolina Three",
+      "caption": "South Carolina Trip",
       "width": 1200,
       "height": 1600
     },
     {
       "src": "../assets/images/gallery-18.jpg",
-      "alt": "South Carolina beaches",
-      "caption": "South Carolina beaches",
+      "alt": "",
+      "caption": "?",
       "width": 1200,
       "height": 1600
     },
     {
       "src": "../assets/images/gallery-19.jpg",
-      "alt": "Inside a cave",
-      "caption": "Inside a cave",
-      "width": 1200,
-      "height": 1600
-    },
-    {
-      "src": "../assets/images/gallery-20.jpg",
       "alt": "Homemade sushi night",
       "caption": "Homemade sushi night",
       "width": 1200,
       "height": 1600
     },
     {
+      "src": "../assets/images/gallery-20.jpg",
+      "alt": "14er",
+      "caption": "We hiked a 14er",
+      "width": 1200,
+      "height": 1600
+    },
+    {
       "src": "../assets/images/gallery-21.jpg",
-      "alt": "Watching the sunset",
-      "caption": "Watching the sunset",
+      "alt": "South Dakota Trip",
+      "caption": "South Dakota Trip",
       "width": 1200,
       "height": 1600
     },
     {
       "src": "../assets/images/gallery-22.jpg",
-      "alt": "Theater night",
-      "caption": "Theater night",
+      "alt": "South Dakota Two",
+      "caption": "South Dakota Trip",
       "width": 1200,
       "height": 1600
     },
     {
       "src": "../assets/images/gallery-23.jpg",
-      "alt": "Beach day",
-      "caption": "Beach day",
+      "alt": "Christmas/New years",
+      "caption": "Christmas/New years",
       "width": 1200,
       "height": 1600
     },
     {
       "src": "../assets/images/gallery-24.jpg",
-      "alt": "First bike ride",
-      "caption": "First bike ride",
+      "alt": "Christmas/New years",
+      "caption": "Christmas/New years",
       "width": 1200,
       "height": 1600
     },
     {
       "src": "../assets/images/gallery-25.jpg",
-      "alt": "First date",
-      "caption": "First date",
+      "alt": "Christmas/New years",
+      "caption": "Christmas/New years",
       "width": 1200,
       "height": 1600
     },
     {
       "src": "../assets/images/gallery-26.jpg",
-      "alt": "ETHDenver",
-      "caption": "ETHDenver",
+      "alt": "Colorado",
+      "caption": "Colorado",
       "width": 1200,
       "height": 1600
     },
     {
       "src": "../assets/images/gallery-27.jpg",
-      "alt": "Na Pali Coast Tour",
-      "caption": "Na Pali Coast Tour",
+      "alt": "Soiree at the Space",
+      "caption": "Soiree at the Space",
       "width": 1200,
       "height": 1600
     },
@@ -198,78 +198,43 @@
     },
     {
       "src": "../assets/images/gallery-29.jpg",
-      "alt": "Camping",
-      "caption": "Camping",
+      "alt": "Prosposal",
+      "caption": "Prosposal",
       "width": 1200,
       "height": 1600
     },
     {
       "src": "../assets/images/gallery-31.jpg",
+      "alt": "Proposal",
+      "caption": "Proposal",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "../assets/images/gallery-32.jpg",
       "alt": "Offroading in Moab",
       "caption": "Offroading in Moab",
       "width": 1200,
       "height": 1600
     },
     {
-      "src": "../assets/images/gallery-32.jpg",
-      "alt": "Pagosa Springs Ranch",
-      "caption": "Pagosa Springs Ranch",
-      "width": 1200,
-      "height": 1600
-    },
-    {
       "src": "../assets/images/gallery-33.jpg",
-      "alt": "Date night",
-      "caption": "Date night",
+      "alt": "Glenwood Springs",
+      "caption": "Glenwood Springs",
       "width": 1200,
       "height": 1600
     },
     {
       "src": "../assets/images/gallery-34.jpg",
-      "alt": "New Years eve party",
-      "caption": "New Years eve party",
+      "alt": "Telluride Trip",
+      "caption": "Telluride Trip",
       "width": 1200,
       "height": 1600
     },
     {
       "src": "../assets/images/gallery-35.jpg",
-      "alt": "King and queen chairs",
-      "caption": "King and queen chairs",
-      "width": 1200,
-      "height": 1600
-    },
-    {
-      "src": "../assets/images/gallery-37.jpg",
       "alt": "New Orleans parade",
       "caption": "New Orleans parade",
-      "width": 1200,
-      "height": 1600
-    },
-    {
-      "src": "../assets/images/gallery-38.jpg",
-      "alt": "Charleston Marina",
-      "caption": "Charleston Marina",
-      "width": 1200,
-      "height": 1600
-    },
-    {
-      "src": "../assets/images/gallery-39.jpg",
-      "alt": "Kiawah Island",
-      "caption": "Kiawah Island",
-      "width": 1200,
-      "height": 1600
-    },
-    {
-      "src": "../assets/images/gallery-40.jpg",
-      "alt": "On the airplane",
-      "caption": "On the airplane",
-      "width": 1200,
-      "height": 1600
-    },
-    {
-      "src": "../assets/images/gallery-41.jpg",
-      "alt": "Molas Lake camping",
-      "caption": "Molas Lake camping",
       "width": 1200,
       "height": 1600
     }

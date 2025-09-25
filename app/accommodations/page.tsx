@@ -83,9 +83,9 @@ export default function AccommodationsPage() {
       />
 
       {data.travel.airports.length > 0 ? (
-        <section className="mb-12">
-          <h2 className="text-2xl font-medium text-watercolorBlueDark">Airports</h2>
-          <ul className="grid gap-4 mt-4 sm:grid-cols-2">
+        <section className="mb-16">
+          <h2 className="mb-6 text-xl font-medium text-ink/70">Airports</h2>
+          <ul className="grid gap-4 sm:grid-cols-2">
             {data.travel.airports.map((a, idx) => (
               <li
                 key={idx}
@@ -100,7 +100,7 @@ export default function AccommodationsPage() {
                     className="object-cover mb-3 w-full rounded-md h-[300px]"
                   />
                 ) : null}
-                <div className="font-medium text-ink">
+                <div className="text-2xl font-medium text-ink">
                   {a.name} {a.code ? `(${a.code})` : ''}
                 </div>
                 {a.notes ? <p className="mt-1 text-ink/80">{a.notes}</p> : null}
@@ -110,10 +110,19 @@ export default function AccommodationsPage() {
         </section>
       ) : null}
 
+      {/* Divider line between sections */}
+      {data.travel.airports.length > 0 && data.hotels?.length ? (
+        <div className="flex items-center my-12">
+          <div className="flex-1 h-px bg-ink/20"></div>
+          <div className="mx-4 w-2 h-2 rounded-full bg-ink/30"></div>
+          <div className="flex-1 h-px bg-ink/20"></div>
+        </div>
+      ) : null}
+
       {data.hotels?.length ? (
-        <section className="mb-12">
-          <h2 className="text-2xl font-medium text-watercolorBlueDark">Hotels</h2>
-          <div className="grid gap-6 mt-4 sm:grid-cols-2">
+        <section className="mb-16">
+          <h2 className="mb-6 text-xl font-medium text-ink/70">Hotels</h2>
+          <div className="grid gap-6 sm:grid-cols-2">
             {data.hotels.map((h, idx) => (
               <HotelCard key={idx} hotel={h} />
             ))}
