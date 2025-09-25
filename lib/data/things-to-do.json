@@ -1,0 +1,60 @@
+{
+  "title": "Things to Do",
+  "intro": "Explore the area around our wedding venue with these fun activities and attractions.",
+  "things": [
+    {
+      "id": "hiking-trails",
+      "title": "Scenic Hiking Trails",
+      "description": "Beautiful nature trails perfect for a morning walk or afternoon adventure.",
+      "category": "Outdoor Activities",
+      "location": "Local State Park",
+      "distance": "15 minutes",
+      "link": "https://example.com/hiking"
+    },
+    {
+      "id": "wine-tasting",
+      "title": "Local Winery",
+      "description": "Sample local wines and enjoy the vineyard views.",
+      "category": "Food & Drink",
+      "location": "Sunset Vineyards",
+      "distance": "20 minutes",
+      "link": "https://example.com/winery"
+    },
+    {
+      "id": "historic-downtown",
+      "title": "Historic Downtown",
+      "description": "Charming shops, restaurants, and historic architecture.",
+      "category": "Shopping & Dining",
+      "location": "Main Street",
+      "distance": "10 minutes",
+      "link": "https://example.com/downtown"
+    },
+    {
+      "id": "art-museum",
+      "title": "Art Museum",
+      "description": "Local art museum featuring regional artists and rotating exhibits.",
+      "category": "Culture",
+      "location": "Cultural District",
+      "distance": "25 minutes",
+      "link": "https://example.com/museum"
+    },
+    {
+      "id": "beach-access",
+      "title": "Beach Access",
+      "description": "Relax on the nearby beach or take a sunset stroll.",
+      "category": "Outdoor Activities",
+      "location": "Coastal Park",
+      "distance": "30 minutes",
+      "link": "https://example.com/beach"
+    },
+    {
+      "id": "farmers-market",
+      "title": "Farmers Market",
+      "description": "Fresh local produce, artisanal goods, and live music.",
+      "category": "Shopping",
+      "location": "Town Square",
+      "distance": "5 minutes",
+      "link": "https://example.com/market"
+    }
+  ]
+}
