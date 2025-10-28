@@ -20,7 +20,7 @@ export function PageHeading({
     >
       <div>
         <h1 className="text-4xl font-medium tracking-tight text-watercolorBlueDark">{title}</h1>
-        {subtitle ? <p className="mt-2 text-watercolorBlueDark">{subtitle}</p> : null}
+        {subtitle ? <p className="mt-8 text-lg leading-relaxed text-ink/80">{subtitle}</p> : null}
       </div>
       {right ? <div className="shrink-0">{right}</div> : null}
     </header>
