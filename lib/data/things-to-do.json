@@ -1,60 +1,69 @@
 {
   "title": "Things to Do",
-  "intro": "Explore the area around our wedding venue with these fun activities and attractions.",
+  "intro": "Explore Spartanburg and the surrounding area with these local restaurants, attractions, and activities.",
   "things": [
     {
-      "id": "hiking-trails",
-      "title": "Scenic Hiking Trails",
-      "description": "Beautiful nature trails perfect for a morning walk or afternoon adventure.",
+      "id": "cribbs-kitchen",
+      "title": "Cribbs Kitchen",
+      "description": "Local eats and drinks in downtown Spartanburg's Grain District. Features small plates, table share foods, burgers, specialty cocktails, and wines.",
+      "category": "Restaurants",
+      "icon": "🍽️",
+      "location": "Downtown Spartanburg",
+      "link": "https://cribbskitchen.com"
+    },
+    {
+      "id": "the-peddler",
+      "title": "The Peddler Steak House",
+      "description": "Spartanburg's landmark steak house since 1970. Known for amazing aged steaks, fresh seafood, and more.",
+      "category": "Restaurants",
+      "icon": "🍽️",
+      "location": "Morgan Square, Downtown",
+      "link": "https://peddlerspartanburg.com"
+    },
+    {
+      "id": "main-street-pub",
+      "title": "Main Street Pub",
+      "description": "Local pub and restaurant serving American cuisine with a focus on fresh ingredients and craft beverages.",
+      "category": "Restaurants",
+      "icon": "🍽️",
+      "location": "Downtown Spartanburg",
+      "link": "https://mspspartanburg.com"
+    },
+    {
+      "id": "wades-restaurant",
+      "title": "Wade's Restaurant",
+      "description": "Family-owned Southern restaurant serving traditional meat & three plates with quality ingredients and made-from-scratch bread. Winner of the 2024 James Beard America's Classics Award.",
+      "category": "Restaurants",
+      "icon": "🍽️",
+      "location": "North Pine Street, Spartanburg",
+      "link": "https://www.eatatwades.com"
+    },
+    {
+      "id": "miyako-sushi",
+      "title": "Miyako Sushi Group",
+      "description": "Authentic Japanese sushi and cuisine featuring fresh ingredients and traditional preparation methods.",
+      "category": "Restaurants",
+      "icon": "🍽️",
+      "location": "Downtown Spartanburg",
+      "link": "https://miyakosushigroup.com/index.html"
+    },
+    {
+      "id": "hatcher-garden",
+      "title": "Hatcher Garden & Woodland Preserve",
+      "description": "Beautiful 10-acre garden with walking trails, ponds, waterfalls, and diverse plant collections. Perfect for a peaceful stroll.",
       "category": "Outdoor Activities",
-      "location": "Local State Park",
-      "distance": "15 minutes",
-      "link": "https://example.com/hiking"
+      "icon": "🌳",
+      "location": "West Side Spartanburg",
+      "link": "https://hatchergarden.org"
     },
     {
-      "id": "wine-tasting",
-      "title": "Local Winery",
-      "description": "Sample local wines and enjoy the vineyard views.",
-      "category": "Food & Drink",
-      "location": "Sunset Vineyards",
-      "distance": "20 minutes",
-      "link": "https://example.com/winery"
-    },
-    {
-      "id": "historic-downtown",
-      "title": "Historic Downtown",
-      "description": "Charming shops, restaurants, and historic architecture.",
-      "category": "Shopping & Dining",
-      "location": "Main Street",
-      "distance": "10 minutes",
-      "link": "https://example.com/downtown"
-    },
-    {
-      "id": "art-museum",
-      "title": "Art Museum",
-      "description": "Local art museum featuring regional artists and rotating exhibits.",
-      "category": "Culture",
-      "location": "Cultural District",
-      "distance": "25 minutes",
-      "link": "https://example.com/museum"
-    },
-    {
-      "id": "beach-access",
-      "title": "Beach Access",
-      "description": "Relax on the nearby beach or take a sunset stroll.",
-      "category": "Outdoor Activities",
-      "location": "Coastal Park",
-      "distance": "30 minutes",
-      "link": "https://example.com/beach"
-    },
-    {
-      "id": "farmers-market",
-      "title": "Farmers Market",
-      "description": "Fresh local produce, artisanal goods, and live music.",
-      "category": "Shopping",
-      "location": "Town Square",
-      "distance": "5 minutes",
-      "link": "https://example.com/market"
+      "id": "fifth-third-park",
+      "title": "Fifth Third Park",
+      "description": "State-of-the-art minor league baseball stadium and entertainment facility. Home to the HC Spartanburgers baseball team, featuring games, concerts, and special events. Perfect for sports fans and entertainment seekers.",
+      "category": "Sports & Entertainment",
+      "icon": "⚾",
+      "location": "Downtown Spartanburg",
+      "link": "https://fifththirdpark.com/"
     }
   ]
 }

@@ -121,8 +121,8 @@
     },
     {
       "src": "../assets/images/gallery-18.jpg",
-      "alt": "",
-      "caption": "?",
+      "alt": "Camping",
+      "caption": "Camping",
       "width": 1200,
       "height": 1600
     },
@@ -156,13 +156,6 @@
     },
     {
       "src": "../assets/images/gallery-23.jpg",
-      "alt": "Christmas/New years",
-      "caption": "Christmas/New years",
-      "width": 1200,
-      "height": 1600
-    },
-    {
-      "src": "../assets/images/gallery-24.jpg",
       "alt": "Christmas/New years",
       "caption": "Christmas/New years",
       "width": 1200,
@@ -205,8 +198,8 @@
     },
     {
       "src": "../assets/images/gallery-31.jpg",
-      "alt": "Proposal",
-      "caption": "Proposal",
+      "alt": "Moab Trip",
+      "caption": "Moab Trip",
       "width": 1200,
       "height": 1600
     },

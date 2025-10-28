@@ -8,6 +8,7 @@ type ThingToDo = {
   title?: string;
   description?: string;
   category?: string;
+  icon?: string;
   location?: string;
   distance?: string;
   link?: string;
@@ -59,11 +60,11 @@ export default function ThingsToDoPage() {
               className="p-6 bg-white rounded-lg border border-warmSand/60 shadow-soft"
             >
               {thing.image ? (
-                <div className="mb-4 overflow-hidden rounded-md">
+                <div className="overflow-hidden mb-4 rounded-md">
                   <img
                     src={`/images/${thing.image}`}
                     alt={thing.alt ?? thing.title ?? 'Activity image'}
-                    className="w-full h-48 object-cover"
+                    className="object-cover w-full h-48"
                   />
                 </div>
               ) : null}
@@ -72,7 +73,10 @@ export default function ThingsToDoPage() {
                 <div>
                   <h3 className="text-2xl font-medium text-ink">{thing.title}</h3>
                   {thing.category ? (
-                    <div className="text-sm text-ink/70 mt-1">{thing.category}</div>
+                    <div className="flex gap-2 items-center mt-1 text-sm text-ink/70">
+                      {thing.icon ? <span className="text-lg">{thing.icon}</span> : null}
+                      <span>{thing.category}</span>
+                    </div>
                   ) : null}
                 </div>
                 
@@ -95,7 +99,7 @@ export default function ThingsToDoPage() {
                       href={thing.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center text-sm font-medium text-watercolorBlue hover:text-watercolorBlueDark transition-colors"
+                      className="inline-flex items-center text-sm font-medium transition-colors text-watercolorBlue hover:text-watercolorBlueDark"
                     >
                       Learn More →
                     </a>
@@ -106,7 +110,7 @@ export default function ThingsToDoPage() {
           ))}
         </div>
       ) : (
-        <div className="text-center py-12">
+        <div className="py-12 text-center">
           <p className="text-ink/70">No activities listed yet. Check back soon!</p>
         </div>
       )}
