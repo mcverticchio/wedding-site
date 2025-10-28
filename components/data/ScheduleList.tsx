@@ -35,8 +35,21 @@ export function ScheduleList({ events }: { events: ScheduleEvent[] }) {
               {/* Timeline dot */}
               <div className="hidden absolute left-[25px] z-10 w-4 h-4 rounded-full border-4 border-cream bg-watercolorBlue sm:block" />
 
+              {/* Date/Time info next to dot */}
+              <div className="hidden absolute top-0 left-12 w-32 sm:block">
+                <div className="text-sm font-medium text-ink/80">
+                  {e.day}
+                </div>
+                <div className="mt-1 text-xs text-ink/60">
+                  {e.date}
+                </div>
+                <div className="text-xs text-ink/60">
+                  {e.time}
+                </div>
+              </div>
+
               {/* Content */}
-              <div className="sm:ml-16">
+              <div className="sm:ml-48">
                 <Card>
                   <div className="flex flex-col md:flex-row md:min-h-[300px]">
                     {/* Image Section */}
@@ -55,17 +68,10 @@ export function ScheduleList({ events }: { events: ScheduleEvent[] }) {
                     {/* Text Content Section */}
                     <div className="flex-1">
                       <CardHeader>
-                        <div className="flex flex-col gap-2 md:flex-row md:justify-between md:items-baseline">
-                          <div className="text-2xl font-medium text-ink">{e.title}</div>
-                          {e.time || e.day ? (
-                            <div className="self-start px-2 py-1 text-sm font-medium rounded-full text-ink/70 bg-ink/5">
-                              {[e.day, e.time].filter(Boolean).join(' • ')}
-                            </div>
-                          ) : null}
-                        </div>
-                        {e.date || e.dress ? (
+                        <div className="text-2xl font-medium text-ink">{e.title}</div>
+                        {e.dress ? (
                           <div className="mt-2 text-sm text-ink/70">
-                            {[e.date, e.dress].filter(Boolean).join(' • ')}
+                            {e.dress}
                           </div>
                         ) : null}
                         {e.location ? (

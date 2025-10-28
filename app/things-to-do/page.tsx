@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { PageHeading } from '../../components';
+import { BuildingStorefrontIcon, GlobeAmericasIcon, TrophyIcon } from '@heroicons/react/24/outline';
 import type { Metadata } from 'next';
 
 type ThingToDo = {
@@ -20,6 +21,40 @@ type ThingsToDoData = {
   title?: string; 
   intro?: string; 
   things?: ThingToDo[] 
+};
+
+// Icon component using Heroicons with different colors for each category
+const ThingsToDoIcon = ({ category }: { category?: string }) => {
+  if (category?.toLowerCase().includes('restaurant')) {
+    return (
+      <div className="flex justify-center items-center w-12 h-12 bg-orange-100 rounded-full">
+        <BuildingStorefrontIcon className="w-6 h-6 text-orange-600" />
+      </div>
+    );
+  }
+
+  if (category?.toLowerCase().includes('outdoor')) {
+    return (
+      <div className="flex justify-center items-center w-12 h-12 bg-green-100 rounded-full">
+        <GlobeAmericasIcon className="w-6 h-6 text-green-600" />
+      </div>
+    );
+  }
+
+  if (category?.toLowerCase().includes('sports')) {
+    return (
+      <div className="flex justify-center items-center w-12 h-12 bg-blue-100 rounded-full">
+        <TrophyIcon className="w-6 h-6 text-blue-600" />
+      </div>
+    );
+  }
+
+  // Default icon for other categories
+  return (
+    <div className="flex justify-center items-center w-12 h-12 bg-gray-100 rounded-full">
+      <BuildingStorefrontIcon className="w-6 h-6 text-gray-600" />
+    </div>
+  );
 };
 
 function loadThingsToDoData(): ThingsToDoData {
@@ -70,14 +105,16 @@ export default function ThingsToDoPage() {
               ) : null}
               
               <div className="space-y-3">
-                <div>
-                  <h3 className="text-2xl font-medium text-ink">{thing.title}</h3>
-                  {thing.category ? (
-                    <div className="flex gap-2 items-center mt-1 text-sm text-ink/70">
-                      {thing.icon ? <span className="text-lg">{thing.icon}</span> : null}
-                      <span>{thing.category}</span>
-                    </div>
-                  ) : null}
+                <div className="flex gap-3 items-start mb-4">
+                  <ThingsToDoIcon category={thing.category} />
+                  <div>
+                    <h3 className="text-2xl font-medium text-ink">{thing.title}</h3>
+                    {thing.category ? (
+                      <div className="mt-1 text-sm text-ink/70">
+                        {thing.category}
+                      </div>
+                    ) : null}
+                  </div>
                 </div>
                 
                 {thing.description ? (
