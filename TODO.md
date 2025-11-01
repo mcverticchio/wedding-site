@@ -1,16 +1,15 @@
 # TODO
 
+Deadline: Nov 1
+
 Zach:
-[] Finish Improvements.md
 [] Standardize/optimize all images with Mazanoke on umbrel to webp
-[] Finalize gallery photos and captions
 [] Understand why engagement photo 11 and 12 are in wedding array, not engagement photo array
 
 Caroline:
-[] Finish RSVP page for +1 names
 [] Fix supabase backend with RLS
-[] Add a "Things to Do" section at the bottom of "Accomodations" or a separate tab?
-[] Style website
+[] Add a "Things to Do" section at the bottom of "Accomodations" or a separate tab? - IN PROGRESS
+[] Mobile responsiveness
 
 Done:
 [x] Add uiternity photo gallery component
@@ -28,3 +27,8 @@ Done:
 [x] Add captions to images in gallery
 [x] Pick, buy, and map domain
 [x] Publish to GH pages (cz26.site)
+[x] Finish RSVP page for +1 names
+[x] Style website
+[x] Finish Improvements.md
+[x] Finalize gallery photos and captions
+

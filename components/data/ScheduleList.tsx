@@ -33,21 +33,34 @@ export function ScheduleList({ events }: { events: ScheduleEvent[] }) {
           return (
             <li key={e.id ?? `${e.title}-${e.time}`} className="relative">
               {/* Timeline dot */}
-              <div className="hidden absolute left-6 z-10 w-4 h-4 rounded-full border-4 border-white shadow-sm bg-watercolorBlue sm:block" />
+              <div className="hidden absolute left-[25px] z-10 w-4 h-4 rounded-full border-4 border-cream bg-watercolorBlue sm:block" />
+
+              {/* Date/Time info next to dot */}
+              <div className="hidden absolute top-0 left-12 w-32 sm:block">
+                <div className="text-sm font-medium text-ink/80">
+                  {e.day}
+                </div>
+                <div className="mt-1 text-xs text-ink/60">
+                  {e.date}
+                </div>
+                <div className="text-xs text-ink/60">
+                  {e.time}
+                </div>
+              </div>
 
               {/* Content */}
-              <div className="sm:ml-16">
+              <div className="sm:ml-48">
                 <Card>
-                  <div className="flex flex-col sm:flex-row">
+                  <div className="flex flex-col md:flex-row md:min-h-[300px]">
                     {/* Image Section */}
                     {img ? (
-                      <div className="overflow-hidden sm:w-56 sm:h-48 sm:flex-shrink-0">
+                      <div className="overflow-hidden md:w-56 md:flex-shrink-0">
                         <ImageWithSkeleton
                           src={img}
                           alt={e.alt ?? e.title ?? 'Event image'}
                           width={400}
-                          height={300}
-                          className="object-cover w-full h-48 rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none"
+                          height={400}
+                          className="object-cover w-full h-48 rounded-t-lg md:rounded-l-lg md:rounded-tr-none md:h-full md:min-h-[300px]"
                         />
                       </div>
                     ) : null}
@@ -55,17 +68,10 @@ export function ScheduleList({ events }: { events: ScheduleEvent[] }) {
                     {/* Text Content Section */}
                     <div className="flex-1">
                       <CardHeader>
-                        <div className="flex gap-2 justify-between items-baseline">
-                          <div className="text-2xl font-medium text-ink">{e.title}</div>
-                          {e.time || e.day ? (
-                            <div className="px-2 py-1 text-sm font-medium rounded-full text-ink/70 bg-ink/5">
-                              {[e.day, e.time].filter(Boolean).join(' • ')}
-                            </div>
-                          ) : null}
-                        </div>
-                        {e.date || e.dress ? (
+                        <div className="text-2xl font-medium text-ink">{e.title}</div>
+                        {e.dress ? (
                           <div className="mt-2 text-sm text-ink/70">
-                            {[e.date, e.dress].filter(Boolean).join(' • ')}
+                            {e.dress}
                           </div>
                         ) : null}
                         {e.location ? (
