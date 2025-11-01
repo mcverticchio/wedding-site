@@ -1,0 +1,69 @@
+{
+  "title": "Things to Do",
+  "intro": "Explore Spartanburg and the surrounding area with these local restaurants, attractions, and activities.",
+  "things": [
+    {
+      "id": "cribbs-kitchen",
+      "title": "Cribbs Kitchen",
+      "description": "Local eats and drinks in downtown Spartanburg's Grain District. Features small plates, table share foods, burgers, specialty cocktails, and wines.",
+      "category": "Restaurants",
+      "icon": "🍽️",
+      "location": "Downtown Spartanburg",
+      "link": "https://cribbskitchen.com"
+    },
+    {
+      "id": "the-peddler",
+      "title": "The Peddler Steak House",
+      "description": "Spartanburg's landmark steak house since 1970. Known for amazing aged steaks, fresh seafood, and more.",
+      "category": "Restaurants",
+      "icon": "🍽️",
+      "location": "Morgan Square, Downtown",
+      "link": "https://peddlerspartanburg.com"
+    },
+    {
+      "id": "main-street-pub",
+      "title": "Main Street Pub",
+      "description": "Local pub and restaurant serving American cuisine with a focus on fresh ingredients and craft beverages.",
+      "category": "Restaurants",
+      "icon": "🍽️",
+      "location": "Downtown Spartanburg",
+      "link": "https://mspspartanburg.com"
+    },
+    {
+      "id": "wades-restaurant",
+      "title": "Wade's Restaurant",
+      "description": "Family-owned Southern restaurant serving traditional meat & three plates with quality ingredients and made-from-scratch bread. Winner of the 2024 James Beard America's Classics Award.",
+      "category": "Restaurants",
+      "icon": "🍽️",
+      "location": "North Pine Street, Spartanburg",
+      "link": "https://www.eatatwades.com"
+    },
+    {
+      "id": "miyako-sushi",
+      "title": "Miyako Sushi Group",
+      "description": "Authentic Japanese sushi and cuisine featuring fresh ingredients and traditional preparation methods.",
+      "category": "Restaurants",
+      "icon": "🍽️",
+      "location": "Downtown Spartanburg",
+      "link": "https://miyakosushigroup.com/index.html"
+    },
+    {
+      "id": "hatcher-garden",
+      "title": "Hatcher Garden",
+      "description": "Beautiful 10-acre garden with walking trails, ponds, waterfalls, and diverse plant collections. Perfect for a peaceful stroll.",
+      "category": "Outdoor Activities",
+      "icon": "🌳",
+      "location": "West Side Spartanburg",
+      "link": "https://hatchergarden.org"
+    },
+    {
+      "id": "fifth-third-park",
+      "title": "Fifth Third Park",
+      "description": "State-of-the-art minor league baseball stadium and entertainment facility. Home to the HC Spartanburgers baseball team, featuring games, concerts, and special events. Perfect for sports fans and entertainment seekers.",
+      "category": "Sports & Entertainment",
+      "icon": "⚾",
+      "location": "Downtown Spartanburg",
+      "link": "https://fifththirdpark.com/"
+    }
+  ]
+}

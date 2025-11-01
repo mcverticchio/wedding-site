@@ -1,6 +1,24 @@
 {
   "events": [
     {
+      "id": "friday-night-gathering",
+      "day": "Friday",
+      "title": "Friday Night Gathering",
+      "date": "June 26, 2026",
+      "time": "5:00 PM",
+      "dress": "Casual",
+      "location": "RJ Rockers Brewing Company",
+      "address": "226-A West Main St, Spartanburg, SC 29306",
+      "map": "https://maps.google.com/?q=RJ+Rockers+Brewing+Company+Spartanburg",
+      "description": "Join us for a casual gathering at RJ Rockers downtown! Come hang out for a few hours and meet our new baby. Feel free to visit one of the local restaurants or bars after for dinner.",
+      "image": "events/rjrockers.jpeg",
+      "alt": "RJ Rockers Brewing Company interior",
+      "calendar": {
+        "start": "2026-06-26T17:00:00-04:00",
+        "end": "2026-06-26T23:00:00-04:00"
+      }
+    },
+    {
       "id": "ceremony",
       "day": "Saturday",
       "title": "Wedding Ceremony",
