@@ -6,18 +6,20 @@ import type { RsvpPayload } from '../../lib/supabase';
 import { getSupabaseClient } from '../../lib/supabase';
 import { validateRsvpForm, type FieldErrors, rsvpSchema } from '../../lib/validation';
 import { z } from 'zod';
-import { PageHeading, Button } from '../../components';
+import { PageHeading } from '../../components';
+// import { Button } from '../../components'; // Temporarily unused - form is disabled
 
 export default function RsvpPage() {
-  const hasEnv = useMemo(() => {
-    // Check if client-side Supabase environment variables are available
-    return !!(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
-  }, []);
+  // RSVP Form is temporarily disabled - all form-related code is commented out
+  // const hasEnv = useMemo(() => {
+  //   // Check if client-side Supabase environment variables are available
+  //   return !!(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+  // }, []);
 
-  const [status, setStatus] = useState<null | { ok: boolean; msg: string }>(null);
-  const [submitting, setSubmitting] = useState(false);
-  const [guestCount, setGuestCount] = useState(0);
-  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  // const [status, setStatus] = useState<null | { ok: boolean; msg: string }>(null);
+  // const [submitting, setSubmitting] = useState(false);
+  // const [guestCount, setGuestCount] = useState(0);
+  // const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
 
   // Use refs for stable uncontrolled inputs
   const formRef = useRef<HTMLFormElement>(null);
@@ -59,196 +61,214 @@ export default function RsvpPage() {
     });
   });
 
-  const addGuest = () => {
-    if (guestCount < 3) {
-      saveFormValues();
-      setGuestCount((prev) => prev + 1);
-      // Haptic feedback
-      if (navigator.vibrate) {
-        navigator.vibrate(10);
-      }
-    }
-  };
+  // const addGuest = () => {
+  //   if (guestCount < 3) {
+  //     saveFormValues();
+  //     setGuestCount((prev) => prev + 1);
+  //     // Haptic feedback
+  //     if (navigator.vibrate) {
+  //       navigator.vibrate(10);
+  //     }
+  //   }
+  // };
 
-  const removeGuest = (index: number) => {
-    saveFormValues();
-    // Remove the specific guest value from preserved values
-    delete preservedValues.current[`guest_${index}`];
-    // Shift remaining guest values down
-    for (let i = index + 1; i < 3; i++) {
-      if (preservedValues.current[`guest_${i}`]) {
-        preservedValues.current[`guest_${i - 1}`] = preservedValues.current[`guest_${i}`];
-        delete preservedValues.current[`guest_${i}`];
-      }
-    }
-    setGuestCount((prev) => prev - 1);
-    // Haptic feedback
-    if (navigator.vibrate) {
-      navigator.vibrate(15);
-    }
-  };
+  // const removeGuest = (index: number) => {
+  //   saveFormValues();
+  //   // Remove the specific guest value from preserved values
+  //   delete preservedValues.current[`guest_${index}`];
+  //   // Shift remaining guest values down
+  //   for (let i = index + 1; i < 3; i++) {
+  //     if (preservedValues.current[`guest_${i}`]) {
+  //       preservedValues.current[`guest_${i - 1}`] = preservedValues.current[`guest_${i}`];
+  //       delete preservedValues.current[`guest_${i}`];
+  //     }
+  //   }
+  //   setGuestCount((prev) => prev - 1);
+  //   // Haptic feedback
+  //   if (navigator.vibrate) {
+  //     navigator.vibrate(15);
+  //   }
+  // };
 
-  // Real-time field validation
-  const validateField = (fieldName: string, value: string) => {
-    // Save form values before validation to prevent value loss
-    saveFormValues();
+  // // Real-time field validation
+  // const validateField = (fieldName: string, value: string) => {
+  //   // Save form values before validation to prevent value loss
+  //   saveFormValues();
 
-    const currentErrors = { ...fieldErrors };
-    const trimmedValue = value.trim();
+  //   const currentErrors = { ...fieldErrors };
+  //   const trimmedValue = value.trim();
 
-    try {
-      switch (fieldName) {
-        case 'full_name':
-          if (trimmedValue) {
-            // Validate full name using the schema
-            rsvpSchema.shape.full_name.parse(trimmedValue);
-            delete currentErrors.full_name;
-          } else {
-            // Required field - show error if empty
-            currentErrors.full_name = 'Full name is required';
-          }
-          break;
+  //   try {
+  //     switch (fieldName) {
+  //       case 'full_name':
+  //         if (trimmedValue) {
+  //           // Validate full name using the schema
+  //           rsvpSchema.shape.full_name.parse(trimmedValue);
+  //           delete currentErrors.full_name;
+  //         } else {
+  //           // Required field - show error if empty
+  //           currentErrors.full_name = 'Full name is required';
+  //         }
+  //         break;
 
-        case 'email':
-          if (trimmedValue) {
-            // Validate email format using the schema
-            rsvpSchema.shape.email.parse(trimmedValue);
-            delete currentErrors.email;
-          } else {
-            // Email is optional - clear any errors if empty
-            delete currentErrors.email;
-          }
-          break;
+  //       case 'email':
+  //         if (trimmedValue) {
+  //           // Validate email format using the schema
+  //           rsvpSchema.shape.email.parse(trimmedValue);
+  //           delete currentErrors.email;
+  //         } else {
+  //           // Email is optional - clear any errors if empty
+  //           delete currentErrors.email;
+  //         }
+  //         break;
 
-        case 'notes':
-          if (trimmedValue) {
-            // Validate notes length using the schema
-            rsvpSchema.shape.notes.parse(trimmedValue);
-            delete currentErrors.notes;
-          } else {
-            // Notes are optional - clear any errors if empty
-            delete currentErrors.notes;
-          }
-          break;
+  //       case 'notes':
+  //         if (trimmedValue) {
+  //           // Validate notes length using the schema
+  //           rsvpSchema.shape.notes.parse(trimmedValue);
+  //           delete currentErrors.notes;
+  //         } else {
+  //           // Notes are optional - clear any errors if empty
+  //           delete currentErrors.notes;
+  //         }
+  //         break;
 
-        default:
-          // Handle guest fields
-          if (fieldName.startsWith('guest_')) {
-            if (trimmedValue) {
-              // Validate guest name
-              const guestSchema = z
-                .string()
-                .min(2, 'Guest name must be at least 2 characters')
-                .max(100, 'Guest name must be less than 100 characters');
-              guestSchema.parse(trimmedValue);
-              delete currentErrors[fieldName as keyof FieldErrors];
-            } else {
-              // Empty guest name is an error if the field exists
-              currentErrors[fieldName as keyof FieldErrors] = 'Guest name is required';
-            }
-          }
-          break;
-      }
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        currentErrors[fieldName as keyof FieldErrors] = error.errors[0]?.message || 'Invalid input';
-      }
-    }
+  //       default:
+  //         // Handle guest fields
+  //         if (fieldName.startsWith('guest_')) {
+  //           if (trimmedValue) {
+  //             // Validate guest name
+  //             const guestSchema = z
+  //               .string()
+  //               .min(2, 'Guest name must be at least 2 characters')
+  //               .max(100, 'Guest name must be less than 100 characters');
+  //             guestSchema.parse(trimmedValue);
+  //             delete currentErrors[fieldName as keyof FieldErrors];
+  //           } else {
+  //             // Empty guest name is an error if the field exists
+  //             currentErrors[fieldName as keyof FieldErrors] = 'Guest name is required';
+  //           }
+  //         }
+  //         break;
+  //     }
+  //   } catch (error) {
+  //     if (error instanceof z.ZodError) {
+  //       currentErrors[fieldName as keyof FieldErrors] = error.errors[0]?.message || 'Invalid input';
+  //     }
+  //   }
 
-    setFieldErrors(currentErrors);
-  };
+  //   setFieldErrors(currentErrors);
+  // };
 
-  async function onSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const formData = new FormData(form);
+  // async function onSubmit(e: FormEvent<HTMLFormElement>) {
+  //   e.preventDefault();
+  //   const form = e.currentTarget;
+  //   const formData = new FormData(form);
 
-    // Clear previous errors
-    setFieldErrors({});
-    setStatus(null);
+  //   // Clear previous errors
+  //   setFieldErrors({});
+  //   setStatus(null);
 
-    // Validate form data with Zod
-    const validation = validateRsvpForm(formData, guestCount);
+  //   // Validate form data with Zod
+  //   const validation = validateRsvpForm(formData, guestCount);
 
-    if (!validation.success) {
-      setFieldErrors(validation.errors);
-      setStatus({ ok: false, msg: 'Please fix the errors below and try again.' });
-      return;
-    }
+  //   if (!validation.success) {
+  //     setFieldErrors(validation.errors);
+  //     setStatus({ ok: false, msg: 'Please fix the errors below and try again.' });
+  //     return;
+  //   }
 
-    // Convert validated data to payload format
-    const validatedData = validation.data;
-    const payload: RsvpPayload = {
-      full_name: validatedData.full_name,
-      email: validatedData.email,
-      attending: validatedData.attending === 'yes',
-      guests: 1 + guestCount, // 1 for the main person + guest count
-      guest_names: validatedData.guest_names,
-      notes: validatedData.notes,
-    };
+  //   // Convert validated data to payload format
+  //   const validatedData = validation.data;
+  //   const payload: RsvpPayload = {
+  //     full_name: validatedData.full_name,
+  //     email: validatedData.email,
+  //     attending: validatedData.attending === 'yes',
+  //     guests: 1 + guestCount, // 1 for the main person + guest count
+  //     guest_names: validatedData.guest_names,
+  //     notes: validatedData.notes,
+  //   };
 
-    setSubmitting(true);
-    setStatus(null);
+  //   setSubmitting(true);
+  //   setStatus(null);
 
-    try {
-      const supabase = getSupabaseClient();
-      if (!supabase) {
-        setStatus({
-          ok: false,
-          msg: 'Supabase not configured. Please contact the site administrator.',
-        });
-        return;
-      }
+  //   try {
+  //     const supabase = getSupabaseClient();
+  //     if (!supabase) {
+  //       setStatus({
+  //         ok: false,
+  //         msg: 'Supabase not configured. Please contact the site administrator.',
+  //       });
+  //       return;
+  //     }
 
-      const { error } = await supabase.from('rsvps').insert({
-        full_name: payload.full_name,
-        email: payload.email ?? null,
-        attending: payload.attending,
-        guests: payload.guests ?? 0,
-        notes: payload.notes ?? null,
-        submitted_at: new Date().toISOString(),
-      });
+  //     const { error } = await supabase.from('rsvps').insert({
+  //       full_name: payload.full_name,
+  //       email: payload.email ?? null,
+  //       attending: payload.attending,
+  //       guests: payload.guests ?? 0,
+  //       notes: payload.notes ?? null,
+  //       submitted_at: new Date().toISOString(),
+  //     });
 
-      if (error) {
-        setStatus({ ok: false, msg: error.message });
-      } else {
-        setStatus({ ok: true, msg: 'RSVP submitted. Thank you!' });
-        form.reset();
-        preservedValues.current = {};
-        setGuestCount(0);
-        setFieldErrors({});
-      }
-    } catch (err) {
-      const msg = err instanceof Error ? err.message : 'Unknown error';
-      setStatus({ ok: false, msg });
-    } finally {
-      setSubmitting(false);
-    }
-  }
+  //     if (error) {
+  //       setStatus({ ok: false, msg: error.message });
+  //     } else {
+  //       setStatus({ ok: true, msg: 'RSVP submitted. Thank you!' });
+  //       form.reset();
+  //       preservedValues.current = {};
+  //       setGuestCount(0);
+  //       setFieldErrors({});
+  //     }
+  //   } catch (err) {
+  //     const msg = err instanceof Error ? err.message : 'Unknown error';
+  //     setStatus({ ok: false, msg });
+  //   } finally {
+  //     setSubmitting(false);
+  //   }
+  // }
 
-  // Helper function to render field errors
-  const renderFieldError = (fieldName: keyof FieldErrors) => {
-    const error = fieldErrors[fieldName];
-    if (!error) return null;
+  // // Helper function to render field errors
+  // const renderFieldError = (fieldName: keyof FieldErrors) => {
+  //   const error = fieldErrors[fieldName];
+  //   if (!error) return null;
 
-    return (
-      <p
-        id={`${fieldName}-error`}
-        className="mt-1 text-sm text-red-600"
-        role="alert"
-        aria-live="polite"
-      >
-        {error}
-      </p>
-    );
-  };
+  //   return (
+  //     <p
+  //       id={`${fieldName}-error`}
+  //       className="mt-1 text-sm text-red-600"
+  //       role="alert"
+  //       aria-live="polite"
+  //     >
+  //       {error}
+  //     </p>
+  //   );
+  // };
 
+  // RSVP Form is temporarily disabled - Check back later for updates
   return (
     <main id="main-content" className="container py-10">
-      <PageHeading title="RSVP" subtitle="Please RSVP by March 31, 2027." />
+      <PageHeading title="RSVP" subtitle="Please RSVP by March 31, 2026." />
 
       <div className="flex flex-col gap-8 items-start lg:flex-row">
-        <form
+        <div className="flex-1 p-6 space-y-5 max-w-lg rounded-lg border shadow-sm border-warmSand bg-cream">
+          <p className="text-lg text-ink">Check back later for updates!</p>
+        </div>
+
+        <div className="flex-shrink-0 lg:max-w-sm">
+          <img
+            src="/images/dachshund.png"
+            alt="Adorable dachshund"
+            className="w-full h-auto rounded-lg shadow-sm"
+          />
+        </div>
+      </div>
+    </main>
+  );
+}
+
+
+{/* <form
           ref={formRef}
           onSubmit={onSubmit}
           className="flex-1 p-6 space-y-5 max-w-lg rounded-lg border shadow-sm border-warmSand bg-cream"
@@ -348,7 +368,6 @@ export default function RsvpPage() {
                       aria-label="First additional guest full name"
                       className={`flex-1 px-4 py-3 rounded-lg border shadow-sm focus:outline-none transition-all duration-200 touch-manipulation min-h-[48px] text-base ${
                         fieldErrors.guest_0
-                          ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200'
                           : 'border-warmSand focus:border-autumnGreen focus:ring-2 focus:ring-autumnGreen/20'
                       }`}
                       aria-describedby={fieldErrors.guest_0 ? 'guest_0-error' : undefined}
@@ -513,64 +532,51 @@ export default function RsvpPage() {
             </div>
 
             {/* {guestNames.length > 0 && ( */}
-            <p className="mt-2 text-sm text-ink/70">
-              Total attending: {1 + guestCount} {1 + guestCount === 1 ? 'person' : 'people'}
-            </p>
-            {/* )} */}
-          </fieldset>
-        </div>
+        //     <p className="mt-2 text-sm text-ink/70">
+        //       Total attending: {1 + guestCount} {1 + guestCount === 1 ? 'person' : 'people'}
+        //     </p>
+        //   </fieldset>
+        // </div>
 
-        <div>
-          <label htmlFor="notes" className="block text-sm font-medium text-ink">
-            Additional notes (optional)
-          </label>
-          <textarea
-            id="notes"
-            name="notes"
-            rows={4}
-            placeholder="Any dietary restrictions, song requests, or special accommodations"
-            aria-describedby={fieldErrors.notes ? 'notes-error' : undefined}
-            className={`px-4 py-3 mt-1 w-full rounded-lg border shadow-sm focus:outline-none transition-all duration-200 touch-manipulation text-base resize-y ${
-              fieldErrors.notes
-                ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200'
-                : 'border-warmSand focus:border-autumnGreen focus:ring-2 focus:ring-autumnGreen/20'
-            }`}
-            onBlur={(e) => validateField('notes', e.target.value)}
-          />
-          {renderFieldError('notes')}
-        </div>
+        // <div>
+        //   <label htmlFor="notes" className="block text-sm font-medium text-ink">
+        //     Additional notes (optional)
+        //   </label>
+        //   <textarea
+        //     id="notes"
+        //     name="notes"
+        //     rows={4}
+        //     placeholder="Any dietary restrictions, song requests, or special accommodations"
+        //     aria-describedby={fieldErrors.notes ? 'notes-error' : undefined}
+        //     className={`px-4 py-3 mt-1 w-full rounded-lg border shadow-sm focus:outline-none transition-all duration-200 touch-manipulation text-base resize-y ${
+        //       fieldErrors.notes
+        //         ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200'
+        //         : 'border-warmSand focus:border-autumnGreen focus:ring-2 focus:ring-autumnGreen/20'
+        //     }`}
+        //     onBlur={(e) => validateField('notes', e.target.value)}
+        //   />
+        //   {renderFieldError('notes')}
+        // </div>
 
-        <div className="flex gap-3 items-center">
-          <Button as="button" type="submit" disabled={!hasEnv} loading={submitting}>
-            Submit RSVP
-          </Button>
-          {!hasEnv && (
-            <span className="text-sm text-slate" role="alert">
-              Supabase not configured; submission is disabled.
-            </span>
-          )}
-        </div>
+        // <div className="flex gap-3 items-center">
+        //   <Button as="button" type="submit" disabled={!hasEnv} loading={submitting}>
+        //     Submit RSVP
+        //   </Button>
+        //   {!hasEnv && (
+        //     <span className="text-sm text-slate" role="alert">
+        //       Supabase not configured; submission is disabled.
+        //     </span>
+        //   )}
+        // </div>
 
-        {status && (
-          <div
-            className={`text-sm ${status.ok ? 'text-green-700' : 'text-red-700'}`}
-            role="alert"
-            aria-live="polite"
-            aria-atomic="true"
-          >
-            {status.msg}
-          </div>
-        )}
-        </form>
-
-        <div className="flex-shrink-0 lg:max-w-sm">
-          <img
-            src="/images/dachshund.png"
-            alt="Adorable dachshund"
-            className="w-full h-auto rounded-lg shadow-sm"
-          />
-        </div>
-      </div>
-    </main>
-  );
-}
+        // {status && (
+        //   <div
+        //     className={`text-sm ${status.ok ? 'text-green-700' : 'text-red-700'}`}
+        //     role="alert"
+        //     aria-live="polite"
+        //     aria-atomic="true"
+        //   >
+        //     {status.msg}
+        //   </div>
+        // )}
+        // </form>

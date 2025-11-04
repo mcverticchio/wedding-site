@@ -17,6 +17,7 @@ export { HotelCard } from './data/HotelCard';
 export { RegistryGrid } from './data/RegistryGrid';
 export { ImageWithCaption } from './media/ImageWithCaption';
 export { GalleryGrid } from './media/GalleryGrid';
+export { PhotoLightbox } from './media/PhotoLightbox';
 export { MapEmbed } from './map/MapEmbed';
 export { DraggableCardBody, DraggableCardContainer } from './ui/draggable-card';
 export { PasswordProtection } from './PasswordProtection';
