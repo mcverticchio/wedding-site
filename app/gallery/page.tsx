@@ -50,10 +50,7 @@ export default function GalleryPage() {
 
   return (
     <main id="main-content" className="container py-10">
-      <PageHeading 
-        title={data.title ?? 'Gallery'} 
-        subtitle={data.intro} 
-      />
+      <PageHeading title={data.title ?? 'Gallery'} subtitle={data.intro} />
 
       <GalleryGrid photos={selectedPhotos} engagementPhotos={engagementPhotos} />
     </main>

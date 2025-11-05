@@ -31,7 +31,7 @@ export function GalleryGrid({
 }) {
   // Combine all photos for lightbox navigation (engagement first, then gallery)
   const allPhotos = [...engagementPhotos, ...photos];
-  
+
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
@@ -51,7 +51,9 @@ export function GalleryGrid({
   return (
     <>
       <div className="relative">
-        <h2 className="my-8 text-2xl font-medium text-center text-watercolorBlueDark">Engagement Photos</h2>
+        <h2 className="my-8 text-2xl font-medium text-center text-watercolorBlueDark">
+          Engagement Photos
+        </h2>
         <div className="grid gap-4 w-full sm:grid-cols-2 lg:grid-cols-3">
           {engagementPhotos.map((p, idx) => (
             <div
