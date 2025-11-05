@@ -54,10 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           >
             Skip to main content
           </a>
-          <Header
-            subtitle={site.subtitle}
-            nav={site.nav ?? []}
-          />
+          <Header subtitle={site.subtitle} nav={site.nav ?? []} />
           <div className="flex-1">{children}</div>
           {/* <Footer text={site.footer} email={undefined} /> */}
         </PasswordProtection>
