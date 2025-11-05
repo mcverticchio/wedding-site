@@ -35,7 +35,7 @@ export default function Home() {
               priority
             />
           </div>
-          
+
           {/* Text content below */}
           <div className="mx-auto max-w-2xl text-center">
             {/* Names as image */}

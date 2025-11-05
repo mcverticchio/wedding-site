@@ -31,10 +31,7 @@ export default function FaqsPage() {
 
   return (
     <main id="main-content" className="container py-10">
-      <PageHeading 
-        title={data.title ?? 'FAQs'} 
-        subtitle={data.intro} 
-      />
+      <PageHeading title={data.title ?? 'FAQs'} subtitle={data.intro} />
 
       <FAQAccordion faqs={faqs} />
     </main>

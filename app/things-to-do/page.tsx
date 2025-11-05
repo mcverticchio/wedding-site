@@ -17,10 +17,10 @@ type ThingToDo = {
   alt?: string;
 };
 
-type ThingsToDoData = { 
-  title?: string; 
-  intro?: string; 
-  things?: ThingToDo[] 
+type ThingsToDoData = {
+  title?: string;
+  intro?: string;
+  things?: ThingToDo[];
 };
 
 // Icon component using Heroicons with different colors for each category
@@ -82,10 +82,7 @@ export default function ThingsToDoPage() {
 
   return (
     <main id="main-content" className="container py-10">
-      <PageHeading 
-        title={data.title ?? 'Things to Do'} 
-        subtitle={data.intro} 
-      />
+      <PageHeading title={data.title ?? 'Things to Do'} subtitle={data.intro} />
 
       {things.length > 0 ? (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -103,33 +100,25 @@ export default function ThingsToDoPage() {
                   />
                 </div>
               ) : null}
-              
+
               <div className="space-y-3">
                 <div className="flex gap-3 items-start mb-4">
                   <ThingsToDoIcon category={thing.category} />
                   <div>
                     <h3 className="text-2xl font-medium text-ink">{thing.title}</h3>
                     {thing.category ? (
-                      <div className="mt-1 text-sm text-ink/70">
-                        {thing.category}
-                      </div>
+                      <div className="mt-1 text-sm text-ink/70">{thing.category}</div>
                     ) : null}
                   </div>
                 </div>
-                
-                {thing.description ? (
-                  <p className="text-ink/80">{thing.description}</p>
-                ) : null}
-                
+
+                {thing.description ? <p className="text-ink/80">{thing.description}</p> : null}
+
                 <div className="flex flex-wrap gap-2 text-sm text-ink/70">
-                  {thing.location ? (
-                    <span>📍 {thing.location}</span>
-                  ) : null}
-                  {thing.distance ? (
-                    <span>• {thing.distance} away</span>
-                  ) : null}
+                  {thing.location ? <span>📍 {thing.location}</span> : null}
+                  {thing.distance ? <span>• {thing.distance} away</span> : null}
                 </div>
-                
+
                 {thing.link ? (
                   <div className="pt-2">
                     <a

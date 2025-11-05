@@ -33,10 +33,7 @@ export default function RegistryPage() {
   const data = loadRegistryData();
   return (
     <main id="main-content" className="container py-10">
-      <PageHeading 
-        title={data.title ?? 'Registry'} 
-        subtitle={data.intro} 
-      />
+      <PageHeading title={data.title ?? 'Registry'} subtitle={data.intro} />
       <RegistryGrid links={data.links ?? []} note={data.note} />
     </main>
   );

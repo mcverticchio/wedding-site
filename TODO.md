@@ -31,4 +31,3 @@ Done:
 [x] Style website
 [x] Finish Improvements.md
 [x] Finalize gallery photos and captions
-

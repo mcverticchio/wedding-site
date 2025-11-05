@@ -8,13 +8,7 @@ import { HomeIcon } from '@heroicons/react/24/outline';
 
 export type NavItem = { label: string; href: string };
 
-export function Header({
-  subtitle,
-  nav,
-}: {
-  subtitle?: string;
-  nav: NavItem[];
-}) {
+export function Header({ subtitle, nav }: { subtitle?: string; nav: NavItem[] }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const firstFocusRef = useRef<HTMLButtonElement>(null);
@@ -48,11 +42,16 @@ export function Header({
       <div className="container overflow-visible px-4 py-3">
         <div className="relative flex h-14 items-center gap-4 overflow-visible rounded-2xl bg-watercolorBlue px-5 text-[#f6f6ee] shadow-watercolor">
           <div className="flex gap-3 items-center whitespace-nowrap">
-            <Link href="/" className="flex justify-center items-center w-10 h-10 rounded-lg transition-colors bg-cream/10 hover:bg-cream/20">
+            <Link
+              href="/"
+              className="flex justify-center items-center w-10 h-10 rounded-lg transition-colors bg-cream/10 hover:bg-cream/20"
+            >
               <HomeIcon className="w-6 h-6 text-[#f6f6ee]" />
             </Link>
             {subtitle ? (
-              <div className="hidden sm:block text-sm leading-none text-[#f6f6ee]/80">{subtitle}</div>
+              <div className="hidden sm:block text-sm leading-none text-[#f6f6ee]/80">
+                {subtitle}
+              </div>
             ) : null}
           </div>
 

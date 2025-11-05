@@ -83,12 +83,7 @@ export function PhotoLightbox({
         className="absolute top-4 right-4 z-10 p-2 text-white rounded-md transition-colors duration-200 hover:text-goldAccent focus:outline-none focus:ring-2 focus:ring-goldAccent focus:ring-offset-2 focus:ring-offset-black/90"
         aria-label="Close lightbox"
       >
-        <svg
-          className="w-8 h-8"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -109,12 +104,7 @@ export function PhotoLightbox({
             className="absolute left-4 z-10 p-3 text-white rounded-md transition-colors duration-200 hover:text-goldAccent focus:outline-none focus:ring-2 focus:ring-goldAccent focus:ring-offset-2 focus:ring-offset-black/90 bg-black/30 hover:bg-black/50"
             aria-label="Previous photo"
           >
-            <svg
-              className="w-8 h-8"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -132,18 +122,8 @@ export function PhotoLightbox({
             className="absolute right-4 z-10 p-3 text-white rounded-md transition-colors duration-200 hover:text-goldAccent focus:outline-none focus:ring-2 focus:ring-goldAccent focus:ring-offset-2 focus:ring-offset-black/90 bg-black/30 hover:bg-black/50"
             aria-label="Next photo"
           >
-            <svg
-              className="w-8 h-8"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
         </>
@@ -180,4 +160,3 @@ export function PhotoLightbox({
     </div>
   );
 }
-
