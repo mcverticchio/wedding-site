@@ -248,7 +248,7 @@ export default function RsvpPage() {
   // RSVP Form is temporarily disabled - Check back later for updates
   return (
     <main id="main-content" className="container py-10">
-      <PageHeading title="RSVP" subtitle="Please RSVP by March 31, 2026." />
+      <PageHeading title="RSVP" subtitle="Please RSVP by June 1, 2026." />
 
       <div className="flex flex-col items-start gap-8 lg:flex-row">
         <div className="flex-1 max-w-lg p-6 space-y-5 border rounded-lg shadow-sm border-warmSand bg-cream">
