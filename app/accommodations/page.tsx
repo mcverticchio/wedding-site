@@ -77,10 +77,7 @@ export default function AccommodationsPage() {
 
   return (
     <main id="main-content" className="container py-10">
-      <PageHeading 
-        title="Accommodations" 
-        subtitle={data.intro} 
-      />
+      <PageHeading title="Accommodations" subtitle={data.intro} />
 
       {data.travel.airports.length > 0 ? (
         <section className="mb-16">

@@ -37,15 +37,9 @@ export function ScheduleList({ events }: { events: ScheduleEvent[] }) {
 
               {/* Date/Time info next to dot */}
               <div className="hidden absolute top-0 left-12 w-32 sm:block">
-                <div className="text-sm font-medium text-ink/80">
-                  {e.day}
-                </div>
-                <div className="mt-1 text-xs text-ink/60">
-                  {e.date}
-                </div>
-                <div className="text-xs text-ink/60">
-                  {e.time}
-                </div>
+                <div className="text-sm font-medium text-ink/80">{e.day}</div>
+                <div className="mt-1 text-xs text-ink/60">{e.date}</div>
+                <div className="text-xs text-ink/60">{e.time}</div>
               </div>
 
               {/* Content */}
@@ -69,11 +63,7 @@ export function ScheduleList({ events }: { events: ScheduleEvent[] }) {
                     <div className="flex-1">
                       <CardHeader>
                         <div className="text-2xl font-medium text-ink">{e.title}</div>
-                        {e.dress ? (
-                          <div className="mt-2 text-sm text-ink/70">
-                            {e.dress}
-                          </div>
-                        ) : null}
+                        {e.dress ? <div className="mt-2 text-sm text-ink/70">{e.dress}</div> : null}
                         {e.location ? (
                           <div className="mt-2 text-sm font-medium text-ink/80">
                             📍 {e.location} {e.address ? `• ${e.address}` : ''}

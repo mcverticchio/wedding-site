@@ -69,10 +69,7 @@ export default function SchedulePage() {
 
   return (
     <main id="main-content" className="container py-10">
-      <PageHeading 
-        title={data.title ?? 'Schedule'} 
-        subtitle={data.intro} 
-      />
+      <PageHeading title={data.title ?? 'Schedule'} subtitle={data.intro} />
 
       <ScheduleList events={events} />
     </main>

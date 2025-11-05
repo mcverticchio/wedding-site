@@ -36,7 +36,9 @@ export function Timeline({ items }: { items: TimelineItem[] }) {
                 />
               ) : null}
               <div className="p-4">
-                {it.title ? <h3 className="text-lg font-medium text-watercolorBlueDark">{it.title}</h3> : null}
+                {it.title ? (
+                  <h3 className="text-lg font-medium text-watercolorBlueDark">{it.title}</h3>
+                ) : null}
                 {it.text ? <p className="mt-2 text-slate">{it.text}</p> : null}
               </div>
             </div>

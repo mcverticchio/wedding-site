@@ -1,11 +1,11 @@
 'use client';
 
-import { useMemo, useState, useRef, useEffect } from 'react';
-import type { FormEvent } from 'react';
-import type { RsvpPayload } from '../../lib/supabase';
-import { getSupabaseClient } from '../../lib/supabase';
-import { validateRsvpForm, type FieldErrors, rsvpSchema } from '../../lib/validation';
-import { z } from 'zod';
+import { useRef, useEffect } from 'react';
+// import type { FormEvent } from 'react';
+// import type { RsvpPayload } from '../../lib/supabase';
+// import { getSupabaseClient } from '../../lib/supabase';
+// import { validateRsvpForm, type FieldErrors, rsvpSchema } from '../../lib/validation';
+// import { z } from 'zod';
 import { PageHeading } from '../../components';
 // import { Button } from '../../components'; // Temporarily unused - form is disabled
 
@@ -26,15 +26,15 @@ export default function RsvpPage() {
   const preservedValues = useRef<Record<string, string>>({});
 
   // Save current form values before any state change
-  const saveFormValues = () => {
-    if (!formRef.current) return;
-    const formData = new FormData(formRef.current);
-    const values: Record<string, string> = {};
-    for (const [key, value] of formData.entries()) {
-      values[key] = value.toString();
-    }
-    preservedValues.current = values;
-  };
+  // const saveFormValues = () => {
+  //   if (!formRef.current) return;
+  //   const formData = new FormData(formRef.current);
+  //   const values: Record<string, string> = {};
+  //   for (const [key, value] of formData.entries()) {
+  //     values[key] = value.toString();
+  //   }
+  //   preservedValues.current = values;
+  // };
 
   // Restore form values after re-render
   useEffect(() => {
@@ -250,8 +250,8 @@ export default function RsvpPage() {
     <main id="main-content" className="container py-10">
       <PageHeading title="RSVP" subtitle="Please RSVP by March 31, 2026." />
 
-      <div className="flex flex-col gap-8 items-start lg:flex-row">
-        <div className="flex-1 p-6 space-y-5 max-w-lg rounded-lg border shadow-sm border-warmSand bg-cream">
+      <div className="flex flex-col items-start gap-8 lg:flex-row">
+        <div className="flex-1 max-w-lg p-6 space-y-5 border rounded-lg shadow-sm border-warmSand bg-cream">
           <p className="text-lg text-ink">Check back later for updates!</p>
         </div>
 
@@ -267,11 +267,11 @@ export default function RsvpPage() {
   );
 }
 
-
-{/* <form
+{
+  /* <form
           ref={formRef}
           onSubmit={onSubmit}
-          className="flex-1 p-6 space-y-5 max-w-lg rounded-lg border shadow-sm border-warmSand bg-cream"
+          className="flex-1 max-w-lg p-6 space-y-5 border rounded-lg shadow-sm border-warmSand bg-cream"
         >
         <div>
           <label htmlFor="full_name" className="block text-sm font-medium text-ink">
@@ -356,7 +356,7 @@ export default function RsvpPage() {
             <div className="mt-3 space-y-3" role="group" aria-label="Additional guest information">
               {guestCount >= 1 && (
                 <div>
-                  <div className="flex gap-2 items-center">
+                  <div className="flex items-center gap-2">
                     <label htmlFor="guest_0" className="sr-only">
                       First additional guest name
                     </label>
@@ -406,7 +406,7 @@ export default function RsvpPage() {
 
               {guestCount >= 2 && (
                 <div>
-                  <div className="flex gap-2 items-center">
+                  <div className="flex items-center gap-2">
                     <label htmlFor="guest_1" className="sr-only">
                       Second additional guest name
                     </label>
@@ -457,7 +457,7 @@ export default function RsvpPage() {
 
               {guestCount >= 3 && (
                 <div>
-                  <div className="flex gap-2 items-center">
+                  <div className="flex items-center gap-2">
                     <label htmlFor="guest_2" className="sr-only">
                       Third additional guest name
                     </label>
@@ -531,52 +531,53 @@ export default function RsvpPage() {
               )}
             </div>
 
-            {/* {guestNames.length > 0 && ( */}
-        //     <p className="mt-2 text-sm text-ink/70">
-        //       Total attending: {1 + guestCount} {1 + guestCount === 1 ? 'person' : 'people'}
-        //     </p>
-        //   </fieldset>
-        // </div>
+            {/* {guestNames.length > 0 && ( */
+}
+//     <p className="mt-2 text-sm text-ink/70">
+//       Total attending: {1 + guestCount} {1 + guestCount === 1 ? 'person' : 'people'}
+//     </p>
+//   </fieldset>
+// </div>
 
-        // <div>
-        //   <label htmlFor="notes" className="block text-sm font-medium text-ink">
-        //     Additional notes (optional)
-        //   </label>
-        //   <textarea
-        //     id="notes"
-        //     name="notes"
-        //     rows={4}
-        //     placeholder="Any dietary restrictions, song requests, or special accommodations"
-        //     aria-describedby={fieldErrors.notes ? 'notes-error' : undefined}
-        //     className={`px-4 py-3 mt-1 w-full rounded-lg border shadow-sm focus:outline-none transition-all duration-200 touch-manipulation text-base resize-y ${
-        //       fieldErrors.notes
-        //         ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200'
-        //         : 'border-warmSand focus:border-autumnGreen focus:ring-2 focus:ring-autumnGreen/20'
-        //     }`}
-        //     onBlur={(e) => validateField('notes', e.target.value)}
-        //   />
-        //   {renderFieldError('notes')}
-        // </div>
+// <div>
+//   <label htmlFor="notes" className="block text-sm font-medium text-ink">
+//     Additional notes (optional)
+//   </label>
+//   <textarea
+//     id="notes"
+//     name="notes"
+//     rows={4}
+//     placeholder="Any dietary restrictions, song requests, or special accommodations"
+//     aria-describedby={fieldErrors.notes ? 'notes-error' : undefined}
+//     className={`px-4 py-3 mt-1 w-full rounded-lg border shadow-sm focus:outline-none transition-all duration-200 touch-manipulation text-base resize-y ${
+//       fieldErrors.notes
+//         ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200'
+//         : 'border-warmSand focus:border-autumnGreen focus:ring-2 focus:ring-autumnGreen/20'
+//     }`}
+//     onBlur={(e) => validateField('notes', e.target.value)}
+//   />
+//   {renderFieldError('notes')}
+// </div>
 
-        // <div className="flex gap-3 items-center">
-        //   <Button as="button" type="submit" disabled={!hasEnv} loading={submitting}>
-        //     Submit RSVP
-        //   </Button>
-        //   {!hasEnv && (
-        //     <span className="text-sm text-slate" role="alert">
-        //       Supabase not configured; submission is disabled.
-        //     </span>
-        //   )}
-        // </div>
+// <div className="flex items-center gap-3">
+//   <Button as="button" type="submit" disabled={!hasEnv} loading={submitting}>
+//     Submit RSVP
+//   </Button>
+//   {!hasEnv && (
+//     <span className="text-sm text-slate" role="alert">
+//       Supabase not configured; submission is disabled.
+//     </span>
+//   )}
+// </div>
 
-        // {status && (
-        //   <div
-        //     className={`text-sm ${status.ok ? 'text-green-700' : 'text-red-700'}`}
-        //     role="alert"
-        //     aria-live="polite"
-        //     aria-atomic="true"
-        //   >
-        //     {status.msg}
-        //   </div>
-        // )}
-        // </form>
+// {status && (
+//   <div
+//     className={`text-sm ${status.ok ? 'text-green-700' : 'text-red-700'}`}
+//     role="alert"
+//     aria-live="polite"
+//     aria-atomic="true"
+//   >
+//     {status.msg}
+//   </div>
+// )}
+// </form>
