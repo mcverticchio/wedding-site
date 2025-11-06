@@ -59,7 +59,7 @@ export function GalleryGrid({
             <div
               key={idx}
               onClick={() => handlePhotoClick(idx)}
-              className="transition-shadow duration-200 cursor-pointer hover:shadow-watercolor"
+              className="overflow-hidden w-full transition-shadow duration-200 cursor-pointer hover:shadow-watercolor"
             >
               <DraggableCardBody className="overflow-hidden relative p-6 rounded-md border shadow-2xl min-h-96 bg-cream border-warmSand/30">
                 <ImageWithSkeleton
@@ -83,7 +83,7 @@ export function GalleryGrid({
               <div
                 key={idx}
                 onClick={() => handlePhotoClick(actualIndex)}
-                className="transition-shadow duration-200 cursor-pointer hover:shadow-watercolor"
+                className="overflow-hidden w-full transition-shadow duration-200 cursor-pointer hover:shadow-watercolor"
               >
                 <DraggableCardBody className="overflow-hidden relative p-6 rounded-md border shadow-2xl min-h-96 bg-cream border-warmSand/30">
                   <ImageWithSkeleton
