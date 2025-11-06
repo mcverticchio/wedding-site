@@ -27,7 +27,7 @@ export function PasswordProtection({ children, correctPassword }: PasswordProtec
     e.preventDefault();
     setError('');
 
-    if (password === correctPassword) {
+    if (password.toLowerCase() === correctPassword.toLowerCase()) {
       setIsAuthenticated(true);
       sessionStorage.setItem('wedding-site-authenticated', 'true');
     } else {

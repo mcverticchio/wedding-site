@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const site = loadSiteData();
-  const pw = process.env.NEXT_PUBLIC_WEDDING_PASSWORD || '';
+  const pw = (process.env.NEXT_PUBLIC_WEDDING_PASSWORD || '').toLowerCase();
 
   return (
     <html lang="en" className={radley.variable}>
