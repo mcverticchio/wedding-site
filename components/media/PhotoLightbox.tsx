@@ -80,10 +80,10 @@ export function PhotoLightbox({
       {/* Close button */}
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 z-10 p-2 text-white rounded-md transition-colors duration-200 hover:text-goldAccent focus:outline-none focus:ring-2 focus:ring-goldAccent focus:ring-offset-2 focus:ring-offset-black/90"
+        className="absolute top-2 right-2 z-10 min-w-[44px] min-h-[44px] p-2 text-white rounded-md transition-colors duration-200 hover:text-goldAccent focus:outline-none focus:ring-2 focus:ring-goldAccent focus:ring-offset-2 focus:ring-offset-black/90 touch-manipulation sm:top-4 sm:right-4"
         aria-label="Close lightbox"
       >
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -101,10 +101,10 @@ export function PhotoLightbox({
               e.stopPropagation();
               handlePrev();
             }}
-            className="absolute left-4 z-10 p-3 text-white rounded-md transition-colors duration-200 hover:text-goldAccent focus:outline-none focus:ring-2 focus:ring-goldAccent focus:ring-offset-2 focus:ring-offset-black/90 bg-black/30 hover:bg-black/50"
+            className="absolute left-2 z-10 min-w-[44px] min-h-[44px] p-3 text-white rounded-md transition-colors duration-200 hover:text-goldAccent focus:outline-none focus:ring-2 focus:ring-goldAccent focus:ring-offset-2 focus:ring-offset-black/90 bg-black/30 hover:bg-black/50 touch-manipulation sm:left-4"
             aria-label="Previous photo"
           >
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -119,10 +119,10 @@ export function PhotoLightbox({
               e.stopPropagation();
               handleNext();
             }}
-            className="absolute right-4 z-10 p-3 text-white rounded-md transition-colors duration-200 hover:text-goldAccent focus:outline-none focus:ring-2 focus:ring-goldAccent focus:ring-offset-2 focus:ring-offset-black/90 bg-black/30 hover:bg-black/50"
+            className="absolute right-2 z-10 min-w-[44px] min-h-[44px] p-3 text-white rounded-md transition-colors duration-200 hover:text-goldAccent focus:outline-none focus:ring-2 focus:ring-goldAccent focus:ring-offset-2 focus:ring-offset-black/90 bg-black/30 hover:bg-black/50 touch-manipulation sm:right-4"
             aria-label="Next photo"
           >
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
@@ -131,7 +131,7 @@ export function PhotoLightbox({
 
       {/* Photo container */}
       <div
-        className="relative max-w-[95vw] max-h-[95vh] w-full h-full flex flex-col items-center justify-center p-8 md:p-12"
+        className="relative max-w-[95vw] max-h-[95vh] w-full h-full flex flex-col items-center justify-center p-4 sm:p-8 md:p-12"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex relative justify-center items-center w-full h-full">
@@ -140,18 +140,18 @@ export function PhotoLightbox({
             alt={currentPhoto.caption || currentPhoto.alt || `Photo ${currentIndex + 1}`}
             width={currentPhoto.width || 1200}
             height={currentPhoto.height || 1600}
-            className="object-contain max-w-full max-h-[85vh] rounded-lg"
+            className="object-contain max-w-full max-h-[75vh] sm:max-h-[85vh] rounded-lg"
             priority
           />
         </div>
 
         {/* Photo counter and caption */}
-        <div className="mt-6 text-center text-white">
-          <div className="mb-2 text-sm text-white/70">
+        <div className="mt-4 text-center text-white sm:mt-6">
+          <div className="mb-2 text-xs text-white/70 sm:text-sm">
             {currentIndex + 1} of {photos.length}
           </div>
           {(currentPhoto.caption || currentPhoto.alt) && (
-            <div className="max-w-2xl text-lg font-medium text-white">
+            <div className="px-4 max-w-2xl text-sm font-medium text-white sm:px-0 sm:text-base md:text-lg">
               {currentPhoto.caption || currentPhoto.alt}
             </div>
           )}

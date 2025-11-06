@@ -37,15 +37,15 @@ export default function Home() {
           </div>
 
           {/* Text content below */}
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="mx-auto min-w-[280px] max-w-2xl text-center">
             {/* Names as image */}
-            <div className="mb-6">
+            <div className="flex justify-center mb-6">
               <Image
                 src="/images/caroline-and-zach-names.png"
                 alt="Caroline and Zach"
                 width={600}
                 height={120}
-                className="mx-auto w-auto h-20 sm:h-24 md:h-28"
+                className="object-contain w-auto max-w-full h-20 sm:h-24 md:h-28"
                 priority
               />
             </div>
