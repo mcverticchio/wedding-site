@@ -9,6 +9,64 @@ interface GuestSearchProps {
   hasEnv: boolean;
 }
 
+/**
+ * Normalizes a search term by removing titles and common words
+ * Example: "Dr. and Mrs. Paul Verticchio" -> "Paul Verticchio"
+ */
+function normalizeSearchTerm(term: string): string {
+  return term
+    // Remove common titles (with optional periods)
+    .replace(/\b(Dr\.?|Mr\.?|Mrs\.?|Ms\.?|Miss\.?|Rev\.?|Commander\.?|Messrs\.?)\s+/gi, '')
+    // Remove "and" and "&"
+    .replace(/\b(and|&)\s+/gi, '')
+    // Remove extra whitespace
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/**
+ * Generates search patterns from a term
+ * Returns both the original term and normalized version for flexible matching
+ * Only uses patterns that are specific enough (at least first + last name)
+ */
+function generateSearchPatterns(term: string): string[] {
+  const normalized = normalizeSearchTerm(term);
+  const patterns: string[] = [];
+  const words = normalized.split(' ').filter(w => w.length > 0);
+  
+  // Only proceed if we have at least 2 words (first + last name minimum)
+  // This prevents overly broad searches
+  if (words.length < 2) {
+    // If only one word, just use it (but this is less ideal)
+    return [normalized];
+  }
+  
+  // Always include the normalized version (most reliable)
+  // e.g., "Paul Verticchio"
+  patterns.push(normalized);
+  
+  // Include original term if it's different and has at least 2 words
+  // This helps with exact matches that include titles
+  // e.g., "Dr. and Mrs. Paul Verticchio"
+  if (term !== normalized) {
+    const originalWords = term.split(' ').filter(w => w.length > 0);
+    if (originalWords.length >= 2) {
+      patterns.push(term);
+    }
+  }
+  
+  // Add first and last name combination if different from normalized
+  // e.g., if normalized is "Paul John Verticchio", extract "Paul Verticchio"
+  if (words.length > 2) {
+    const firstLast = `${words[0]} ${words[words.length - 1]}`;
+    if (firstLast !== normalized) {
+      patterns.push(firstLast);
+    }
+  }
+  
+  return [...new Set(patterns)]; // Remove duplicates
+}
+
 export function GuestSearch({ onGuestSelect, hasEnv }: GuestSearchProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<Guest[]>([]);
@@ -49,22 +107,64 @@ export function GuestSearch({ onGuestSelect, hasEnv }: GuestSearchProps) {
         return;
       }
 
-      // Search guests table directly (case-insensitive partial match)
-      // Search both full_name and guest_plus_one fields
-      const searchPattern = `%${term}%`;
+      // Generate multiple search patterns for flexible matching
+      const searchPatterns = generateSearchPatterns(term);
+      const normalized = normalizeSearchTerm(term);
+      
+      // Build OR conditions for all patterns
+      const orConditions = searchPatterns.flatMap((pattern) => {
+        const searchPattern = `%${pattern}%`;
+        return [
+          `full_name.ilike.${searchPattern}`,
+          `guest_plus_one.ilike.${searchPattern}`,
+        ];
+      });
+      
       const { data, error } = await supabase
         .from('guests')
         .select('id, full_name, email, guest_plus_one, invited_to_friday, invited_to_saturday')
-        .or(`full_name.ilike.${searchPattern},guest_plus_one.ilike.${searchPattern}`)
-        .order('full_name', { ascending: true })
-        .limit(20);
+        .or(orConditions.join(','))
+        .limit(50); // Get more results to sort properly
 
       if (error) {
         console.error('Search error:', error);
         setSearchError('Unable to search. Please try again.');
         setSearchResults([]);
+      } else if (data) {
+        // Sort results by relevance:
+        // 1. Exact matches on full_name (highest priority)
+        // 2. Matches that start with the normalized term
+        // 3. Matches that contain the normalized term
+        // 4. Other matches
+        const sorted = data.sort((a, b) => {
+          const aName = a.full_name.toLowerCase();
+          const bName = b.full_name.toLowerCase();
+          const normalizedLower = normalized.toLowerCase();
+          
+          // Exact match gets highest priority
+          if (aName === normalizedLower) return -1;
+          if (bName === normalizedLower) return 1;
+          
+          // Starts with normalized term
+          const aStarts = aName.startsWith(normalizedLower);
+          const bStarts = bName.startsWith(normalizedLower);
+          if (aStarts && !bStarts) return -1;
+          if (!aStarts && bStarts) return 1;
+          
+          // Contains normalized term
+          const aContains = aName.includes(normalizedLower);
+          const bContains = bName.includes(normalizedLower);
+          if (aContains && !bContains) return -1;
+          if (!aContains && bContains) return 1;
+          
+          // Alphabetical as tiebreaker
+          return aName.localeCompare(bName);
+        });
+        
+        // Limit to top 20 most relevant results
+        setSearchResults(sorted.slice(0, 20));
       } else {
-        setSearchResults(data || []);
+        setSearchResults([]);
       }
     } catch (err) {
       console.error('Search error:', err);
