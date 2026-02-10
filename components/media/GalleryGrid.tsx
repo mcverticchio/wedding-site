@@ -6,7 +6,7 @@ import { ImageWithSkeleton } from '../ui/ImageWithSkeleton';
 import { PhotoLightbox } from './PhotoLightbox';
 
 export type GalleryPhoto = {
-  src: string; // expected relative to /public/images, e.g. 'gallery/gallery-1.jpg'
+  src: string; // expected relative to /public/images, e.g. 'gallery/gallery-1.webp'
   alt?: string;
   caption?: string;
   width?: number;
@@ -14,7 +14,7 @@ export type GalleryPhoto = {
 };
 
 function normalize(rel: string) {
-  // Handle legacy inputs like '../assets/images/gallery-1.jpg'
+  // Handle legacy inputs like '../assets/images/gallery-1.webp'
   let filename = rel.replace(/^\.{0,2}\/?assets\/images\//, '').trim();
   if (/^(gallery|engagement)-\d+\.(jpe?g|png|webp|avif)$/i.test(filename)) {
     filename = `gallery/${filename}`;
@@ -61,7 +61,7 @@ export function GalleryGrid({
               onClick={() => handlePhotoClick(idx)}
               className="overflow-hidden w-full transition-shadow duration-200 cursor-pointer hover:shadow-watercolor"
             >
-              <DraggableCardBody className="overflow-hidden relative p-6 rounded-md border shadow-2xl min-h-96 bg-cream border-warmSand/30">
+              <DraggableCardBody className="overflow-hidden relative p-6 rounded-md border shadow-2xl h-[28rem] bg-cream border-warmSand/30">
                 <ImageWithSkeleton
                   src={normalize(p.src)}
                   alt={p.caption || p.alt || `Engagement photo ${idx + 1} of Caroline and Zach`}
@@ -85,7 +85,7 @@ export function GalleryGrid({
                 onClick={() => handlePhotoClick(actualIndex)}
                 className="overflow-hidden w-full transition-shadow duration-200 cursor-pointer hover:shadow-watercolor"
               >
-                <DraggableCardBody className="overflow-hidden relative p-6 rounded-md border shadow-2xl min-h-96 bg-cream border-warmSand/30">
+                <DraggableCardBody className="overflow-hidden relative p-6 rounded-md border shadow-2xl h-[32rem] bg-cream border-warmSand/30">
                   <ImageWithSkeleton
                     src={normalize(p.src)}
                     alt={p.caption || p.alt || `Wedding photo ${idx + 1} of Caroline and Zach`}
@@ -94,7 +94,7 @@ export function GalleryGrid({
                     className="object-cover relative z-10 w-full h-96"
                     priority={idx < 6}
                   />
-                  <h3 className="mt-4 text-2xl font-medium text-center text-watercolorBlueDark">
+                  <h3 className="mt-4 text-2xl font-medium text-center text-watercolorBlueDark line-clamp-2">
                     {p.caption || p.alt || `Photo ${idx + 1}`}
                   </h3>
                 </DraggableCardBody>

@@ -32,7 +32,7 @@ export default function RsvpPage() {
 
         <div className="flex-shrink-0 lg:max-w-sm">
           <img
-            src="/images/dachshund.png"
+            src="/images/dachshund.webp"
             alt="Adorable dachshund"
             className="w-full h-auto rounded-lg shadow-sm"
           />

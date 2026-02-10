@@ -5,7 +5,7 @@ export type TimelineItem = {
   date?: string;
   title?: string;
   text?: ReactNode;
-  image?: string; // expected relative to /public/images, e.g. 'story/story-1.jpg'
+  image?: string; // expected relative to /public/images, e.g. 'story/story-1.webp'
   alt?: string;
 };
 

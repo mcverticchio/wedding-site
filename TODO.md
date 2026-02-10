@@ -1,16 +1,14 @@
 # TODO
 
-Deadline: Nov 1
-
 Zach:
 [] Standardize/optimize all images with Mazanoke on umbrel to webp
-[x] Fix engagement photo 11 and 12 in wrong gallery array
 [] Wire up bitcoin wallet xpub or a way to receive bitcoin payments securely for the site
 
 Caroline:
 [] Mobile responsiveness
 
 Done:
+[x] Fix engagement photo 11 and 12 in wrong gallery array
 [x] Migrate from Supabase to Convex (no more free tier pausing)
 [x] Success message for RSVP
 [x] Rate limiting/spam prevention for Submit button in RSVP form
@@ -19,7 +17,7 @@ Done:
 [x] Add uiternity photo gallery component
 [x] Fill in hotel info and ratings
 [x] Fix hotel URLs
-[x] Revise copy for venue info [] duplicate on Schedule
+[x] Revise copy for venue info
 [x] Finish FAQ questions
 [x] Figure out Schedule / Venues card / Travel
 [x] Finish registry page

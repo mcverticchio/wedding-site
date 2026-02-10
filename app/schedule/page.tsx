@@ -45,10 +45,10 @@ export default function SchedulePage() {
   const events = (data.events ?? []).map((e) => {
     // Normalize legacy asset paths to organized /public/images subfolders
     // Examples:
-    //  "../assets/images/rehearsal.jpg" -> "events/rehearsal.jpg"
-    //  "../assets/images/ceremony.jpg"  -> "events/ceremony.jpg"
-    //  "../assets/images/reception.jpg" -> "events/reception.jpg"
-    //  "../assets/images/brunch.jpg"    -> "events/brunch.jpg"
+    //  "../assets/images/rehearsal.webp" -> "events/rehearsal.webp"
+    //  "../assets/images/ceremony.webp"  -> "events/ceremony.webp"
+    //  "../assets/images/reception.webp" -> "events/reception.webp"
+    //  "../assets/images/brunch.webp"    -> "events/brunch.webp"
     let normalized: string | undefined = undefined;
     if (e.image) {
       const filename = e.image.replace(/^\.{0,2}\/?assets\/images\//, '').trim();

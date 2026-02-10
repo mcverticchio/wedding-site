@@ -27,7 +27,7 @@ export default function Home() {
           {/* Image first */}
           <div className="overflow-hidden mb-8 w-full bg-white rounded-lg border border-warmSand/60 shadow-soft">
             <ImageWithSkeleton
-              src="/images/gallery/engagement-12.jpeg"
+              src="/images/gallery/engagement-12.webp"
               alt="Caroline and Zach engagement photo - featured wedding website image"
               width={1600}
               height={900}
@@ -41,7 +41,7 @@ export default function Home() {
             {/* Names as image */}
             <div className="flex justify-center mb-6">
               <Image
-                src="/images/caroline-and-zach-names.png"
+                src="/images/caroline-and-zach-names.webp"
                 alt="Caroline and Zach"
                 width={600}
                 height={120}
