@@ -5,10 +5,16 @@ Deadline: Nov 1
 Zach:
 [] Standardize/optimize all images with Mazanoke on umbrel to webp
 [] Understand why engagement photo 11 and 12 are in wedding array, not engagement photo array
+[] Wire up bitcoin wallet xpub or a way to receive bitcoin payments securely for the site
+[] Make sure you can't see everyone else invited on the site invitation list
+[] Keep alive or convex migration
+[] Success message for RSVP
+[] Rate limiting/spam prevention for Submit button in RSVP form
+[] Remove Friday from Schedule page (will be on RSVP form only if invited - not open to the full guest list)
 
 Caroline:
 [] Fix supabase backend with RLS
-[] Add a "Things to Do" section at the bottom of "Accomodations" or a separate tab? - IN PROGRESS
+[x] Add a "Things to Do" section at the bottom of "Accomodations" or a separate tab? - IN PROGRESS
 [] Mobile responsiveness
 
 Done:
