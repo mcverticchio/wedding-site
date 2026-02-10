@@ -1,5 +1,11 @@
 .next
 .DS_Store
 .env
+.env.local
 node_modules
+out
+
+# Sensitive / temporary data
+wedding.txt
 guests.csv
+*.jsonl

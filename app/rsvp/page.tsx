@@ -1,16 +1,12 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { PageHeading } from '../../components';
 import { GuestSearch } from '../../components/data/GuestSearch';
 import { RsvpForm } from '../../components/data/RsvpForm';
 import type { Guest } from './types';
 
 export default function RsvpPage() {
-  const hasEnv = useMemo(() => {
-    return !!(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
-  }, []);
-
   const [selectedGuest, setSelectedGuest] = useState<Guest | null>(null);
 
   const handleGuestSelect = (guest: Guest) => {
@@ -28,9 +24,9 @@ export default function RsvpPage() {
       <div className="flex flex-col gap-8 items-start lg:flex-row">
         <div className="flex-1 p-6 space-y-5 max-w-lg rounded-lg border shadow-sm border-warmSand bg-cream">
           {!selectedGuest ? (
-            <GuestSearch onGuestSelect={handleGuestSelect} hasEnv={hasEnv} />
+            <GuestSearch onGuestSelect={handleGuestSelect} />
           ) : (
-            <RsvpForm guest={selectedGuest} onBackToSearch={handleBackToSearch} hasEnv={hasEnv} />
+            <RsvpForm guest={selectedGuest} onBackToSearch={handleBackToSearch} />
           )}
         </div>
 

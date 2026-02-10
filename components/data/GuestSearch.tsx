@@ -1,12 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { getSupabaseClient } from '../../lib/supabase';
+import { useQuery } from 'convex/react';
+import { api } from '../../convex/_generated/api';
 import type { Guest } from '../../app/rsvp/types';
 
 interface GuestSearchProps {
   onGuestSelect: (guest: Guest) => void;
-  hasEnv: boolean;
 }
 
 /**
@@ -24,160 +24,46 @@ function normalizeSearchTerm(term: string): string {
     .trim();
 }
 
-/**
- * Generates search patterns from a term
- * Returns both the original term and normalized version for flexible matching
- * Only uses patterns that are specific enough (at least first + last name)
- */
-function generateSearchPatterns(term: string): string[] {
-  const normalized = normalizeSearchTerm(term);
-  const patterns: string[] = [];
-  const words = normalized.split(' ').filter(w => w.length > 0);
-  
-  // Only proceed if we have at least 2 words (first + last name minimum)
-  // This prevents overly broad searches
-  if (words.length < 2) {
-    // If only one word, just use it (but this is less ideal)
-    return [normalized];
-  }
-  
-  // Always include the normalized version (most reliable)
-  // e.g., "Paul Verticchio"
-  patterns.push(normalized);
-  
-  // Include original term if it's different and has at least 2 words
-  // This helps with exact matches that include titles
-  // e.g., "Dr. and Mrs. Paul Verticchio"
-  if (term !== normalized) {
-    const originalWords = term.split(' ').filter(w => w.length > 0);
-    if (originalWords.length >= 2) {
-      patterns.push(term);
-    }
-  }
-  
-  // Add first and last name combination if different from normalized
-  // e.g., if normalized is "Paul John Verticchio", extract "Paul Verticchio"
-  if (words.length > 2) {
-    const firstLast = `${words[0]} ${words[words.length - 1]}`;
-    if (firstLast !== normalized) {
-      patterns.push(firstLast);
-    }
-  }
-  
-  return [...new Set(patterns)]; // Remove duplicates
+function useDebouncedValue<T>(value: T, delayMs: number): T {
+  const [debounced, setDebounced] = useState(value);
+  useEffect(() => {
+    const id = setTimeout(() => setDebounced(value), delayMs);
+    return () => clearTimeout(id);
+  }, [value, delayMs]);
+  return debounced;
 }
 
-export function GuestSearch({ onGuestSelect, hasEnv }: GuestSearchProps) {
+export function GuestSearch({ onGuestSelect }: GuestSearchProps) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState<Guest[]>([]);
-  const [isSearching, setIsSearching] = useState(false);
-  const [hasSearched, setHasSearched] = useState(false);
-  const [searchError, setSearchError] = useState<string | null>(null);
 
-  // Debounce search
-  useEffect(() => {
-    if (!searchTerm.trim() || !hasEnv) {
-      setSearchResults([]);
-      setHasSearched(false);
-      return;
-    }
+  const debouncedTerm = useDebouncedValue(searchTerm, 300);
 
-    setHasSearched(false);
-    const timeoutId = setTimeout(() => {
-      performSearch(searchTerm.trim());
-    }, 300); // 300ms debounce
+  // Determine if the debounced term meets the 2-word privacy threshold
+  const normalized = normalizeSearchTerm(debouncedTerm.trim());
+  const qualifiedWords = normalized.split(/\s+/).filter((w) => w.length >= 2);
+  const meetsThreshold = qualifiedWords.length >= 2;
 
-    return () => clearTimeout(timeoutId);
-  }, [searchTerm, hasEnv]);
+  // Only query Convex when the threshold is met; pass "skip" to disable the query
+  const results = useQuery(
+    api.guests.search,
+    meetsThreshold ? { searchTerm: normalized } : 'skip',
+  );
 
-  const performSearch = async (term: string) => {
-    // Require at least 2 words, each 2+ characters (first + last name)
-    // This prevents browsing the guest list with single letters or common first names
-    const words = normalizeSearchTerm(term).split(/\s+/).filter(w => w.length >= 2);
-    if (words.length < 2) {
-      setSearchResults([]);
-      return;
-    }
+  // Convex search is OR-based, so filter client-side to ensure every
+  // query word matches at least one word in the guest's names (prefix match)
+  const filtered = (results ?? []).filter((guest) => {
+    const nameWords = `${guest.full_name} ${guest.guest_plus_one ?? ''}`
+      .toLowerCase()
+      .split(/\s+/);
+    return qualifiedWords.every((qw) => {
+      const q = qw.toLowerCase();
+      return nameWords.some((nw) => nw.startsWith(q));
+    });
+  });
 
-    setIsSearching(true);
-    setSearchError(null);
-
-    try {
-      const supabase = getSupabaseClient();
-      if (!supabase) {
-        setSearchError('Search is not available. Please contact the site administrator.');
-        setIsSearching(false);
-        return;
-      }
-
-      // Generate multiple search patterns for flexible matching
-      const searchPatterns = generateSearchPatterns(term);
-      const normalized = normalizeSearchTerm(term);
-      
-      // Build OR conditions for all patterns
-      const orConditions = searchPatterns.flatMap((pattern) => {
-        const searchPattern = `%${pattern}%`;
-        return [
-          `full_name.ilike.${searchPattern}`,
-          `guest_plus_one.ilike.${searchPattern}`,
-        ];
-      });
-      
-      const { data, error } = await supabase
-        .from('guests')
-        .select('id, full_name, email, guest_plus_one, invited_to_friday, invited_to_saturday')
-        .or(orConditions.join(','))
-        .limit(10);
-
-      if (error) {
-        console.error('Search error:', error);
-        setSearchError('Unable to search. Please try again.');
-        setSearchResults([]);
-      } else if (data) {
-        // Sort results by relevance:
-        // 1. Exact matches on full_name (highest priority)
-        // 2. Matches that start with the normalized term
-        // 3. Matches that contain the normalized term
-        // 4. Other matches
-        const sorted = data.sort((a, b) => {
-          const aName = a.full_name.toLowerCase();
-          const bName = b.full_name.toLowerCase();
-          const normalizedLower = normalized.toLowerCase();
-          
-          // Exact match gets highest priority
-          if (aName === normalizedLower) return -1;
-          if (bName === normalizedLower) return 1;
-          
-          // Starts with normalized term
-          const aStarts = aName.startsWith(normalizedLower);
-          const bStarts = bName.startsWith(normalizedLower);
-          if (aStarts && !bStarts) return -1;
-          if (!aStarts && bStarts) return 1;
-          
-          // Contains normalized term
-          const aContains = aName.includes(normalizedLower);
-          const bContains = bName.includes(normalizedLower);
-          if (aContains && !bContains) return -1;
-          if (!aContains && bContains) return 1;
-          
-          // Alphabetical as tiebreaker
-          return aName.localeCompare(bName);
-        });
-        
-        // Limit to top 3 results to avoid exposing the guest list
-        setSearchResults(sorted.slice(0, 3));
-      } else {
-        setSearchResults([]);
-      }
-    } catch (err) {
-      console.error('Search error:', err);
-      setSearchError('An error occurred while searching. Please try again.');
-      setSearchResults([]);
-    } finally {
-      setIsSearching(false);
-      setHasSearched(true);
-    }
-  };
+  // Limit to top 3 results to avoid exposing the guest list
+  const searchResults = filtered.slice(0, 3) as Guest[];
+  const isSearching = meetsThreshold && results === undefined;
 
   return (
     <>
@@ -191,33 +77,17 @@ export function GuestSearch({ onGuestSelect, hasEnv }: GuestSearchProps) {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Type your first and last name..."
-          className={`px-4 py-3 mt-1 w-full rounded-lg border shadow-sm focus:outline-none transition-all duration-200 touch-manipulation min-h-[48px] text-base ${
-            searchError
-              ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200'
-              : 'border-warmSand focus:border-autumnGreen focus:ring-2 focus:ring-autumnGreen/20'
-          }`}
-          disabled={!hasEnv}
-          aria-describedby={searchError ? 'search-error' : undefined}
+          className={`px-4 py-3 mt-1 w-full rounded-lg border shadow-sm focus:outline-none transition-all duration-200 touch-manipulation min-h-[48px] text-base border-warmSand focus:border-autumnGreen focus:ring-2 focus:ring-autumnGreen/20`}
         />
-        {searchError && (
-          <p id="search-error" className="mt-1 text-sm text-red-600" role="alert" aria-live="polite">
-            {searchError}
-          </p>
-        )}
-        {!hasEnv && (
-          <p className="mt-1 text-sm text-slate" role="alert">
-            Supabase not configured; search is disabled.
-          </p>
-        )}
       </div>
 
       {/* Search hint when typing but not yet enough to search */}
       {(() => {
         const trimmed = searchTerm.trim();
-        if (!trimmed || !hasEnv) return null;
-        const words = normalizeSearchTerm(trimmed).split(/\s+/).filter(w => w.length > 0);
-        const qualifiedWords = words.filter(w => w.length >= 2);
-        if (qualifiedWords.length >= 2) return null; // Threshold met, results section handles it
+        if (!trimmed) return null;
+        const words = normalizeSearchTerm(trimmed).split(/\s+/).filter((w) => w.length > 0);
+        const qualified = words.filter((w) => w.length >= 2);
+        if (qualified.length >= 2) return null; // Threshold met, results section handles it
         return (
           <p className="mt-2 text-sm text-slate">
             {words.length < 2
@@ -228,7 +98,7 @@ export function GuestSearch({ onGuestSelect, hasEnv }: GuestSearchProps) {
       })()}
 
       {/* Search Results */}
-      {normalizeSearchTerm(searchTerm).split(/\s+/).filter(w => w.length >= 2).length >= 2 && (
+      {meetsThreshold && (
         <div className="mt-4">
           {isSearching ? (
             <div className="flex justify-center items-center py-8 text-slate">
@@ -259,7 +129,7 @@ export function GuestSearch({ onGuestSelect, hasEnv }: GuestSearchProps) {
               <p className="text-sm font-medium text-ink">Select your name:</p>
               <ul className="space-y-2" role="listbox">
                 {searchResults.map((guest) => (
-                  <li key={guest.id}>
+                  <li key={guest._id}>
                     <button
                       type="button"
                       onClick={() => onGuestSelect(guest)}
@@ -276,15 +146,14 @@ export function GuestSearch({ onGuestSelect, hasEnv }: GuestSearchProps) {
                 ))}
               </ul>
             </div>
-          ) : hasSearched && !isSearching && searchResults.length === 0 ? (
+          ) : (
             <div className="py-8 text-center text-slate">
               <p>No guests found matching &ldquo;{searchTerm}&rdquo;</p>
               <p className="mt-2 text-sm">Please check your spelling or contact us if you can&apos;t find your name.</p>
             </div>
-          ) : null}
+          )}
         </div>
       )}
     </>
   );
 }
-

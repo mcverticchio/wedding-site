@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { loadSiteData } from '../lib/site';
 import { Header, PasswordProtection } from '../components';
+import { ConvexClientProvider } from '../components/ConvexClientProvider';
 import localFont from 'next/font/local';
 
 const radley = localFont({
@@ -47,17 +48,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={radley.variable}>
       <body className="flex flex-col min-h-screen antialiased bg-cream text-ink">
-        <PasswordProtection correctPassword={pw}>
-          <a
-            href="#main-content"
-            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-autumnGreen text-[#f6f6ee] px-4 py-2 rounded-md font-medium z-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-autumnGreen"
-          >
-            Skip to main content
-          </a>
-          <Header subtitle={site.subtitle} nav={site.nav ?? []} />
-          <div className="flex-1">{children}</div>
-          {/* <Footer text={site.footer} email={undefined} /> */}
-        </PasswordProtection>
+        <ConvexClientProvider>
+          <PasswordProtection correctPassword={pw}>
+            <a
+              href="#main-content"
+              className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-autumnGreen text-[#f6f6ee] px-4 py-2 rounded-md font-medium z-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-autumnGreen"
+            >
+              Skip to main content
+            </a>
+            <Header subtitle={site.subtitle} nav={site.nav ?? []} />
+            <div className="flex-1">{children}</div>
+            {/* <Footer text={site.footer} email={undefined} /> */}
+          </PasswordProtection>
+        </ConvexClientProvider>
       </body>
     </html>
   );

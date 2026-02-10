@@ -1,17 +1,17 @@
 'use client';
 
 import { useState, type FormEvent } from 'react';
-import { getSupabaseClient } from '../../lib/supabase';
+import { useMutation } from 'convex/react';
+import { api } from '../../convex/_generated/api';
 import { Button } from '../ui/Button';
 import type { Guest } from '../../app/rsvp/types';
 
 interface RsvpFormProps {
   guest: Guest;
   onBackToSearch: () => void;
-  hasEnv: boolean;
 }
 
-export function RsvpForm({ guest, onBackToSearch, hasEnv }: RsvpFormProps) {
+export function RsvpForm({ guest, onBackToSearch }: RsvpFormProps) {
   const [plusOneAttending, setPlusOneAttending] = useState(false);
   const [attendingFriday, setAttendingFriday] = useState<boolean | null>(null);
   const [attendingSaturday, setAttendingSaturday] = useState(true);
@@ -23,6 +23,8 @@ export function RsvpForm({ guest, onBackToSearch, hasEnv }: RsvpFormProps) {
   const [cooldown, setCooldown] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{ ok: boolean; msg: string } | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+
+  const submitRsvp = useMutation(api.rsvps.submit);
 
   const addAdditionalGuest = () => {
     setAdditionalGuestNames([...additionalGuestNames, '']);
@@ -80,20 +82,11 @@ export function RsvpForm({ guest, onBackToSearch, hasEnv }: RsvpFormProps) {
     setSubmitStatus(null);
 
     try {
-      const supabase = getSupabaseClient();
-      if (!supabase) {
-        setSubmitStatus({
-          ok: false,
-          msg: 'Supabase not configured. Please contact the site administrator.',
-        });
-        return;
-      }
-
       // Filter out empty additional guest names
       const validAdditionalGuests = additionalGuestNames.filter((name) => name.trim().length > 0);
 
-      const { error } = await supabase.from('guest_rsvps').insert({
-        guest_id: guest.id,
+      await submitRsvp({
+        guest_id: guest._id,
         attending_friday: guest.invited_to_friday ? attendingFriday : null,
         attending_saturday: attendingSaturday,
         plus_one_attending: guest.guest_plus_one ? plusOneAttending : null,
@@ -103,14 +96,10 @@ export function RsvpForm({ guest, onBackToSearch, hasEnv }: RsvpFormProps) {
         notes: notes.trim() || null,
       });
 
-      if (error) {
-        setSubmitStatus({ ok: false, msg: error.message });
-      } else {
-        setSubmitStatus({
-          ok: true,
-          msg: 'RSVP submitted successfully! Thank you!',
-        });
-      }
+      setSubmitStatus({
+        ok: true,
+        msg: 'RSVP submitted successfully! Thank you!',
+      });
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Unknown error';
       setSubmitStatus({ ok: false, msg });
@@ -388,14 +377,9 @@ export function RsvpForm({ guest, onBackToSearch, hasEnv }: RsvpFormProps) {
 
         {/* Submit Button */}
         <div className="flex gap-3 items-center">
-          <Button as="button" type="submit" disabled={!hasEnv || cooldown} loading={submitting}>
+          <Button as="button" type="submit" disabled={cooldown} loading={submitting}>
             Submit RSVP
           </Button>
-          {!hasEnv && (
-            <span className="text-sm text-slate" role="alert">
-              Supabase not configured; submission is disabled.
-            </span>
-          )}
         </div>
 
         {/* Error Message */}
@@ -413,4 +397,3 @@ export function RsvpForm({ guest, onBackToSearch, hasEnv }: RsvpFormProps) {
     </form>
   );
 }
-
