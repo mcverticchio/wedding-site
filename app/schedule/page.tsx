@@ -65,7 +65,7 @@ export default function SchedulePage() {
       }
     }
     return { ...e, image: normalized };
-  });
+  }).filter((e) => e.day !== 'Friday');
 
   return (
     <main id="main-content" className="container py-10">

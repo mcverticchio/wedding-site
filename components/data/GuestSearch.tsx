@@ -91,7 +91,10 @@ export function GuestSearch({ onGuestSelect, hasEnv }: GuestSearchProps) {
   }, [searchTerm, hasEnv]);
 
   const performSearch = async (term: string) => {
-    if (!term || term.length < 2) {
+    // Require at least 2 words, each 2+ characters (first + last name)
+    // This prevents browsing the guest list with single letters or common first names
+    const words = normalizeSearchTerm(term).split(/\s+/).filter(w => w.length >= 2);
+    if (words.length < 2) {
       setSearchResults([]);
       return;
     }
@@ -124,7 +127,7 @@ export function GuestSearch({ onGuestSelect, hasEnv }: GuestSearchProps) {
         .from('guests')
         .select('id, full_name, email, guest_plus_one, invited_to_friday, invited_to_saturday')
         .or(orConditions.join(','))
-        .limit(50); // Get more results to sort properly
+        .limit(10);
 
       if (error) {
         console.error('Search error:', error);
@@ -161,8 +164,8 @@ export function GuestSearch({ onGuestSelect, hasEnv }: GuestSearchProps) {
           return aName.localeCompare(bName);
         });
         
-        // Limit to top 20 most relevant results
-        setSearchResults(sorted.slice(0, 20));
+        // Limit to top 3 results to avoid exposing the guest list
+        setSearchResults(sorted.slice(0, 3));
       } else {
         setSearchResults([]);
       }
@@ -187,7 +190,7 @@ export function GuestSearch({ onGuestSelect, hasEnv }: GuestSearchProps) {
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Type your name to search..."
+          placeholder="Type your first and last name..."
           className={`px-4 py-3 mt-1 w-full rounded-lg border shadow-sm focus:outline-none transition-all duration-200 touch-manipulation min-h-[48px] text-base ${
             searchError
               ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200'
@@ -208,8 +211,24 @@ export function GuestSearch({ onGuestSelect, hasEnv }: GuestSearchProps) {
         )}
       </div>
 
+      {/* Search hint when typing but not yet enough to search */}
+      {(() => {
+        const trimmed = searchTerm.trim();
+        if (!trimmed || !hasEnv) return null;
+        const words = normalizeSearchTerm(trimmed).split(/\s+/).filter(w => w.length > 0);
+        const qualifiedWords = words.filter(w => w.length >= 2);
+        if (qualifiedWords.length >= 2) return null; // Threshold met, results section handles it
+        return (
+          <p className="mt-2 text-sm text-slate">
+            {words.length < 2
+              ? 'Enter your first and last name to search.'
+              : 'Keep typing your last name\u2026'}
+          </p>
+        );
+      })()}
+
       {/* Search Results */}
-      {searchTerm.trim().length >= 2 && (
+      {normalizeSearchTerm(searchTerm).split(/\s+/).filter(w => w.length >= 2).length >= 2 && (
         <div className="mt-4">
           {isSearching ? (
             <div className="flex justify-center items-center py-8 text-slate">
@@ -257,7 +276,7 @@ export function GuestSearch({ onGuestSelect, hasEnv }: GuestSearchProps) {
                 ))}
               </ul>
             </div>
-          ) : hasSearched && !isSearching && searchResults.length === 0 && searchTerm.trim().length >= 2 ? (
+          ) : hasSearched && !isSearching && searchResults.length === 0 ? (
             <div className="py-8 text-center text-slate">
               <p>No guests found matching &ldquo;{searchTerm}&rdquo;</p>
               <p className="mt-2 text-sm">Please check your spelling or contact us if you can&apos;t find your name.</p>

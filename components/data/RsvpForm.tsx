@@ -20,6 +20,7 @@ export function RsvpForm({ guest, onBackToSearch, hasEnv }: RsvpFormProps) {
   const [email, setEmail] = useState(guest.email || '');
   const [notes, setNotes] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [cooldown, setCooldown] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{ ok: boolean; msg: string } | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
@@ -109,18 +110,37 @@ export function RsvpForm({ guest, onBackToSearch, hasEnv }: RsvpFormProps) {
           ok: true,
           msg: 'RSVP submitted successfully! Thank you!',
         });
-        // Reset form after successful submission
-        setTimeout(() => {
-          onBackToSearch();
-        }, 3000);
       }
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Unknown error';
       setSubmitStatus({ ok: false, msg });
     } finally {
       setSubmitting(false);
+      setCooldown(true);
+      setTimeout(() => setCooldown(false), 3000);
     }
   };
+
+  if (submitStatus?.ok) {
+    return (
+      <div className="py-6 text-center space-y-4">
+        <div className="flex justify-center">
+          <svg className="w-16 h-16 text-autumnGreen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h3 className="text-xl font-semibold text-ink">Thank you, {guest.full_name}!</h3>
+        <p className="text-slate">Your RSVP has been submitted. We can&apos;t wait to celebrate with you!</p>
+        <button
+          type="button"
+          onClick={onBackToSearch}
+          className="mt-4 text-sm underline text-autumnGreen hover:text-autumnGreen/80"
+        >
+          RSVP for another guest
+        </button>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
@@ -368,7 +388,7 @@ export function RsvpForm({ guest, onBackToSearch, hasEnv }: RsvpFormProps) {
 
         {/* Submit Button */}
         <div className="flex gap-3 items-center">
-          <Button as="button" type="submit" disabled={!hasEnv} loading={submitting}>
+          <Button as="button" type="submit" disabled={!hasEnv || cooldown} loading={submitting}>
             Submit RSVP
           </Button>
           {!hasEnv && (
@@ -378,10 +398,10 @@ export function RsvpForm({ guest, onBackToSearch, hasEnv }: RsvpFormProps) {
           )}
         </div>
 
-        {/* Status Message */}
-        {submitStatus && (
+        {/* Error Message */}
+        {submitStatus && !submitStatus.ok && (
           <div
-            className={`text-sm ${submitStatus.ok ? 'text-green-700' : 'text-red-700'}`}
+            className="text-sm text-red-700"
             role="alert"
             aria-live="polite"
             aria-atomic="true"
