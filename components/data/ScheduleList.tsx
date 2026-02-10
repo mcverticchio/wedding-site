@@ -48,13 +48,13 @@ export function ScheduleList({ events }: { events: ScheduleEvent[] }) {
                   <div className="flex flex-col md:flex-row md:min-h-[300px]">
                     {/* Image Section */}
                     {img ? (
-                      <div className="overflow-hidden md:w-56 md:flex-shrink-0">
+                      <div className="overflow-hidden md:w-56 md:flex-shrink-0 md:self-stretch [&>div]:h-full">
                         <ImageWithSkeleton
                           src={img}
                           alt={e.alt ?? e.title ?? 'Event image'}
                           width={400}
                           height={400}
-                          className="object-cover w-full h-48 rounded-t-lg md:rounded-l-lg md:rounded-tr-none md:h-full md:min-h-[300px]"
+                          className="object-cover w-full h-48 rounded-t-lg md:rounded-l-lg md:rounded-tr-none md:h-full"
                         />
                       </div>
                     ) : null}
