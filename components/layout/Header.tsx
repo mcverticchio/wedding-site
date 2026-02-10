@@ -26,9 +26,11 @@ export function Header({ subtitle, nav }: { subtitle?: string; nav: NavItem[] })
     }
   }, [open]);
 
+  /* eslint-disable react-hooks/set-state-in-effect -- close mobile menu on navigation */
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   useEffect(() => {
     const mq = window.matchMedia('(min-width: 768px)');

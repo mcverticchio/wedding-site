@@ -14,7 +14,7 @@ export const rsvpSchema = z.object({
   email: z.string().email('Please enter a valid email address').optional().or(z.literal('')),
 
   attending: z.enum(['yes', 'no'], {
-    required_error: 'Please select whether you will be attending',
+    error: 'Please select whether you will be attending',
   }),
 
   guest_names: z
@@ -71,7 +71,7 @@ export function validateRsvpForm(
     rsvpSchema.shape.full_name.parse(full_name);
   } catch (error) {
     if (error instanceof z.ZodError) {
-      fieldErrors.full_name = error.errors[0]?.message;
+      fieldErrors.full_name = error.issues[0]?.message;
     }
   }
 
@@ -81,7 +81,7 @@ export function validateRsvpForm(
       rsvpSchema.shape.email.parse(email);
     } catch (error) {
       if (error instanceof z.ZodError) {
-        fieldErrors.email = error.errors[0]?.message;
+        fieldErrors.email = error.issues[0]?.message;
       }
     }
   }
@@ -91,7 +91,7 @@ export function validateRsvpForm(
     rsvpSchema.shape.attending.parse(attending);
   } catch (error) {
     if (error instanceof z.ZodError) {
-      fieldErrors.attending = error.errors[0]?.message;
+      fieldErrors.attending = error.issues[0]?.message;
     }
   }
 
@@ -101,7 +101,7 @@ export function validateRsvpForm(
       rsvpSchema.shape.notes.parse(notes);
     } catch (error) {
       if (error instanceof z.ZodError) {
-        fieldErrors.notes = error.errors[0]?.message;
+        fieldErrors.notes = error.issues[0]?.message;
       }
     }
   }
@@ -122,7 +122,7 @@ export function validateRsvpForm(
         guest_names.push(guestName);
       } catch (error) {
         if (error instanceof z.ZodError) {
-          fieldErrors[`guest_${i}` as keyof FieldErrors] = error.errors[0]?.message;
+          fieldErrors[`guest_${i}` as keyof FieldErrors] = error.issues[0]?.message;
         }
       }
     } else if (guestCount > i) {

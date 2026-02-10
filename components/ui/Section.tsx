@@ -15,20 +15,21 @@ export function Section({
   container?: boolean;
   id?: string;
 }) {
-  const Wrap = ({ children }: { children: ReactNode }) =>
-    container ? <div className="container">{children}</div> : <>{children}</>;
+  const content = (
+    <>
+      {title ? (
+        <div className="mb-6">
+          <h2 className="text-2xl font-medium tracking-tight text-watercolorBlueDark">{title}</h2>
+          {subtitle ? <p className="mt-2 text-slate">{subtitle}</p> : null}
+        </div>
+      ) : null}
+      {children}
+    </>
+  );
 
   return (
     <section id={id} className={['py-10', className].join(' ')}>
-      <Wrap>
-        {title ? (
-          <div className="mb-6">
-            <h2 className="text-2xl font-medium tracking-tight text-watercolorBlueDark">{title}</h2>
-            {subtitle ? <p className="mt-2 text-slate">{subtitle}</p> : null}
-          </div>
-        ) : null}
-        {children}
-      </Wrap>
+      {container ? <div className="container">{content}</div> : content}
     </section>
   );
 }

@@ -13,6 +13,7 @@ export const search = query({
       .take(10);
 
     // Strip the internal searchText field from results
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     return results.map(({ searchText, ...guest }) => guest);
   },
 });

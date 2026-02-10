@@ -14,14 +14,15 @@ export function PasswordProtection({ children, correctPassword }: PasswordProtec
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
+  /* eslint-disable react-hooks/set-state-in-effect -- reading sessionStorage after hydration requires useEffect */
   useEffect(() => {
-    // Check if user is already authenticated (stored in sessionStorage)
     const authStatus = sessionStorage.getItem('wedding-site-authenticated');
     if (authStatus === 'true') {
       setIsAuthenticated(true);
     }
     setIsLoading(false);
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

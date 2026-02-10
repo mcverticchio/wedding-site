@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "preview": "npm run build && npm run start",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
@@ -15,24 +15,24 @@
     "@heroicons/react": "^2.2.0",
     "clsx": "^2.1.1",
     "convex": "^1.31.7",
-    "framer-motion": "^12.23.12",
-    "next": "^14.2.32",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "tailwind-merge": "^3.3.1",
-    "zod": "^3.23.8"
+    "framer-motion": "^12.34.0",
+    "next": "^16.1.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "tailwind-merge": "^3.4.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@types/node": "24.1.0",
-    "@types/react": "19.1.9",
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
-    "autoprefixer": "^10.4.19",
-    "eslint": "^8.57.1",
-    "eslint-config-next": "^14.2.31",
-    "postcss": "^8.4.39",
-    "prettier": "^3.3.3",
-    "tailwindcss": "^3.4.7",
-    "typescript": "^5.5.4"
+    "@tailwindcss/postcss": "^4.1.18",
+    "@types/node": "^25.2.3",
+    "@types/react": "^19.2.13",
+    "@typescript-eslint/eslint-plugin": "^8.55.0",
+    "@typescript-eslint/parser": "^8.55.0",
+    "eslint": "^9.39.2",
+    "eslint-config-next": "^16.1.6",
+    "postcss": "^8.5.6",
+    "prettier": "^3.8.1",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.9.3"
   }
 }

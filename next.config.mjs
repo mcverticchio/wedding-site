@@ -11,7 +11,7 @@ const nextConfig = {
   assetPrefix: repoBase ? repoBase + '/' : undefined,
   images: { unoptimized: true },
   trailingSlash: true,
-  experimental: { typedRoutes: true },
+  typedRoutes: true,
   // Note: Redirects do not run in static export; they help during dev only.
   async redirects() {
     return isDev
