@@ -139,7 +139,9 @@ export function GuestSearch({ onGuestSelect }: GuestSearchProps) {
                     >
                       <div className="font-medium text-ink">{guest.full_name}</div>
                       {guest.guest_plus_one && (
-                        <div className="mt-1 text-sm text-slate">+ {guest.guest_plus_one}</div>
+                        <div className="mt-1 text-sm text-slate">
+                          + {guest.guest_plus_one.toLowerCase() === 'guest' ? 'Plus One' : guest.guest_plus_one}
+                        </div>
                       )}
                     </button>
                   </li>

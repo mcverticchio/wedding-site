@@ -12,7 +12,11 @@ interface RsvpFormProps {
 }
 
 export function RsvpForm({ guest, onBackToSearch }: RsvpFormProps) {
+  const isGenericPlusOne = guest.guest_plus_one?.toLowerCase() === 'guest';
+  const plusOneLabel = isGenericPlusOne ? 'Plus One' : guest.guest_plus_one;
+
   const [plusOneAttending, setPlusOneAttending] = useState(false);
+  const [plusOneName, setPlusOneName] = useState('');
   const [attendingFriday, setAttendingFriday] = useState<boolean | null>(null);
   const [attendingSaturday, setAttendingSaturday] = useState(true);
   const [showAdditionalGuests, setShowAdditionalGuests] = useState(false);
@@ -90,6 +94,7 @@ export function RsvpForm({ guest, onBackToSearch }: RsvpFormProps) {
         attending_friday: guest.invited_to_friday ? attendingFriday : null,
         attending_saturday: attendingSaturday,
         plus_one_attending: guest.guest_plus_one ? plusOneAttending : null,
+        plus_one_name: isGenericPlusOne && plusOneAttending ? plusOneName.trim() || null : null,
         additional_guests: validAdditionalGuests.length,
         additional_guest_names: validAdditionalGuests.length > 0 ? validAdditionalGuests : null,
         email: email.trim(),
@@ -138,7 +143,7 @@ export function RsvpForm({ guest, onBackToSearch }: RsvpFormProps) {
           <p className="text-sm text-slate">Selected guest:</p>
           <p className="text-lg font-medium text-ink">{guest.full_name}</p>
           {guest.guest_plus_one && (
-            <p className="text-sm text-slate">+ {guest.guest_plus_one}</p>
+            <p className="text-sm text-slate">+ {plusOneLabel}</p>
           )}
         </div>
         <button
@@ -232,15 +237,33 @@ export function RsvpForm({ guest, onBackToSearch }: RsvpFormProps) {
             </label>
 
             {guest.guest_plus_one && (
-              <label className="flex gap-3 items-center p-4 text-base text-ink cursor-pointer rounded-lg border transition-all duration-200 hover:bg-warmSand/20 has-[:checked]:bg-watercolorBlue/10 has-[:checked]:border-watercolorBlue touch-manipulation min-h-[56px]">
-                <input
-                  type="checkbox"
-                  checked={plusOneAttending}
-                  onChange={(e) => setPlusOneAttending(e.target.checked)}
-                  className="w-5 h-5 accent-watercolorBlue focus:outline-none focus:ring-2 focus:ring-watercolorBlue focus:ring-offset-2"
-                />
-                <span className="font-medium">{guest.guest_plus_one}</span>
-              </label>
+              <div className="space-y-2">
+                <label className="flex gap-3 items-center p-4 text-base text-ink cursor-pointer rounded-lg border transition-all duration-200 hover:bg-warmSand/20 has-[:checked]:bg-watercolorBlue/10 has-[:checked]:border-watercolorBlue touch-manipulation min-h-[56px]">
+                  <input
+                    type="checkbox"
+                    checked={plusOneAttending}
+                    onChange={(e) => setPlusOneAttending(e.target.checked)}
+                    className="w-5 h-5 accent-watercolorBlue focus:outline-none focus:ring-2 focus:ring-watercolorBlue focus:ring-offset-2"
+                  />
+                  <span className="font-medium">{plusOneLabel}</span>
+                </label>
+                {isGenericPlusOne && plusOneAttending && (
+                  <input
+                    type="text"
+                    value={plusOneName}
+                    onChange={(e) => setPlusOneName(e.target.value)}
+                    placeholder="Guest's full name"
+                    className={`ml-8 w-[calc(100%-2rem)] px-4 py-3 text-base rounded-lg border shadow-sm transition-all duration-200 focus:outline-none touch-manipulation min-h-[48px] ${
+                      fieldErrors.plus_one_name
+                        ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200'
+                        : 'border-warmSand focus:border-autumnGreen focus:ring-2 focus:ring-autumnGreen/20'
+                    }`}
+                  />
+                )}
+                {fieldErrors.plus_one_name && (
+                  <p className="ml-8 text-sm text-red-600">{fieldErrors.plus_one_name}</p>
+                )}
+              </div>
             )}
           </div>
         </div>

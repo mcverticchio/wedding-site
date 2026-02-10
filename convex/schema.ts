@@ -20,6 +20,7 @@ export default defineSchema({
     plus_one_attending: v.union(v.boolean(), v.null()),
     additional_guests: v.number(),
     additional_guest_names: v.union(v.array(v.string()), v.null()),
+    plus_one_name: v.union(v.string(), v.null()),
     email: v.string(),
     notes: v.union(v.string(), v.null()),
   }),
