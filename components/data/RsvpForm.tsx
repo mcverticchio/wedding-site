@@ -15,6 +15,7 @@ export function RsvpForm({ guest, onBackToSearch }: RsvpFormProps) {
   const isGenericPlusOne = guest.guest_plus_one?.toLowerCase() === 'guest';
   const plusOneLabel = isGenericPlusOne ? 'Plus One' : guest.guest_plus_one;
 
+  const [primaryAttending, setPrimaryAttending] = useState(true);
   const [plusOneAttending, setPlusOneAttending] = useState(false);
   const [plusOneName, setPlusOneName] = useState('');
   const [attendingFriday, setAttendingFriday] = useState<boolean | null>(null);
@@ -93,6 +94,7 @@ export function RsvpForm({ guest, onBackToSearch }: RsvpFormProps) {
         guest_id: guest._id,
         attending_friday: guest.invited_to_friday ? attendingFriday : null,
         attending_saturday: attendingSaturday,
+        primary_attending: primaryAttending,
         plus_one_attending: guest.guest_plus_one ? plusOneAttending : null,
         plus_one_name: isGenericPlusOne && plusOneAttending ? plusOneName.trim() || null : null,
         additional_guests: validAdditionalGuests.length,
@@ -226,11 +228,11 @@ export function RsvpForm({ guest, onBackToSearch }: RsvpFormProps) {
         <div>
           <p className="block mb-3 text-sm font-medium text-ink">Who is attending?</p>
           <div className="space-y-3">
-            <label className="flex gap-3 items-center p-4 text-base text-ink cursor-pointer rounded-lg border transition-all duration-200 hover:bg-warmSand/20 has-[:checked]:bg-watercolorBlue/10 has-[:checked]:border-watercolorBlue touch-manipulation min-h-[56px] bg-watercolorBlue/10 border-watercolorBlue">
+            <label className="flex gap-3 items-center p-4 text-base text-ink cursor-pointer rounded-lg border transition-all duration-200 hover:bg-warmSand/20 has-[:checked]:bg-watercolorBlue/10 has-[:checked]:border-watercolorBlue touch-manipulation min-h-[56px]">
               <input
                 type="checkbox"
-                checked={true}
-                disabled
+                checked={primaryAttending}
+                onChange={(e) => setPrimaryAttending(e.target.checked)}
                 className="w-5 h-5 accent-watercolorBlue focus:outline-none focus:ring-2 focus:ring-watercolorBlue focus:ring-offset-2"
               />
               <span className="font-medium">{guest.full_name}</span>
