@@ -5,6 +5,10 @@
 node_modules
 out
 
+# Build artifacts
+tsconfig.tsbuildinfo
+bun.lock
+
 # Sensitive / temporary data
 wedding.txt
 guests.csv

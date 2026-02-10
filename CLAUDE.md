@@ -2,13 +2,13 @@
 
 ## Project Overview
 
-This is a modern, password-protected wedding website for Caroline & Zach's wedding on June 27, 2026, in Spartanburg, South Carolina. Built with Next.js 14 + TypeScript, it features static site generation for GitHub Pages deployment and uses Supabase for RSVP management.
+This is a modern, password-protected wedding website for Caroline & Zach's wedding on June 27, 2026, in Spartanburg, South Carolina. Built with Next.js 14 + TypeScript, it features static site generation for GitHub Pages deployment and uses Convex for RSVP management.
 
 ## Technical Stack
 
 - **Framework**: Next.js 14.2.5 with App Router and TypeScript
 - **Styling**: Tailwind CSS with custom autumn wedding theme
-- **Database**: Supabase for RSVP submissions
+- **Database**: Convex for guest search and RSVP submissions
 - **Animations**: Framer Motion for interactive elements
 - **Icons**: Heroicons React
 - **Validation**: Zod for data validation
@@ -26,7 +26,7 @@ wedding-site-main/
 │   ├── faqs/page.tsx           # FAQ accordion
 │   ├── gallery/page.tsx        # Interactive photo gallery
 │   ├── registry/page.tsx       # Gift registry links
-│   ├── rsvp/page.tsx           # RSVP form with Supabase integration
+│   ├── rsvp/page.tsx           # RSVP form with Convex integration
 │   └── schedule/page.tsx       # Wedding timeline
 ├── components/                  # Reusable components
 │   ├── index.ts                # Barrel exports
@@ -38,7 +38,6 @@ wedding-site-main/
 │   └── ui/                     # Base UI components
 ├── lib/                        # Utilities and data
 │   ├── site.ts                 # Site configuration loader
-│   ├── supabase.ts            # Database client
 │   ├── utils.ts               # Utility functions
 │   └── data/                  # JSON data files
 └── public/images/             # Static assets
@@ -62,7 +61,7 @@ wedding-site-main/
 2. **RSVP System** (`app/rsvp/page.tsx`)
    - Dynamic form with guest management (up to 3 additional guests)
    - Attendance confirmation, dietary restrictions, notes
-   - Supabase integration for data storage
+   - Convex integration for data storage
    - Environment variable detection for graceful degradation
 
 3. **Schedule** (`app/schedule/page.tsx`)
@@ -105,11 +104,13 @@ All content is managed through JSON files in `lib/data/`:
 - `gallery.json` - Photo collections with captions and dimensions
 - `faqs.json` - Frequently asked questions
 
-### Dynamic Data (Supabase)
+### Dynamic Data (Convex)
 
-- RSVP submissions stored in `rsvps` table
-- Environment variables: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- Client-side integration with error handling and loading states
+- Guest list stored in `guests` table with full-text search index
+- RSVP submissions stored in `guest_rsvps` table
+- Backend functions in `convex/guests.ts` (search query) and `convex/rsvps.ts` (submit mutation)
+- Environment variable: `NEXT_PUBLIC_CONVEX_URL`
+- Client-side integration via `useQuery` and `useMutation` hooks
 
 ## Design System
 
@@ -179,8 +180,7 @@ All content is managed through JSON files in `lib/data/`:
 ### Required
 
 - `NEXT_PUBLIC_WEDDING_PASSWORD` - Site access password
-- `NEXT_PUBLIC_SUPABASE_URL` - Supabase project URL
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Supabase anonymous key
+- `NEXT_PUBLIC_CONVEX_URL` - Convex deployment URL
 
 ### Optional
 

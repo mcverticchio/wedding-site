@@ -4,20 +4,18 @@ Deadline: Nov 1
 
 Zach:
 [] Standardize/optimize all images with Mazanoke on umbrel to webp
-[] Understand why engagement photo 11 and 12 are in wedding array, not engagement photo array
+[x] Fix engagement photo 11 and 12 in wrong gallery array
 [] Wire up bitcoin wallet xpub or a way to receive bitcoin payments securely for the site
-[] Make sure you can't see everyone else invited on the site invitation list
-[] Keep alive or convex migration
-[] Success message for RSVP
-[] Rate limiting/spam prevention for Submit button in RSVP form
-[] Remove Friday from Schedule page (will be on RSVP form only if invited - not open to the full guest list)
 
 Caroline:
-[] Fix supabase backend with RLS
-[x] Add a "Things to Do" section at the bottom of "Accomodations" or a separate tab? - IN PROGRESS
 [] Mobile responsiveness
 
 Done:
+[x] Migrate from Supabase to Convex (no more free tier pausing)
+[x] Success message for RSVP
+[x] Rate limiting/spam prevention for Submit button in RSVP form
+[x] Remove Friday from Schedule page (will be on RSVP form only if invited)
+[x] Make sure you can't see everyone else invited on the site invitation list
 [x] Add uiternity photo gallery component
 [x] Fill in hotel info and ratings
 [x] Fix hotel URLs
@@ -37,3 +35,4 @@ Done:
 [x] Style website
 [x] Finish Improvements.md
 [x] Finalize gallery photos and captions
+[x] Add a "Things to Do" section

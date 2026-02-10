@@ -309,15 +309,6 @@
       "caption": "Engagement",
       "width": 1200,
       "height": 1600
-    }
-  ],
-  "wedding": [
-    {
-      "src": "../assets/images/engagement-11.jpeg",
-      "alt": "Engagement photo 11",
-      "caption": "Engagement",
-      "width": 1200,
-      "height": 1600
     },
     {
       "src": "../assets/images/engagement-12.jpeg",
@@ -326,5 +317,6 @@
       "width": 1200,
       "height": 1600
     }
-  ]
+  ],
+  "wedding": []
 }
