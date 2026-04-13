@@ -1,4 +1,4 @@
-const { tokens } = require('./lib/design-tokens');
+const { tokens } = require('./lib/design-tokens.ts');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {

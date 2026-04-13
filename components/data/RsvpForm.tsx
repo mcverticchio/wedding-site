@@ -47,6 +47,8 @@ export function RsvpForm({ guest, onBackToSearch }: RsvpFormProps) {
 
   const validateForm = (): boolean => {
     const errors: Record<string, string> = {};
+    const hasSelectedAttendee =
+      primaryAttending || plusOneAttending || additionalGuestNames.some((name) => name.trim().length > 0);
 
     // Email is required
     if (!email.trim()) {
@@ -55,9 +57,9 @@ export function RsvpForm({ guest, onBackToSearch }: RsvpFormProps) {
       errors.email = 'Please enter a valid email address';
     }
 
-    // At least one person must be attending Saturday
-    if (!attendingSaturday) {
-      errors.attending = 'Please confirm your attendance for the Saturday wedding';
+    // If Saturday attendance is confirmed, require at least one attendee selection
+    if (attendingSaturday && !hasSelectedAttendee) {
+      errors.attending = 'Select who is attending for the Saturday wedding';
     }
 
     // If Friday is shown, validate it
@@ -65,12 +67,18 @@ export function RsvpForm({ guest, onBackToSearch }: RsvpFormProps) {
       errors.friday = 'Please confirm your attendance for the Friday gathering';
     }
 
-    // Validate additional guest names if any are filled
-    additionalGuestNames.forEach((name, index) => {
-      if (name.trim() && name.trim().length < 2) {
-        errors[`additional_${index}`] = 'Guest name must be at least 2 characters';
+    if (attendingSaturday) {
+      if (isGenericPlusOne && plusOneAttending && !plusOneName.trim()) {
+        errors.plus_one_name = "Please enter your guest's full name";
       }
-    });
+
+      // Validate additional guest names if any are filled
+      additionalGuestNames.forEach((name, index) => {
+        if (name.trim() && name.trim().length < 2) {
+          errors[`additional_${index}`] = 'Guest name must be at least 2 characters';
+        }
+      });
+    }
 
     setFieldErrors(errors);
     return Object.keys(errors).length === 0;
@@ -87,16 +95,18 @@ export function RsvpForm({ guest, onBackToSearch }: RsvpFormProps) {
     setSubmitStatus(null);
 
     try {
-      // Filter out empty additional guest names
-      const validAdditionalGuests = additionalGuestNames.filter((name) => name.trim().length > 0);
+      // Only persist attendee details when the guest is attending Saturday.
+      const validAdditionalGuests = attendingSaturday
+        ? additionalGuestNames.filter((name) => name.trim().length > 0)
+        : [];
 
       await submitRsvp({
         guest_id: guest._id,
         attending_friday: guest.invited_to_friday ? attendingFriday : null,
         attending_saturday: attendingSaturday,
-        primary_attending: primaryAttending,
-        plus_one_attending: guest.guest_plus_one ? plusOneAttending : null,
-        plus_one_name: isGenericPlusOne && plusOneAttending ? plusOneName.trim() || null : null,
+        primary_attending: attendingSaturday ? primaryAttending : false,
+        plus_one_attending: guest.guest_plus_one ? (attendingSaturday ? plusOneAttending : false) : null,
+        plus_one_name: attendingSaturday && isGenericPlusOne && plusOneAttending ? plusOneName.trim() || null : null,
         additional_guests: validAdditionalGuests.length,
         additional_guest_names: validAdditionalGuests.length > 0 ? validAdditionalGuests : null,
         email: email.trim(),
@@ -118,6 +128,10 @@ export function RsvpForm({ guest, onBackToSearch }: RsvpFormProps) {
   };
 
   if (submitStatus?.ok) {
+    const successBody = attendingSaturday
+      ? "Your RSVP has been submitted. We can't wait to celebrate with you!"
+      : "Your RSVP has been submitted. We'll be celebrating with you in spirit.";
+
     return (
       <div className="py-6 text-center space-y-4">
         <div className="flex justify-center">
@@ -126,7 +140,7 @@ export function RsvpForm({ guest, onBackToSearch }: RsvpFormProps) {
           </svg>
         </div>
         <h3 className="text-xl font-semibold text-ink">Thank you, {guest.full_name}!</h3>
-        <p className="text-slate">Your RSVP has been submitted. We can&apos;t wait to celebrate with you!</p>
+        <p className="text-slate">{successBody}</p>
         <button
           type="button"
           onClick={onBackToSearch}
