@@ -89,6 +89,11 @@ export function RegistryGrid({ links, note }: { links: RegistryLink[]; note?: st
     return link.url;
   };
 
+  const getButtonLabel = (link: RegistryLink) => {
+    const name = link.name?.toLowerCase() ?? '';
+    return name.includes('cash') || name.includes('bitcoin') ? 'Donate' : 'View Registry';
+  };
+
   return (
     <div className="space-y-8">
       {note && <p className="text-lg leading-relaxed text-ink/80">{note}</p>}
@@ -118,10 +123,7 @@ export function RegistryGrid({ links, note }: { links: RegistryLink[]; note?: st
                     rel="noreferrer"
                     className="px-6 py-3 w-full font-medium text-white rounded-lg transition-all duration-200 bg-autumnGreen hover:bg-autumnGreen/90 hover:shadow-md"
                   >
-                    {l.name?.toLowerCase().includes('amazon') ||
-                    l.name?.toLowerCase().includes('stafford')
-                      ? 'View Registry'
-                      : 'Donate'}
+                    {getButtonLabel(l)}
                   </Button>
                 )}
               </CardFooter>
